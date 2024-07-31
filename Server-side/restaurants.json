@@ -1,0 +1,16 @@
+[{
+    "name": "Restaurant Name",
+    "rating": 4.5,
+    "serverCuisine": "Pasta",
+    "imageUrl": "http://example.com/image.jpg",
+    "menu": [
+      {
+        "id": "uuid-1",
+        "name": "Pasta",
+        "price": 12.99,
+        "rating": 4.7,
+        "image": "http://example.com/menu-item.jpg"
+      }
+    ]
+  }
+]

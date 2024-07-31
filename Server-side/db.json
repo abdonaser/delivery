@@ -1,0 +1,12 @@
+[
+  {
+    "id": "4f3d2ead-4845-4eb9-9f8d-b726dc50f15f",
+    "username": "my neww",
+    "email": "newww@gmail.com",
+    "password": "$2a$10$ygRw9Tz671yaqY6GsZ6GHeawpKDtgJrE/dqxNU8lsLb0wXFaDX2Um",
+    "address": "cairo",
+    "phoneNumber": "123456",
+    "gender": "male",
+    "role": "customer"
+  }
+]
