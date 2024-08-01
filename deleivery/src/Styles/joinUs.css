@@ -1,0 +1,15 @@
+ .joinUs {
+     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+     padding: 30px 35px !important;
+     margin: 50px auto !important;
+     margin-bottom: 50px !important;
+     border-radius: 10px;
+     background: #fff;
+ }
+
+
+ .joinUs-button {
+     padding: 8px 15px;
+     font-size: 1.2rem;
+     font-weight: lighter;
+ }

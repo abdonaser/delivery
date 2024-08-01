@@ -1,0 +1,26 @@
+@import url("Variables.css");
+
+.about-Us-page {
+    background-color: #e65627;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-Us-page .about-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.about-Us-page .about-imgContainer {
+    width: 200px !important;
+    height: 200px !important;
+}
+
+.about-Us-page .about-Details {}
+
+.about-Us-page .about-imgContainer {}

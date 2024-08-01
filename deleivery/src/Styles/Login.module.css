@@ -1,0 +1,235 @@
+.SignComp {
+    height: 100vh;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.signContainer {
+    width: 80%;
+    padding: 10px;
+    height: 100%;
+
+}
+
+/* //' ================================================== left Section */
+.LeftSection {
+    height: 100%;
+}
+
+.LeftSection>div {
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-bg-color);
+    position: relative;
+    border-radius: 45px;
+}
+
+.Boxs {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    bottom: 20%;
+    right: 8%;
+
+}
+
+.mealBoxParant {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background-image: url('Images/LogPageImage/meal-2.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.singleBox1,
+.singleBox2,
+.singleBox3 {
+    border: 4px solid var(--main-border-color);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 999;
+    box-shadow: var(--box-shadow);
+}
+
+.singleBox1 {
+    position: absolute;
+    top: 10%;
+    left: -60%;
+    width: 75%;
+    height: 35%;
+    background-image: url('Images/LogPageImage/meal-1.jpg');
+}
+
+
+.singleBox2 {
+    position: relative;
+    top: -25%;
+    left: 40%;
+    width: 75%;
+    height: 50%;
+    background-image: url('Images/LogPageImage/meal-4.jpg');
+}
+
+
+.singleBox3 {
+    position: absolute;
+    bottom: -20%;
+    left: 20%;
+    width: 95%;
+    height: 45%;
+    background-image: url('Images/LogPageImage/meal-3.jpg');
+}
+
+/* //' ================================================== right Section */
+.RightSection {
+    position: relative;
+    height: 100%;
+}
+
+.rightContainer {
+    overflow: hidden;
+    width: 90%;
+    height: 95%;
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+
+
+.mainContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+ 
+}
+
+.theCard {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+
+
+}
+
+.theFront {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background: var(--white-bg);
+    padding: 35px;
+    border-radius: 45px;
+    /* box-shadow: var(--box-shadow); */
+}
+
+.theBack {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background: var(--white-bg);
+    transform: rotateY(180deg);
+    padding: 25px;
+    /* box-shadow: var(--box-shadow); */
+    border-radius: 45px;
+
+}
+
+.inputContainer {
+    position: relative;
+
+}
+
+.inputIcon {
+    position: absolute;
+    font-size: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 8px;
+}
+
+.inputPadding {
+    padding: 10px 35px !important;
+}
+
+
+.LogBtnColor {
+    background-color: var(--main-color) !important;
+}
+
+
+.cursorPointer {
+    cursor: pointer;
+    transition: all 0.5s;
+    font-weight: bold;
+
+    &:hover {
+        color: var(--main-color) !important;
+    }
+}
+
+.redHover {
+    cursor: pointer;
+    transition: all 0.5s;
+    font-weight: bold;
+
+    &:hover {
+        color: var(--main-color) !important;
+    }
+}
+
+.handelcreate {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* //? mediaQuiry  */
+
+@media (min-width: 992px) and (max-width:1280px) {
+
+    .rightContainer {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:992px) {
+    .LeftSection {
+        display: none;
+    }
+
+    .rightContainer {
+        left: 10%;
+    }
+
+    .handelcreate {
+        font-size: 15px;
+    }
+}
+
+
+
+
+/* //'regiter */
+
+
+.birthLabel {
+    width: 35% !important;
+}
+
+.birthInput {
+    width: 65% !important;
+}
+
+.pointer {
+    cursor: pointer;
+}

@@ -1,0 +1,127 @@
+/* MenuPage.css */
+.menu-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  /* background-color: #f5f5f570; */
+  margin-top: 70px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.menu-page-restaurant-info {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 20px;
+  background-color: #ffffff91;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu-page-restaurant-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.menu-page-restaurant-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-page-content {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.menu-page-categories {
+  width: 20%;
+  background-color: #ffffff91;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
+}
+
+.menu-page-categories h2 {
+  margin-bottom: 10px;
+}
+
+.menu-page-categories ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu-page-categories li {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.menu-page-items {
+  width: 55%;
+  background-color: #ffffff91;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
+}
+
+.menu-page-items h2 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.menu-page-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.menu-page-item-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.menu-page-item-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-page-item-details button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff5b00;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  float: right;
+}
+
+.menu-page-item-details button:hover {
+  background-color: #e04a00;
+}
+
+.menu-page-cart {
+  width: 25%;
+  background-color: #ffffff91;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu-page-cart h2 {
+  margin-bottom: 10px;
+}

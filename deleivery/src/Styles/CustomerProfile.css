@@ -1,0 +1,134 @@
+.customer-profile-container {
+  display: flex;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  /* height: calc(100vh - 120px); */
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+
+.customer-profile-container .sidebar {
+  width: 20%;
+  /* background: #f0864d; */
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.customer-profile-container .sidebar-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background: rgba(255, 255, 255, 0.7); /* Glass effect */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.customer-profile-container .sidebar-button.active {
+  background: rgba(255, 255, 255, 0.9);
+  font-weight: bold;
+}
+
+.customer-profile-container .sidebar-button:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.customer-profile-container .profile-content {
+  flex: 1;
+  /* background: #f0864d; */
+  padding: 20px;
+  margin-left: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info,
+.orders-info {
+  text-align: center;
+}
+
+.profile-pic-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 5px solid rgba(255, 255, 255, 0.5);
+}
+
+.user-info,
+.orders-info {
+  text-align: center;
+  /* background: rgba(255, 255, 255, 0.5); */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.user-info h2,
+.orders-info h2 {
+  margin: 0;
+  font-size: 24px;
+}
+.user-info {
+  /* display: flex;
+  flex-wrap: wrap; */
+}
+.info-item {
+  width: 70% ;
+  margin: auto;
+  margin-bottom: 10px;
+  /* width: 40%;
+  font-size: 20px;
+  margin: 15px;
+  text-align: left; */
+}
+
+.edit-icon {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.edit-icon:hover {
+  color: orange;
+}
+/*  */
+/* .edit-icon {
+  cursor: pointer;
+  color: #ff5b00; 
+} */
+
+/* .info-item {
+  margin-bottom: 1rem;
+}*/
+
+.info-item input {
+  /* margin-left: 0.5rem;
+  padding: 0.2rem;
+  width: 50%;
+  border-radius: 12px;
+  border: none; */
+}
+
+.info-item button {
+  margin-left: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  background-color: hsl(21, 100%, 50%);
+  color: white;
+  font-size: 19px;
+  text-align: center;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.info-item button:hover{
+  background-color: hsl(21, 100%, 40%);
+}

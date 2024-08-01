@@ -1,0 +1,70 @@
+.OwnerProfileContainer {
+  display: flex;
+  height: 100vh;
+  gap: 10px;
+  padding: 50px;
+}
+.OwnerProfileContainer-list {
+  background-color: rgba(155, 154, 154, 0.308);
+  width: 20%;
+  box-shadow: 5px 5px 5px rgb(73, 63, 63);
+  border-radius: 12px;
+}
+.OwnerProfileContainer-display {
+  background-color: rgba(155, 154, 154, 0.308);
+  width: 80%;
+  box-shadow: 5px 5px 5px rgb(73, 63, 63);
+  border-radius: 12px;
+}
+
+.OwnerProfileContainer-list img {
+  width: 100px;
+  height: 100px;
+  border: 2px solid black;
+  border-radius: 50%;
+  margin-left: 90px;
+}
+
+.OwnerProfileContainer-list ul {
+  list-style: none;
+  margin-top: 55px;
+}
+.OwnerProfileContainer-list ul li {
+  padding: 10px;
+  font-weight: bold;
+}
+.OwnerProfileContainer-list ul li:hover {
+  color: black;
+  padding: 3px;
+  cursor: pointer;
+}
+
+.OwnerProfileContainer-display {
+  flex-grow: 1;
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin-left: 10px;
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-content h2 {
+  margin-bottom: 20px;
+}
+
+.profile-item {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.profile-item label {
+  width: 150px;
+  font-weight: bold;
+}
+
+.profile-item span {
+  flex-grow: 1;
+}

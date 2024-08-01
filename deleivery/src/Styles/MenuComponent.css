@@ -1,0 +1,35 @@
+.owner-menu-container {
+  padding: 20px;
+}
+
+.owner-menu-container .restaurant-header {
+  text-align: center;
+}
+
+.owner-menu-container .restaurant-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.owner-menu-container .menu-items {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.owner-menu-container .menu-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 10px;
+  width: 200px;
+}
+
+.owner-menu-container .menu-item-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.owner-menu-container .error-message {
+  color: red;
+}

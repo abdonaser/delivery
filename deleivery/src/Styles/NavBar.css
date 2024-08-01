@@ -1,0 +1,237 @@
+/* Navbar.css */
+* {
+  box-sizing: border-box;
+}
+
+.Navbar a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.Navbar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.Navbar img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  font: 18px/26px "Cabin", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.Navber .container {
+  padding: 0 15px;
+}
+
+.Navber .container-max {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* HEADER STYLES */
+.page-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 20px 0;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.15);
+  transition: background-color 0.3s, padding 0.3s;
+  margin-bottom: 160px;
+}
+
+.page-header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.page-header .logo {
+  transition: color 0.3s;
+  margin-left: 30px;
+}
+
+.page-header .logo:hover {
+  color: #08a6df;
+}
+
+.page-header .nav-items {
+  display: flex;
+  align-items: center;
+}
+
+.page-header .nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.page-header .nav-links li {
+  margin: 0 15px;
+  position: relative;
+}
+
+.page-header .nav-links a {
+  color: #173B45;
+  font-size: 16px;
+  transition: color 0.3s, padding-bottom 0.3s;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+}
+
+.page-header .nav-links a:hover {
+  color: #fff;
+  border-bottom: 2px solid #ff5b00;
+}
+
+.page-header .search-bar {
+  max-width: 300px;
+  margin: 0 20px;
+}
+
+.page-header .search-bar input {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  transition: background-color 0.3s, border 0.3s;
+}
+
+.page-header .search-bar input:focus {
+  background-color: #fff;
+  border: 2px solid #ff5b00;
+}
+
+.page-header .icons {
+  display: flex;
+  align-items: center;
+}
+
+.page-header .cart-icon,
+.page-header .profile-icon {
+  font-size: 24px;
+  color: #fff;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.page-header .cart-icon:hover,
+.page-header .profile-icon:hover {
+  color: #08a6df;
+}
+
+.page-header .profile-menu {
+  position: absolute;
+  right: 20px;
+  top: 60px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: scale(0.9);
+  opacity: 0;
+}
+
+.page-header .profile-menu.show {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.page-header .profile-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.page-header .profile-menu li {
+  padding: 10px 20px;
+}
+
+.page-header .profile-menu li a {
+  color: #F8EDED;
+  transition: color 0.3s;
+}
+
+.page-header .profile-menu li a:hover {
+  color: #08a6df;
+}
+
+.page-header .profile-menu li:hover {
+  background: #f0f0f0;
+}
+
+/* AUTH BUTTONS STYLES */
+.page-header .auth-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.page-header .auth-button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #F8EDED;
+  background: #ff5b00;
+  transition: background 0.3s, transform 0.3s;
+  margin: 0 10px;
+}
+
+.page-header .auth-button:hover {
+  background: #e64a19;
+  transform: scale(1.05);
+}
+
+/* STICKY STYLES */
+.page-header.is-sticky {
+  padding: 8px 0;
+  backdrop-filter: blur(10px);
+  animation: slideDown 0.35s ease-out;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.page-header.is-sticky .logo {
+  max-width: 10%;
+}
+
+.page-header.is-sticky .nav-links a {
+  font-size: 14px;
+  padding: 7px 10px;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+
+.icons .cart-icon {
+  position: relative;
+}
+
+.icons .cart-quantity {
+  position: absolute;
+  top: -10px;
+  right: 17px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+}

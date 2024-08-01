@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "id": "80ed217d-558e-4f02-8b94-99e00e537417",
+      "username": "abdelrahman ",
+      "email": "abdonaser4223@gmaffil.com",
+      "password": "$2a$10$9csKGPxXxVe1bhBu998nsO4ZTrb054aFTQCwl1n2w8LgR4xjFsiIG",
+      "address": "marg",
+      "phoneNumber": "01141895222",
+      "gender": "male",
+      "role": "customer"
+    },
+    {
+      "id": "d890dc06-2c83-4473-80f8-08a0480ce0cb",
+      "username": "noran",
+      "email": "noran@gmail.com",
+      "password": "$2a$10$NG5coZRr3.iWeyMDeobot.kHUT1xq6b/9.gQHvbEDfXhy/dt78FOe",
+      "address": "cairo",
+      "phoneNumber": "12234546",
+      "gender": "female",
+      "role": "customer"
+    },
+    {
+      "id": "8d725a1d-626b-4a37-8d7d-fde724525172",
+      "username": "",
+      "email": "",
+      "password": "$2a$10$X9LincaVfaolXo7LTmn62.JQBMLHu9hrNhhNId26mKpBTkOLQBtOm",
+      "address": "",
+      "phoneNumber": "",
+      "gender": "",
+      "role": "customer"
+    }
+  ]
+}

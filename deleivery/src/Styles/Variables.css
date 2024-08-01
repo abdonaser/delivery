@@ -1,0 +1,34 @@
+:root {
+    /* //' Public Styles ========================*/
+    --f-color: #FF5B00;
+    --s-color: #399918;
+    --th-color: #777;
+    --p-color: hsl(0, 0%, 50%);
+    --body-bg-color: #fefefe;
+    --card-bg-color: #fff;
+    --modal-bg-color: #fff;
+    --line-color: #d7d7d7;
+    --color-filter: invert(1);
+    --box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    --small-size: .9em;
+    --normal--size: 1em;
+
+
+    /* //' Login&SignUp Variables ========================*/
+    --main-bg-color: #FF0000;
+    --main-color: #FF0000;
+
+    --main-border-color: #fff;
+
+    --white-bg: #fff;
+}
+
+
+
+/* 
+p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--color-primary3);
+    font-weight: 300;
+} */

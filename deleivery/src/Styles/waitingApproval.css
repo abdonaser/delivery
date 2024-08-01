@@ -1,0 +1,26 @@
+.waitingApproval {
+    /* background-color: red; */
+    text-align: center;
+}
+
+.waitingApproval>* {
+    margin: 20px auto;
+
+}
+
+.waitingApproval h1 {
+    /* font-family: "New Rocker", system-ui;
+    font-weight: 400;
+    font-style: normal; */
+    text-align: center;
+    padding: 10px 5px;
+    font-size: 65px;
+
+}
+
+.waitingApproval p {
+    text-align: center;
+    margin: 15px 0;
+    padding: 10px 5px;
+    font-size: 25px;
+}
