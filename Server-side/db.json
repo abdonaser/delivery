@@ -29,6 +29,36 @@
       "phoneNumber": "",
       "gender": "",
       "role": "customer"
+    },
+    {
+      "id": "94d1791e-e5fb-487e-85d6-bbc378f65dde",
+      "username": "user",
+      "email": "user@gmail.com",
+      "password": "$2a$10$WBT1g/EJUU0XOge1Hh0oLuaeQcDP7Wp3js/Liz.vZnccZB2gXpZT2",
+      "address": "cairo",
+      "phoneNumber": "123456789",
+      "gender": "female",
+      "role": "customer"
+    },
+    {
+      "id": "3c61e670-c436-4179-802d-6b0d7cccf45b",
+      "username": "admin",
+      "email": "admin@gmail.com",
+      "password": "$2a$10$rky255RsyscBwbwLgufvuOZLSatGB592K13A0XFeYkcNoRX4bv.RC",
+      "address": "cairo",
+      "phoneNumber": "123456789",
+      "gender": "male",
+      "role": "admin"
+    },
+    {
+      "id": "674d99cb-a74a-4ee0-a30a-15100a5b00c0",
+      "username": "admin2",
+      "email": "admin2@gmail.com",
+      "password": "$2a$10$YIXftLJ/V7aJgu.Lu4RTceWI0SZb6lV13On7uAkelMr0E3ZZa8lrO",
+      "address": "giza",
+      "phoneNumber": "987654",
+      "gender": "female",
+      "role": "admin"
     }
   ]
 }
