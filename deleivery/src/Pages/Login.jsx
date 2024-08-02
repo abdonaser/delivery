@@ -25,12 +25,14 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const handleSubmit = async (e) => {
-   
     e.preventDefault();
     setError("");
     setMessage("");
     try {
-      const response = await axios.post("http://localhost:3000/login", formData);
+      const response = await axios.post(
+        "http://localhost:3000/login",
+        formData
+      );
       const { token, user } = response.data;
       // Save token and user info to local storage
       localStorage.setItem("token", token);
@@ -43,6 +45,8 @@ const Login = () => {
       console.log(user);
       if (user.role === "customer") {
         navigate("/customer-profile");
+      } else if (user.role === "admin") {
+        navigate("/admin-profile");
       } else if (user.role === "owner") {
         if (user.status === "approved") {
           navigate("/owner-profile");
