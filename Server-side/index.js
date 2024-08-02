@@ -2,13 +2,13 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const fs = require("fs");
 const cors = require("cors");
+const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 const path = require("path");
 // const session = require("express-session");
 
-const restaurants = require("./restaurants");
+// const restaurants = require("./restaurants");
 
 const app = express();
 const port = 3000;
@@ -19,10 +19,25 @@ const SECRET_KEY =
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
+const router = express.Router();
+const ownersFilePath = path.join(__dirname, "owners.json");
+const restaurantsFilePath = path.join(__dirname, "restaurants.json");
 
 let users = [];
 let pendingRegistrations = [];
 let ownerProfiles = [];
+let restaurants = [];
+
+// Function to get data from restaurants.json
+const getRestaurants = () => {
+  const restaurantsData = fs.readFileSync(restaurantsFilePath);
+  return JSON.parse(restaurantsData);
+};
+
+// Function to save restaurants to restaurants.json
+const saveRestaurants = (restaurants) => {
+  fs.writeFileSync(restaurantsFilePath, JSON.stringify(restaurants, null, 2));
+};
 
 const readJSONFile = (filename) => {
   return new Promise((resolve, reject) => {
@@ -141,17 +156,38 @@ app.get("/current-user", authenticateToken, (req, res) => {
   }
 });
 
-// Route to get owner profile
-app.get("/owner-profile", authenticateToken, (req, res) => {
-  // Simulated database query
-  const ownerProfile = ownerProfiles.find(
-    (profile) => profile.id === req.user.id
-  );
+//Endpoint to Get Owner Profile with Restaurants
+app.get("/owner-profile", (req, res) => {
+  const authHeader = req.headers.authorization;
 
-  if (ownerProfile) {
-    res.json(ownerProfile);
-  } else {
-    res.status(404).json({ message: "Profile not found" });
+  if (!authHeader) {
+    return res.status(401).json({ message: "Authorization header missing" });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({ message: "Token missing" });
+  }
+
+  try {
+    const decodedToken = jwt.verify(token, SECRET_KEY);
+    const owner = ownerProfiles.find(
+      (profile) => profile.id === decodedToken.id
+    );
+
+    if (!owner) {
+      return res.status(404).json({ message: "Owner not found" });
+    }
+
+    const restaurants = getRestaurants().filter(
+      (restaurant) => restaurant.ownerId === owner.id
+    );
+
+    res.status(200).json({ ...owner, restaurants });
+  } catch (err) {
+    console.error("Token verification failed", err);
+    res.status(401).json({ message: "Invalid token" });
   }
 });
 
@@ -224,7 +260,7 @@ app.post("/join-us", async (req, res) => {
     address,
     phoneNumberOwner,
     phoneNumberRestaurant,
-    category,
+    serverCuisine,
     taxNumber,
     email,
     password,
@@ -250,12 +286,12 @@ app.post("/join-us", async (req, res) => {
     address,
     phoneNumberOwner,
     phoneNumberRestaurant,
-    category,
+    serverCuisine,
     taxNumber,
     email,
     password: hashedPassword,
     status: "pending",
-    role: "owner", // Ensure role is set to "owner"
+    role: "owner",
   };
   pendingRegistrations.push(newOwner);
   saveDataToFile();
@@ -344,6 +380,20 @@ app.post("/approve-registration/:id", (req, res) => {
   approvedRegistration.status = "approved";
   ownerProfiles.push(approvedRegistration);
 
+  // Add new restaurant to restaurants.json
+  const restaurants = getRestaurants();
+  const newRestaurant = {
+    id: `restaurant_${Date.now()}`, // Generate a unique ID for the restaurant
+    ownerId: approvedRegistration.id,
+    name: approvedRegistration.restaurantName,
+    rating: 4.5,
+    serverCuisine: approvedRegistration.serverCuisine,
+    imageUrl: "", // Placeholder, update with actual image URL if available
+    menu: [], // Empty menu array
+  };
+  restaurants.push(newRestaurant);
+  saveRestaurants(restaurants);
+
   saveDataToFile();
 
   res.status(200).json({ message: "Registration approved successfully" });
@@ -395,10 +445,6 @@ app.get("/restaurant/name/:name", (req, res) => {
   }
 });
 
-// const generateUniqueId = () => {
-//   return uuidv4();
-// };
-
 const loadDataFromFile = () => {
   try {
     const data = fs.readFileSync(path.join(__dirname, "restaurants.json"));
@@ -408,56 +454,149 @@ const loadDataFromFile = () => {
   }
 };
 
-app.post("/restaurants", authenticateToken, (req, res) => {
-  const { name, rating, serverCuisine, imageUrl, menu } = req.body;
+loadDataFromFile();
+// Endpoint to add a menu item
+app.post("/restaurants/:id/menu", authenticateToken, async (req, res) => {
+  const restaurantId = req.params.id;
+  const { name, price, rating, image } = req.body;
 
-  console.log("Received data:", req.body);
-
-  // Validate required fields
-  if (!name || !rating || !serverCuisine || !imageUrl || !Array.isArray(menu)) {
-    return res.status(400).json({ message: "Missing required fields" });
+  // Check if required fields are present
+  if (!name || price === undefined || rating === undefined) {
+    return res
+      .status(400)
+      .json({ message: "Name, price, and rating are required" });
   }
 
-  // Validate menu items
-  for (const item of menu) {
-    if (
-      !item.id ||
-      !item.name ||
-      typeof item.price !== "string" ||
-      typeof item.rating !== "number" ||
-      !item.image
-    ) {
-      return res.status(400).json({ message: "Invalid menu item data" });
+  // Ensure rating is a number and price is a string
+  if (isNaN(rating)) {
+    return res.status(400).json({ message: "Rating must be a number" });
+  }
+
+  try {
+    const data = await fs.promises.readFile(restaurantsFilePath, "utf8");
+    let restaurants = JSON.parse(data);
+
+    const restaurant = restaurants.find((r) => r.id === restaurantId);
+
+    if (!restaurant) {
+      return res.status(404).json({ message: "Restaurant not found" });
     }
-  }
 
-  const newRestaurant = {
-    id: uuidv4(),
-    name,
-    rating,
-    serverCuisine,
-    imageUrl,
-    menu,
-  };
-
-  const existingRestaurantIndex = restaurants.findIndex((r) => r.name === name);
-
-  if (existingRestaurantIndex >= 0) {
-    // Update existing restaurant
-    restaurants[existingRestaurantIndex] = {
-      ...restaurants[existingRestaurantIndex],
-      ...newRestaurant,
+    const newMenuItem = {
+      id: uuidv4(),
+      name,
+      price,
+      rating: parseFloat(rating),
+      image,
     };
-  } else {
-    // Add new restaurant
-    restaurants.push(newRestaurant);
-  }
 
-  saveDataToFile();
-  res.status(201).json(newRestaurant);
+    restaurant.menu.push(newMenuItem);
+
+    await fs.promises.writeFile(
+      restaurantsFilePath,
+      JSON.stringify(restaurants, null, 2)
+    );
+
+    res.status(201).json(newMenuItem);
+  } catch (err) {
+    console.error("Error handling request:", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
 });
 
-loadDataFromFile();
+// PUT Endpoint to update a menu item
+app.put("/restaurants/:restaurantId/menu/:itemId", (req, res) => {
+  const restaurantId = req.params.restaurantId;
+  const menuItemId = req.params.itemId;
+  const { name, price, rating, image } = req.body;
+
+  fs.readFile(restaurantsFilePath, "utf8", (err, data) => {
+    if (err) {
+      console.error("Error reading restaurants file:", err);
+      return res
+        .status(500)
+        .json({ message: "Error reading restaurants file" });
+    }
+
+    const restaurants = JSON.parse(data);
+    const restaurant = restaurants.find((r) => r.id === restaurantId);
+
+    if (!restaurant) {
+      return res.status(404).json({ message: "Restaurant not found" });
+    }
+
+    const menuItem = restaurant.menu.find((m) => m.id === menuItemId);
+
+    if (!menuItem) {
+      return res.status(404).json({ message: "Menu item not found" });
+    }
+
+    menuItem.name = name || menuItem.name;
+    menuItem.price = price || menuItem.price;
+    menuItem.rating = rating || menuItem.rating;
+    menuItem.image = image || menuItem.image;
+
+    fs.writeFile(
+      restaurantsFilePath,
+      JSON.stringify(restaurants, null, 2),
+      (err) => {
+        if (err) {
+          console.error("Error writing restaurants file:", err);
+          return res
+            .status(500)
+            .json({ message: "Error writing restaurants file" });
+        }
+
+        res.json(menuItem);
+      }
+    );
+  });
+});
+
+// DELETE Endpoint to delete a menu item
+app.delete("/restaurants/:restaurantId/menu/:itemId", (req, res) => {
+  const restaurantId = req.params.restaurantId;
+  const menuItemId = req.params.itemId;
+
+  fs.readFile(restaurantsFilePath, "utf8", (err, data) => {
+    if (err) {
+      console.error("Error reading restaurants file:", err);
+      return res
+        .status(500)
+        .json({ message: "Error reading restaurants file" });
+    }
+
+    const restaurants = JSON.parse(data);
+    const restaurant = restaurants.find((r) => r.id === restaurantId);
+
+    if (!restaurant) {
+      return res.status(404).json({ message: "Restaurant not found" });
+    }
+
+    const menuItemIndex = restaurant.menu.findIndex((m) => m.id === menuItemId);
+
+    if (menuItemIndex === -1) {
+      return res.status(404).json({ message: "Menu item not found" });
+    }
+
+    restaurant.menu.splice(menuItemIndex, 1);
+
+    fs.writeFile(
+      restaurantsFilePath,
+      JSON.stringify(restaurants, null, 2),
+      (err) => {
+        if (err) {
+          console.error("Error writing restaurants file:", err);
+          return res
+            .status(500)
+            .json({ message: "Error writing restaurants file" });
+        }
+
+        res.status(204).end();
+      }
+    );
+  });
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

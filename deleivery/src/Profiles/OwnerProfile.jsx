@@ -1,134 +1,115 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import useLogout from "../Hooks/useLogout";
+import OwnerMenu from "../Components/OwnerMenu";
 import "../Styles/OwnerProfile.css";
-import MenuComponent from "../Components/MenuComponent";
+import { FaEdit } from "react-icons/fa";
 
 const OwnerProfile = () => {
-  const [selectedItem, setSelectedItem] = useState("Profile");
+  const [activeView, setActiveView] = useState("profile");
   const [profile, setProfile] = useState(null);
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const handleLogout = useLogout();
 
-  // useEffect(() => {
-  //   const fetchProfile = async () => {
-  //     try {
-  //       const token = localStorage.getItem("token");
-  //       if (!token) {
-  //         window.location.href = "/login"; // Redirect to login if no token
-  //         return;
-  //       }
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          window.location.href = "/login"; // Redirect to login if no token
+          return;
+        }
 
-  //       const response = await axios.get(
-  //         "http://localhost:3000/owner-profile",
-  //         {
-  //           headers: { Authorization: `Bearer ${token}` },
-  //         }
-  //       );
-
-  //       if (response.data && response.data.email) {
-  //         setProfile(response.data);
-  //       } else {
-  //         throw new Error("Profile data is not valid");
-  //       }
-  //     } catch (err) {
-  //       setError(
-  //         "Failed to load profile: " +
-  //           (err.response?.data?.message || err.message)
-  //       );
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchProfile();
-  // }, []);
-
-  // if (loading) return <div>Loading...</div>;
-  // if (error) return <div className="error-message">{error}</div>;
-
-  const renderContent = () => {
-    if (!profile) return <div>No profile data available</div>;
-
-    if (profile.status === "pending") {
-      return (
-        <div>
-          <h2>Waiting for Admin Approval</h2>
-          <p>
-            Your profile is under review. Please wait until the admin approves
-            your profile.
-          </p>
-        </div>
-      );
-    }
-
-    switch (selectedItem) {
-      case "Profile":
-        return (
-          <div className="profile-content">
-            <h2>Welcome {profile.ownerName}</h2>
-            <div className="profile-item">
-              <label>Name of Restaurant:</label>
-              <span>{profile.restaurantName}</span>
-            </div>
-            <div className="profile-item">
-              <label>Name of Owner:</label>
-              <span>{profile.ownerName}</span>
-            </div>
-            <div className="profile-item">
-              <label>Address:</label>
-              <span>{profile.address}</span>
-            </div>
-            <div className="profile-item">
-              <label>Category of Restaurant:</label>
-              <span>{profile.category}</span>
-            </div>
-            <div className="profile-item">
-              <label>Email:</label>
-              <span>{profile.email}</span>
-            </div>
-            <div className="profile-item">
-              <label>Phone Number:</label>
-              <span>{profile.phoneNumberOwner}</span>
-            </div>
-          </div>
+        const response = await axios.get(
+          "http://localhost:3000/owner-profile",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
         );
-      case "Menu":
-        return <MenuComponent />;
-      case "Orders History":
-        return <div>Orders History Content</div>;
-      case "Messages":
-        return <div>Messages Content</div>;
-      default:
-        return <div>Profile Content</div>;
-    }
-  };
+
+        setProfile(response.data);
+      } catch (err) {
+        console.error("Error fetching profile", err);
+        setError(
+          `Failed to load profile: ${
+            err.response?.data?.message || err.message
+          }`
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+  if (!profile) return <div>No profile found</div>;
 
   return (
-    <div className="OwnerProfileContainer">
-      <div className="OwnerProfileContainer-list">
-        <img src="path_to_your_image.jpg" alt="Profile" />
-        <ul>
-          <li onClick={() => setSelectedItem("Profile")}>Profile</li>
-          <li onClick={() => setSelectedItem("Menu")}>Menu</li>
-          <li onClick={() => setSelectedItem("Orders History")}>
-            Orders History
-          </li>
-          <li onClick={() => setSelectedItem("Messages")}>Messages</li>
-          <li
-            onClick={handleLogout}
-            style={{
-              backgroundColor: "red",
-              color: "white",
-              marginTop: "10px",
-            }}>
-            Logout
-          </li>
-        </ul>
+    <>
+      <div className="owner-profile-container">
+        <div className="sidebar">
+          <button
+            className={`sidebar-button ${
+              activeView === "profile" ? "active" : ""
+            }`}
+            onClick={() => setActiveView("profile")}
+          >
+            Profile
+          </button>
+          <button
+            className={`sidebar-button ${
+              activeView === "menu" ? "active" : ""
+            }`}
+            onClick={() => setActiveView("menu")}
+          >
+            Owner Menu
+          </button>
+        </div>
+        <div className="profile-content">
+          {activeView === "profile" && (
+            <div className="profile-info-container">
+              <img src={profile.restaurantName} alt="" />
+              <h1>Your Profile Details</h1>
+              <div className="profile-info">
+                <div className="ownerResDetails">
+                  <p>
+                    <b>Your Restaurant Name:</b> {profile.restaurantName}
+                  </p>
+                  <p>
+                    <b>Your Restaurant Cuisine:</b> {profile.serverCuisine}
+                  </p>
+                  <p>
+                    <b>Your Restaurant Email:</b> {profile.email}
+                  </p>
+                  <p>
+                    <b>Your Restaurant Address:</b> {profile.address}
+                  </p>
+                  <p>
+                    <b>Your Restaurant Number:</b>{" "}
+                    {profile.phoneNumberRestaurant}
+                  </p>
+                </div>
+                <div className="ownerDetails">
+                  <p>
+                    <b>Your Name:</b> {profile.ownerName}
+                  </p>
+                  <p>
+                    <b>Your Phone Number:</b> {profile.phoneNumberOwner}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+          {activeView === "menu" && (
+            <div className="owner-menu">
+              <OwnerMenu restaurants={profile.restaurants} />
+            </div>
+          )}
+        </div>
       </div>
-      <div className="OwnerProfileContainer-display">{renderContent()}</div>
-    </div>
+    </>
   );
 };
 

@@ -16,20 +16,6 @@
       "role": "owner"
     },
     {
-      "id": "7e3c6bb6-1379-448a-872c-ec322ffea51e",
-      "ownerName": "Chief",
-      "restaurantName": "My Chief",
-      "address": "cairo",
-      "phoneNumberOwner": "098765",
-      "phoneNumberRestaurant": "0987655",
-      "category": "pasta",
-      "taxNumber": "12314325346345635",
-      "email": "chief@gmail.com",
-      "password": "$2a$10$4fPZSGBmLoekm5wX7.17W.fG.yU31DpPgX9DW1Sxhq2g43dR7318G",
-      "status": "approved",
-      "role": "owner"
-    },
-    {
       "id": "a7480e22-1fc9-40ac-b28e-b97b08f16cc1",
       "ownerName": "abdonaser",
       "restaurantName": "abdoresto",
@@ -40,6 +26,20 @@
       "taxNumber": "123",
       "email": "abdores@gmail.com",
       "password": "$2a$10$Jh6kEyZWMcWB5N921riz3ubgX33kZXuzq.gTYRd3ZP9z.OHTgGu8m",
+      "status": "approved",
+      "role": "owner"
+    },
+    {
+      "id": "0291cefd-a0b4-438d-a4d6-6674db28cd18",
+      "ownerName": "Chief",
+      "restaurantName": "My Chief",
+      "address": "Giza",
+      "phoneNumberOwner": "123456789",
+      "phoneNumberRestaurant": "12345678",
+      "serverCuisine": "burger",
+      "taxNumber": "123456789",
+      "email": "chief@gmail.com",
+      "password": "$2a$10$AYA/4i8utXIVGpDJ.whLYOUrLhr.TuQ5GLSV9soCfF1tSKvLfFDGq",
       "status": "approved",
       "role": "owner"
     }

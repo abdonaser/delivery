@@ -1,70 +1,149 @@
-.OwnerProfileContainer {
+.owner-profile-container {
   display: flex;
-  height: 100vh;
-  gap: 10px;
-  padding: 50px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  height: calc(100vh - 120px);
+  margin-top: 60px;
+  margin-bottom: 30px;
 }
-.OwnerProfileContainer-list {
-  background-color: rgba(155, 154, 154, 0.308);
+
+.owner-profile-container .sidebar {
   width: 20%;
-  box-shadow: 5px 5px 5px rgb(73, 63, 63);
-  border-radius: 12px;
-}
-.OwnerProfileContainer-display {
-  background-color: rgba(155, 154, 154, 0.308);
-  width: 80%;
-  box-shadow: 5px 5px 5px rgb(73, 63, 63);
-  border-radius: 12px;
+  background: #e4cbbd;
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.OwnerProfileContainer-list img {
-  width: 100px;
-  height: 100px;
-  border: 2px solid black;
-  border-radius: 50%;
-  margin-left: 90px;
-}
-
-.OwnerProfileContainer-list ul {
-  list-style: none;
-  margin-top: 55px;
-}
-.OwnerProfileContainer-list ul li {
+.owner-profile-container .sidebar-button {
+  display: block;
+  width: 100%;
   padding: 10px;
+  margin: 10px 0;
+  background: rgba(255, 255, 255, 0.7); /* Glass effect */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.owner-profile-container .sidebar-button.active {
+  background: rgba(255, 255, 255, 0.9);
   font-weight: bold;
 }
-.OwnerProfileContainer-list ul li:hover {
-  color: black;
-  padding: 3px;
-  cursor: pointer;
+
+.owner-profile-container .sidebar-button:hover {
+  background: rgba(255, 255, 255, 0.9);
 }
 
-.OwnerProfileContainer-display {
-  flex-grow: 1;
+.owner-profile-container .profile-content {
+  flex: 1;
+  background: #e4cbbd;
   padding: 20px;
-  border: 1px solid #ccc;
-  margin-left: 10px;
+  margin-left: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.profile-info-container {
+  padding: 15px;
+  margin: 10px;
+}
+.profile-info-container h1 {
+  text-align: center;
+  color: rgb(20, 20, 20);
 }
 
-.profile-content {
+.profile-info-container .profile-info {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  margin: 55px;
+  text-align: center;
+  margin-left: 100px;
+  gap: 80px;
 }
 
-.profile-content h2 {
+.profile-info .ownerDetails {
+  text-align: left;
+  color: rgb(247, 80, 2);
+}
+.profile-info .ownerResDetails {
+  text-align: left;
+  color: rgb(247, 80, 2);
+}
+
+.profile-info,
+.menu-info {
+  text-align: center;
+}
+
+.profile-pic-container {
+  display: flex;
+  justify-content: center;
   margin-bottom: 20px;
 }
 
-.profile-item {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.profile-item label {
+.profile-pic {
   width: 150px;
-  font-weight: bold;
+  height: 150px;
+  border-radius: 50%;
+  border: 5px solid rgba(255, 255, 255, 0.5);
 }
 
-.profile-item span {
-  flex-grow: 1;
+.user-info {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.user-info h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.user-info {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.info-item {
+  width: 40%;
+  font-size: 20px;
+  margin: 15px;
+  text-align: left;
+}
+
+.edit-icon {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.edit-icon:hover {
+  color: orange;
+}
+
+.info-item input {
+  margin-left: 0.5rem;
+  padding: 0.2rem;
+  width: 50%;
+  border-radius: 12px;
+  border: none;
+}
+
+.info-item button {
+  margin-left: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  background-color: hsl(21, 100%, 50%);
+  color: white;
+  font-size: 19px;
+  text-align: center;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.info-item button:hover {
+  background-color: hsl(21, 100%, 40%);
 }
