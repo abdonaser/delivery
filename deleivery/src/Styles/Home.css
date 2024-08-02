@@ -1,10 +1,10 @@
-/* body {
+body {
   background-image: linear-gradient(rgba(255, 199, 142, 0.11), rgba(163, 163, 157, 0.5)),
-    url(../../public/Images/HomePage/wallpaper.jpg);
+    url(../../Images/HomePage/wallpaper.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-} */
+}
 ::selection {
   color: #F8EDED;
   background: #FF8225;

@@ -1,70 +1,176 @@
-.OwnerProfileContainer {
+.owner-profile-container {
   display: flex;
-  height: 100vh;
-  gap: 10px;
-  padding: 50px;
-}
-.OwnerProfileContainer-list {
-  background-color: rgba(155, 154, 154, 0.308);
-  width: 20%;
-  box-shadow: 5px 5px 5px rgb(73, 63, 63);
-  border-radius: 12px;
-}
-.OwnerProfileContainer-display {
-  background-color: rgba(155, 154, 154, 0.308);
-  width: 80%;
-  box-shadow: 5px 5px 5px rgb(73, 63, 63);
-  border-radius: 12px;
-}
-
-.OwnerProfileContainer-list img {
-  width: 100px;
-  height: 100px;
-  border: 2px solid black;
-  border-radius: 50%;
-  margin-left: 90px;
-}
-
-.OwnerProfileContainer-list ul {
-  list-style: none;
-  margin-top: 55px;
-}
-.OwnerProfileContainer-list ul li {
-  padding: 10px;
-  font-weight: bold;
-}
-.OwnerProfileContainer-list ul li:hover {
-  color: black;
-  padding: 3px;
-  cursor: pointer;
-}
-
-.OwnerProfileContainer-display {
-  flex-grow: 1;
   padding: 20px;
-  border: 1px solid #ccc;
-  margin-left: 10px;
+  background: rgba(138, 231, 153, 0.2);
+  height: calc(100vh - 120px);
+  margin-top: 60px;
+  margin-bottom: 30px;
 }
 
-.profile-content {
-  display: flex;
-  flex-direction: column;
+.owner-profile-container .sidebar {
+  width: 20%;
+  background: #e0dedc9f;
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.profile-content h2 {
-  margin-bottom: 20px;
+.owner-profile-container .sidebar-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
 }
 
-.profile-item {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.profile-item label {
-  width: 150px;
+.owner-profile-container .sidebar-button.active {
+  background: rgba(255, 255, 255, 0.9);
   font-weight: bold;
 }
 
-.profile-item span {
-  flex-grow: 1;
+.owner-profile-container .sidebar-button:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.owner-profile-container .profile-content {
+  flex: 1;
+  background: #e0dedc9f;
+  padding: 20px;
+  margin-left: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.profile-info-container {
+  padding: 15px;
+  margin: 10px;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+.profile-info-container h1 {
+  text-align: center;
+  color: rgb(20, 20, 20);
+}
+
+.profile-info-container .profile-info {
+  display: flex;
+  flex-direction: row;
+  margin: 55px;
+  margin-top: 190px;
+  text-align: center;
+  margin-left: 100px;
+  gap: 80px;
+  font-size: 18px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.profile-info-container h1 {
+  margin-top: 0px;
+}
+.profile-info .ownerDetails {
+  text-align: left;
+  color: rgb(21, 71, 1);
+}
+.profile-info .ownerResDetails {
+  text-align: left;
+  color: rgb(21, 71, 1);
+}
+
+.profile-info,
+.menu-info {
+  text-align: center;
+}
+
+.info-item {
+  width: 40%;
+  font-size: 20px;
+  margin: 15px;
+  text-align: left;
+}
+
+.info-item input {
+  margin-left: 0.5rem;
+  padding: 0.2rem;
+  width: 50%;
+  border-radius: 12px;
+  border: none;
+}
+
+.profile-info-container {
+  position: relative;
+}
+
+.logo-container {
+  /* position: relative; */
+  display: inline-block;
+  width: 100%;
+}
+
+.restaurant-logo {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  left: 40%;
+  top: 90px;
+}
+
+.edit-logo-button {
+  position: absolute;
+  top: 190px;
+  left: 500px;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+.edit-logo-button:hover {
+  background-color: #f1f1f1;
+}
+
+.edit-form {
+  position: absolute;
+  top: 190px;
+}
+.edit-form input {
+  padding: 7px;
+  margin: 5px;
+  border-radius: 6px;
+  font-size: 16px;
+  background: #fbfbfb;
+  border: 2px solid transparent;
+  height: 36px;
+  box-shadow: 0 0 0 1px #dddddd, 0 2px 4px 0 rgb(0 0 0 / 7%),
+    0 1px 1.5px 0 rgb(0 0 0 / 5%);
+  :focus {
+    border: 2px solid #000;
+    border-radius: 4px;
+  }
+}
+
+.edit-form button {
+  display: inline-block;
+  outline: 0;
+  border: none;
+  cursor: pointer;
+  line-height: 1.2rem;
+  font-weight: 900;
+  background: #007a5a;
+  padding: 8px 14px 9px;
+  font-size: 15px;
+  border-radius: 4px;
+  color: #fff;
+  height: 36px;
+  transition: all 75ms ease-in-out;
+  :hover {
+    box-shadow: 0 1px 4px rgb(0 0 0 / 30%);
+  }
 }

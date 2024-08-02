@@ -45,20 +45,6 @@
       "role": "owner"
     },
     {
-      "id": "7e3c6bb6-1379-448a-872c-ec322ffea51e",
-      "ownerName": "Chief",
-      "restaurantName": "My Chief",
-      "address": "cairo",
-      "phoneNumberOwner": "098765",
-      "phoneNumberRestaurant": "0987655",
-      "category": "pasta",
-      "taxNumber": "12314325346345635",
-      "email": "chief@gmail.com",
-      "password": "$2a$10$4fPZSGBmLoekm5wX7.17W.fG.yU31DpPgX9DW1Sxhq2g43dR7318G",
-      "status": "approved",
-      "role": "owner"
-    },
-    {
       "id": "a7480e22-1fc9-40ac-b28e-b97b08f16cc1",
       "ownerName": "abdonaser",
       "restaurantName": "abdoresto",
@@ -69,20 +55,6 @@
       "taxNumber": "123",
       "email": "abdores@gmail.com",
       "password": "$2a$10$Jh6kEyZWMcWB5N921riz3ubgX33kZXuzq.gTYRd3ZP9z.OHTgGu8m",
-      "status": "approved",
-      "role": "owner"
-    },
-    {
-      "id": "4aa979b7-7b29-440c-847f-3757d02a80b0",
-      "ownerName": "abdonaser",
-      "restaurantName": "abdoresto",
-      "address": "marg",
-      "phoneNumberOwner": "01114189522",
-      "phoneNumberRestaurant": "01114189522",
-      "category": "pizza",
-      "taxNumber": "123",
-      "email": "abdonaser4223@gmail.com",
-      "password": "$2a$10$ahbtV3juvI5HYh.UZXJtjeJ3.sojXE.42Pm7qfMYGJeQEct2bY4HO",
       "status": "approved",
       "role": "owner"
     }

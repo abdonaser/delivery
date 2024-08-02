@@ -11,7 +11,7 @@ const JoinUs = () => {
     address: "",
     phoneNumberOwner: "",
     phoneNumberRestaurant: "",
-    category: "",
+    serverCuisine: "",
     taxNumber: "",
     email: "",
     password: "",
@@ -43,7 +43,7 @@ const JoinUs = () => {
         address: "",
         phoneNumberOwner: "",
         phoneNumberRestaurant: "",
-        category: "",
+        serverCuisine: "",
         taxNumber: "",
         email: "",
         password: "",
@@ -117,8 +117,8 @@ const JoinUs = () => {
             <Grid item xs={12}>
               <TextField
                 label="Category"
-                name="category"
-                value={formData.category}
+                name="serverCuisine"
+                value={formData.serverCuisine}
                 onChange={handleChange}
                 fullWidth
                 required
