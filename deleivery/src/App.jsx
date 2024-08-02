@@ -18,6 +18,7 @@ import JoinUsForm from "./Pages/JoinUs";
 import WaitingForApproval from "./Pages/WaitingForApproval";
 import Checkout from "./Pages/CheckOut";
 import Login from "./Pages/Login";
+import OrderStatus from "./Pages/OrderStatus";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -39,6 +40,7 @@ function App() {
         { path: "contact", element: <Contact /> },
         { path: "restaurant/:id", element: <MenuPage /> },
         { path: "checkout", element: <Checkout /> },
+        { path: "order-status/:orderId", element: <OrderStatus /> },
       ],
     },
     // { path: "login", element: <Log />, errorElement: <ErrorPage /> },

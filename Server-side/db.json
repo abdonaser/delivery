@@ -59,6 +59,16 @@
       "phoneNumber": "987654",
       "gender": "female",
       "role": "admin"
+    },
+    {
+      "id": 1370444153996430600,
+      "username": "customer one",
+      "email": "customer1@gmail.com",
+      "password": "$2a$10$wUouFYz77VS47jG2tfEN/uNfxFMYRZH12wn0aWLkTL0MgTvcQXsM.",
+      "address": "cairo",
+      "phoneNumber": "12345678",
+      "gender": "female",
+      "role": "customer"
     }
   ]
 }

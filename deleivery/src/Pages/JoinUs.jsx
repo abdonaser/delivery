@@ -48,7 +48,7 @@ const JoinUs = () => {
         email: "",
         password: "",
       });
-      navigate("/login");
+      navigate("/signup");
     } catch (err) {
       setError("Error submitting the form");
       console.error(err);
@@ -123,13 +123,14 @@ const JoinUs = () => {
                 fullWidth
                 required
                 select
-                SelectProps={{ native: true }}>
+                SelectProps={{ native: true }}
+              >
                 <option value="" disabled></option>
-                <option value="burger">Burger</option>
-                <option value="pizza">Pizza</option>
-                <option value="chicken">Chicken</option>
-                <option value="pasta">Pasta</option>
-                <option value="drinks">Drinks</option>
+                <option value="Burger">Burger</option>
+                <option value="Pizza">Pizza</option>
+                <option value="Chicken">Chicken</option>
+                <option value="Pasta">Pasta</option>
+                <option value="Drinks">Drinks</option>
               </TextField>
             </Grid>
             <Grid item xs={12}>
@@ -170,7 +171,8 @@ const JoinUs = () => {
                 type="submit"
                 variant="contained"
                 color="primary"
-                className="joinUs-button py-2 px-3">
+                className="joinUs-button py-2 px-3"
+              >
                 Submit
               </Button>
             </Grid>
@@ -179,7 +181,6 @@ const JoinUs = () => {
 
         {message && <Typography color="green">{message}</Typography>}
         {error && <Typography color="red">{error}</Typography>}
-        
       </div>
     </div>
   );

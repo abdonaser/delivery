@@ -2,19 +2,30 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const multer = require("multer");
 const cors = require("cors");
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 const path = require("path");
+const crypto = require("crypto");
 // const session = require("express-session");
 
 // const restaurants = require("./restaurants");
 
 const app = express();
+app.use(bodyParser.json());
 const port = 3000;
 const SECRET_KEY =
   "b93347f8048892e99c56ae0ba245736dcd65eb78b61b50b40d2638f51b57239e";
+
+function uuidToNumericId(uuid) {
+  const hash = crypto.createHash("md5").update(uuid).digest("hex");
+  return parseInt(hash.slice(0, 16), 16);
+}
+
+function generateNumericId() {
+  const uuid = uuidv4();
+  return uuidToNumericId(uuid);
+}
 
 // Middleware
 app.use(cors());
@@ -23,6 +34,7 @@ app.use(express.json());
 const router = express.Router();
 const ownersFilePath = path.join(__dirname, "owners.json");
 const restaurantsFilePath = path.join(__dirname, "restaurants.json");
+const ordersFilePath = path.join(__dirname, "orders.json");
 
 let users = [];
 let pendingRegistrations = [];
@@ -34,7 +46,6 @@ const getRestaurants = () => {
   const restaurantsData = fs.readFileSync(restaurantsFilePath);
   return JSON.parse(restaurantsData);
 };
-
 // Function to save restaurants to restaurants.json
 const saveRestaurants = (restaurants) => {
   fs.writeFileSync(restaurantsFilePath, JSON.stringify(restaurants, null, 2));
@@ -69,7 +80,7 @@ const readJSONFile = (filename) => {
 
 const writeJSONFile = (filename, data) => {
   return new Promise((resolve, reject) => {
-    fs.writeFile(filename, JSON.stringify(data, null, 2), (err) => {
+    fs.writeFile(filename, JSON.stringify(data, null, 2), "utf8", (err) => {
       if (err) {
         console.error(`Error writing to file ${filename}: ${err.message}`);
         reject(err);
@@ -287,7 +298,7 @@ app.post("/signup", async (req, res) => {
 
   // Create new user
   const newUser = {
-    id: uuidv4(),
+    id: generateNumericId(),
     username,
     email,
     password: hashedPassword,
@@ -330,7 +341,7 @@ app.post("/join-us", async (req, res) => {
 
   // Create new owner registration
   const newOwner = {
-    id: uuidv4(),
+    id: generateNumericId(),
     ownerName,
     restaurantName,
     address,
@@ -415,7 +426,7 @@ app.get("/pending-registrations", (req, res) => {
 app.post("/approve-registration/:id", (req, res) => {
   const { id } = req.params;
   const registrationIndex = pendingRegistrations.findIndex(
-    (reg) => reg.id === id
+    (reg) => reg.id === parseInt(id)
   );
 
   if (registrationIndex === -1) {
@@ -433,13 +444,13 @@ app.post("/approve-registration/:id", (req, res) => {
   // Add new restaurant to restaurants.json
   const restaurants = getRestaurants();
   const newRestaurant = {
-    id: `restaurant_${Date.now()}`, // Generate a unique ID for the restaurant
+    id: generateNumericId(),
     ownerId: approvedRegistration.id,
     name: approvedRegistration.restaurantName,
     rating: 4.5,
     serverCuisine: approvedRegistration.serverCuisine,
-    imageUrl: "", // Placeholder, update with actual image URL if available
-    menu: [], // Empty menu array
+    imageUrl: "",
+    menu: [],
   };
   restaurants.push(newRestaurant);
   saveRestaurants(restaurants);
@@ -451,6 +462,7 @@ app.post("/approve-registration/:id", (req, res) => {
 
 // List all restaurants
 app.get("/restaurants", (req, res) => {
+  const restaurants = getRestaurants();
   res.json(
     restaurants.map(({ id, name, rating, serverCuisine, imageUrl }) => ({
       id,
@@ -507,7 +519,7 @@ const loadDataFromFile = () => {
 loadDataFromFile();
 // Endpoint to add a menu item
 app.post("/restaurants/:id/menu", authenticateToken, async (req, res) => {
-  const restaurantId = req.params.id;
+  const restaurantId = parseInt(req.params.id);
   const { name, price, rating, image } = req.body;
 
   // Check if required fields are present
@@ -533,7 +545,7 @@ app.post("/restaurants/:id/menu", authenticateToken, async (req, res) => {
     }
 
     const newMenuItem = {
-      id: uuidv4(),
+      id: generateNumericId(),
       name,
       price,
       rating: parseFloat(rating),
@@ -556,8 +568,8 @@ app.post("/restaurants/:id/menu", authenticateToken, async (req, res) => {
 
 // PUT Endpoint to update a menu item
 app.put("/restaurants/:restaurantId/menu/:itemId", (req, res) => {
-  const restaurantId = req.params.restaurantId;
-  const menuItemId = req.params.itemId;
+  const restaurantId = parseInt(req.params.restaurantId);
+  const menuItemId = parseInt(req.params.itemId);
   const { name, price, rating, image } = req.body;
 
   fs.readFile(restaurantsFilePath, "utf8", (err, data) => {
@@ -569,13 +581,13 @@ app.put("/restaurants/:restaurantId/menu/:itemId", (req, res) => {
     }
 
     const restaurants = JSON.parse(data);
-    const restaurant = restaurants.find((r) => r.id === restaurantId);
+    const restaurant = restaurants.find((r) => r.id === parseInt(restaurantId));
 
     if (!restaurant) {
       return res.status(404).json({ message: "Restaurant not found" });
     }
 
-    const menuItem = restaurant.menu.find((m) => m.id === menuItemId);
+    const menuItem = restaurant.menu.find((m) => m.id === parseInt(menuItemId));
 
     if (!menuItem) {
       return res.status(404).json({ message: "Menu item not found" });
@@ -605,8 +617,8 @@ app.put("/restaurants/:restaurantId/menu/:itemId", (req, res) => {
 
 // DELETE Endpoint to delete a menu item
 app.delete("/restaurants/:restaurantId/menu/:itemId", (req, res) => {
-  const restaurantId = req.params.restaurantId;
-  const menuItemId = req.params.itemId;
+  const restaurantId = parseInt(req.params.restaurantId);
+  const menuItemId = parseInt(req.params.itemId);
 
   fs.readFile(restaurantsFilePath, "utf8", (err, data) => {
     if (err) {
@@ -648,18 +660,6 @@ app.delete("/restaurants/:restaurantId/menu/:itemId", (req, res) => {
   });
 });
 
-// // Set up multer for file uploads
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, "public/logos"); // Directory for uploaded files
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
-//   },
-// });
-
-// const upload = multer({ storage });
-
 // Update the restaurant imageUrl (logo)
 app.put("/restaurants/:restaurantId/logo", (req, res) => {
   const authHeader = req.headers.authorization;
@@ -680,7 +680,7 @@ app.put("/restaurants/:restaurantId/logo", (req, res) => {
     const { logoUrl } = req.body;
 
     let restaurants = getRestaurants();
-    const restaurant = restaurants.find((r) => r.id === restaurantId);
+    const restaurant = restaurants.find((r) => r.id === parseInt(restaurantId));
 
     if (!restaurant) {
       console.log(`Restaurant not found for ID: ${restaurantId}`);
@@ -691,10 +691,104 @@ app.put("/restaurants/:restaurantId/logo", (req, res) => {
     saveRestaurants(restaurants);
 
     console.log(`Logo updated for restaurant ID: ${restaurantId}`);
+
     res.status(200).json({ message: "Logo updated successfully" });
   } catch (err) {
     console.error("Token verification failed", err);
     res.status(401).json({ message: "Invalid token" });
+  }
+});
+
+// Route to get an order by ID
+app.get("/api/orders/:orderId", async (req, res) => {
+  try {
+    const orders = await readJSONFile(ordersFilePath);
+
+    console.log("Orders:", orders); // Debugging output
+
+    if (!Array.isArray(orders)) {
+      console.error("Orders is not an array:", orders); // Debugging output
+      return res.status(500).json({ message: "Orders data is not an array" });
+    }
+
+    const orderId = parseInt(req.params.orderId, 10);
+    if (isNaN(orderId)) {
+      return res.status(400).json({ message: "Invalid order ID" });
+    }
+
+    const order = orders.find((o) => o.id === orderId);
+    if (order) {
+      res.json(order);
+    } else {
+      res.status(404).json({ message: "Order not found" });
+    }
+  } catch (error) {
+    console.error("Error fetching order:", error);
+    res.status(500).json({ message: "Failed to fetch order" });
+  }
+});
+
+app.post("/api/orders", async (req, res) => {
+  try {
+    const orders = await readJSONFile(ordersFilePath);
+
+    console.log("Orders before adding new order:", orders); // Debugging output
+
+    if (!Array.isArray(orders)) {
+      return res.status(500).json({ message: "Orders data is not an array" });
+    }
+
+    const newOrder = {
+      id: orders.length > 0 ? orders[orders.length - 1].id + 1 : 1,
+      ...req.body,
+      status: "preparing order",
+      orderTime: new Date().toISOString(),
+    };
+
+    orders.push(newOrder);
+    await writeJSONFile(ordersFilePath, orders);
+
+    console.log("Orders after adding new order:", orders); // Debugging output
+
+    res.status(201).json(newOrder);
+  } catch (error) {
+    console.error("Error creating order:", error);
+    res.status(500).json({ message: "Failed to create order" });
+  }
+});
+
+app.put("/api/orders/:orderId/status", async (req, res) => {
+  try {
+    const { status } = req.body;
+    const validStatuses = [
+      "preparing order",
+      "ready for pickup",
+      "out for delivery",
+      "delivered",
+    ];
+
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({ message: "Invalid status" });
+    }
+
+    const orders = await readJSONFile(ordersFilePath);
+    const orderId = parseInt(req.params.orderId, 10);
+
+    if (isNaN(orderId)) {
+      return res.status(400).json({ message: "Invalid order ID" });
+    }
+
+    const orderIndex = orders.findIndex((o) => o.id === orderId);
+    if (orderIndex !== -1) {
+      orders[orderIndex].status = status;
+      await writeJSONFile(ordersFilePath, orders);
+      res.json(orders[orderIndex]);
+    } else {
+      res.status(404).json({ message: "Order not found" });
+    }
+  } catch (error) {
+    console.error("Error updating order status:", error);
+    res.status(500).json({ message: "Failed to update order status" });
   }
 });
 
