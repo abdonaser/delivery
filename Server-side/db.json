@@ -1,64 +1,34 @@
 {
   "users": [
     {
-      "id": "80ed217d-558e-4f02-8b94-99e00e537417",
-      "username": "abdelrahman ",
-      "email": "abdonaser4223@gmaffil.com",
-      "password": "$2a$10$9csKGPxXxVe1bhBu998nsO4ZTrb054aFTQCwl1n2w8LgR4xjFsiIG",
+      "id": "a1deff5f-53d1-4ed0-a88a-8ad71036d31f",
+      "username": "ezz",
+      "email": "ezz@gmail.com",
+      "password": "$2a$10$Emm.KxWhsIB71FgZGbJ2EurS2XB2zU3abh6vi6LJSFB.tWNj6ohoa",
+      "address": "asdasd",
+      "phoneNumber": "12345678",
+      "gender": "male",
+      "role": "customer"
+    },
+    {
+      "id": "a54901f9-1d6c-4ba3-b4a1-b28000524c19",
+      "username": "boda",
+      "email": "abdo@gmail.comu",
+      "password": "$2a$10$hmun9VHIwc7qCRDF1I3A2eVreaZopPhVohPgKJEVnoxLbISRXZqJu",
+      "address": "123fdf",
+      "phoneNumber": "123",
+      "gender": "male",
+      "role": "customer"
+    },
+    {
+      "id": "b7313a56-40fd-4475-a5bf-fcf7ee9c2d02",
+      "username": "abdo naser",
+      "email": "abdo@gmail.com",
+      "password": "$2a$10$QMhFI5znYNtv.pzfjp8hV.h3mFUcJeWuK0b.NgYTZfm/FxJf4MAy2",
       "address": "marg",
-      "phoneNumber": "01141895222",
+      "phoneNumber": "01114189522",
       "gender": "male",
       "role": "customer"
-    },
-    {
-      "id": "d890dc06-2c83-4473-80f8-08a0480ce0cb",
-      "username": "noran",
-      "email": "noran@gmail.com",
-      "password": "$2a$10$NG5coZRr3.iWeyMDeobot.kHUT1xq6b/9.gQHvbEDfXhy/dt78FOe",
-      "address": "cairo",
-      "phoneNumber": "12234546",
-      "gender": "female",
-      "role": "customer"
-    },
-    {
-      "id": "8d725a1d-626b-4a37-8d7d-fde724525172",
-      "username": "",
-      "email": "",
-      "password": "$2a$10$X9LincaVfaolXo7LTmn62.JQBMLHu9hrNhhNId26mKpBTkOLQBtOm",
-      "address": "",
-      "phoneNumber": "",
-      "gender": "",
-      "role": "customer"
-    },
-    {
-      "id": "94d1791e-e5fb-487e-85d6-bbc378f65dde",
-      "username": "user",
-      "email": "user@gmail.com",
-      "password": "$2a$10$WBT1g/EJUU0XOge1Hh0oLuaeQcDP7Wp3js/Liz.vZnccZB2gXpZT2",
-      "address": "cairo",
-      "phoneNumber": "123456789",
-      "gender": "female",
-      "role": "customer"
-    },
-    {
-      "id": "3c61e670-c436-4179-802d-6b0d7cccf45b",
-      "username": "admin",
-      "email": "admin@gmail.com",
-      "password": "$2a$10$rky255RsyscBwbwLgufvuOZLSatGB592K13A0XFeYkcNoRX4bv.RC",
-      "address": "cairo",
-      "phoneNumber": "123456789",
-      "gender": "male",
-      "role": "admin"
-    },
-    {
-      "id": "674d99cb-a74a-4ee0-a30a-15100a5b00c0",
-      "username": "admin2",
-      "email": "admin2@gmail.com",
-      "password": "$2a$10$YIXftLJ/V7aJgu.Lu4RTceWI0SZb6lV13On7uAkelMr0E3ZZa8lrO",
-      "address": "giza",
-      "phoneNumber": "987654",
-      "gender": "female",
-      "role": "admin"
     }
   ]
 }

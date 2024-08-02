@@ -21,7 +21,8 @@
   width: 100%;
   padding: 10px;
   margin: 10px 0;
-  background: rgba(255, 255, 255, 0.7); /* Glass effect */
+  background: rgba(255, 255, 255, 0.7);
+  /* Glass effect */
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -79,12 +80,14 @@
   margin: 0;
   font-size: 24px;
 }
+
 .user-info {
   /* display: flex;
   flex-wrap: wrap; */
 }
+
 .info-item {
-  width: 70% ;
+  width: 70%;
   margin: auto;
   margin-bottom: 10px;
   /* width: 40%;
@@ -101,6 +104,7 @@
 .edit-icon:hover {
   color: orange;
 }
+
 /*  */
 /* .edit-icon {
   cursor: pointer;
@@ -121,14 +125,37 @@
 
 .info-item button {
   margin-left: 0.5rem;
-  padding: 0.2rem 0.5rem;
-  background-color: hsl(21, 100%, 50%);
+  padding: 7px 14px;
+  /* background-color: hsl(21, 100%, 50%); */
+  background-color: #E04A00;
+  outline: 0;
+  border: 0;
   color: white;
   font-size: 19px;
   text-align: center;
   border-radius: 12px;
   cursor: pointer;
 }
-.info-item button:hover{
-  background-color: hsl(21, 100%, 40%);
+
+.info-item button:hover {
+  /* background-color: hsl(21, 100%, 40%); */
+  background-color: #E04A00;
+}
+
+.prfileInput>div {
+  width: 80%;
+}
+
+.editIcons {
+  width: 20% !important;
+}
+
+.activeEdit {
+  opacity: 0;
+}
+
+
+.prfileInput:hover .activeEdit {
+  opacity: 1 !important;
+  color: #E04A00 !important;
 }

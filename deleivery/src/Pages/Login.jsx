@@ -23,7 +23,7 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
-    console.log("lg");
+   
     e.preventDefault();
     setError("");
     setMessage("");
@@ -36,7 +36,7 @@ const Login = () => {
       // Save token and user info to local storage
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
-      console.log(user.role);
+      console.log(user);
       if (user.role === "customer") {
         navigate("/customer-profile");
       } else if (user.role === "owner") {

@@ -12,27 +12,37 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer-container">
-        <div className="footer-section about">
-          <h3>About Us</h3>
+        <div className="footer-section about d-flex flex-column align-items-center">
+          <h3 className="w-100">About Us</h3>
           <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum soluta
             ipsa, magnam libero magni temporibus beatae corrupti at tempora
             itaque illum culpa quod ducimus debitis adipisci distinctio nam
             impedit facere.
           </p>
-          <div className="social-media">
-            <a href="#" aria-label="Facebook" className="social-icon">
-              <FontAwesomeIcon icon={faFacebook} />
-            </a>
-            <a href="#" aria-label="Twitter" className="social-icon">
-              <FontAwesomeIcon icon={faTwitter} />
-            </a>
-            <a href="#" aria-label="Instagram" className="social-icon">
-              <FontAwesomeIcon icon={faInstagram} />
-            </a>
-            <a href="#" aria-label="LinkedIn" className="social-icon">
-              <FontAwesomeIcon icon={faLinkedin} />
-            </a>
+
+          <div className="social-media ">
+            <div>
+              <a href="#" aria-label="Facebook" className="social-icon">
+                <FontAwesomeIcon icon={faFacebook} />
+              </a>
+            </div>
+            <div>
+              <a href="#" aria-label="Twitter" className="social-icon">
+                <FontAwesomeIcon icon={faTwitter} />
+              </a>
+            </div>
+            <div>
+              {" "}
+              <a href="#" aria-label="Instagram" className="social-icon">
+                <FontAwesomeIcon icon={faInstagram} />
+              </a>
+            </div>
+            <div>
+              <a href="#" aria-label="LinkedIn" className="social-icon">
+                <FontAwesomeIcon icon={faLinkedin} />
+              </a>
+            </div>
           </div>
         </div>
         <div className="footer-section newsletter">

@@ -1,5 +1,34 @@
 {
-  "pendingRegistrations": [],
+  "pendingRegistrations": [
+    {
+      "id": "f9567769-fb9b-4617-8b9f-9b0ba413d416",
+      "ownerName": "abdonaser",
+      "restaurantName": "abdoresto",
+      "address": "marg",
+      "phoneNumberOwner": "01114189522",
+      "phoneNumberRestaurant": "01114189522",
+      "category": "burger",
+      "taxNumber": "123",
+      "email": "abdonaser111@gmail.com",
+      "password": "$2a$10$e0Kkqoa/CHEoord0iKeqZOiCEdOHPR4VCtrg3nG86nqNkwljKlnCy",
+      "status": "pending",
+      "role": "owner"
+    },
+    {
+      "id": "bd9f0f5a-0b1f-429f-9236-e1ffeba28d9d",
+      "ownerName": "ahmed",
+      "restaurantName": "ahmedResto",
+      "address": "1s",
+      "phoneNumberOwner": "01114189522",
+      "phoneNumberRestaurant": "01114189522",
+      "category": "pizza",
+      "taxNumber": "1233",
+      "email": "ahmed@gmail.com",
+      "password": "$2a$10$0uax.1JUHATG9E9w6Bzov.mRWpLHP7qoBaV1hKsHSaW/JMtIEe81i",
+      "status": "pending",
+      "role": "owner"
+    }
+  ],
   "ownerProfiles": [
     {
       "id": "7c471e16-617d-4c2d-bb72-57b7b21e2741",
@@ -40,6 +69,20 @@
       "taxNumber": "123",
       "email": "abdores@gmail.com",
       "password": "$2a$10$Jh6kEyZWMcWB5N921riz3ubgX33kZXuzq.gTYRd3ZP9z.OHTgGu8m",
+      "status": "approved",
+      "role": "owner"
+    },
+    {
+      "id": "4aa979b7-7b29-440c-847f-3757d02a80b0",
+      "ownerName": "abdonaser",
+      "restaurantName": "abdoresto",
+      "address": "marg",
+      "phoneNumberOwner": "01114189522",
+      "phoneNumberRestaurant": "01114189522",
+      "category": "pizza",
+      "taxNumber": "123",
+      "email": "abdonaser4223@gmail.com",
+      "password": "$2a$10$ahbtV3juvI5HYh.UZXJtjeJ3.sojXE.42Pm7qfMYGJeQEct2bY4HO",
       "status": "approved",
       "role": "owner"
     }
