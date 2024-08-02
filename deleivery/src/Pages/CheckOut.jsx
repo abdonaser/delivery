@@ -1,11 +1,14 @@
-import React, { useContext } from "react";
-import { useSelector } from "react-redux";
-// import { Navigate } from "react-router-dom";
-// import { AuthContext } from "../AuthContext";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Navigate } from "react-router-dom";
+import axios from "axios";
 import "../Styles/Checkout.css";
 
 const Checkout = () => {
   const cartItems = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch(); 
+  const [orderId, setOrderId] = React.useState(null);
+
   const calculateTotal = () => {
     return cartItems
       .reduce((total, item) => {
@@ -15,11 +18,25 @@ const Checkout = () => {
       .toFixed(2);
   };
 
-//   const { isAuthenticated } = useContext(AuthContext);
-//   console.log("Authenticated:", isAuthenticated);
-//   if (!isAuthenticated) {
-//     return <Navigate to="/login" />;
-//   }
+  const handleCheckout = async () => {
+    const order = {
+      items: cartItems,
+      total: calculateTotal(),
+    };
+  
+    try {
+      console.log("Sending order:", order);
+      const response = await axios.post("http://localhost:3000/api/orders", order);
+      const orderId = response.data.id; 
+      window.location.href = `/order-status/${orderId}`;
+    } catch (error) {
+      console.error("Error creating order:", error);
+    }
+  };
+
+  if (orderId) {
+    return <Navigate to={`/order/${orderId}`} />;
+  }
 
   return (
     <div className="checkout-container">
@@ -104,7 +121,9 @@ const Checkout = () => {
                   </tr>
                 </tbody>
               </table>
-              <button className="checkout-pay-btn">Checkout</button>
+              <button className="checkout-pay-btn" onClick={handleCheckout}>
+                Checkout
+              </button>
             </div>
           </div>
         </div>

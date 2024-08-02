@@ -18,8 +18,12 @@ import JoinUsForm from "./Pages/JoinUs";
 import WaitingForApproval from "./Pages/WaitingForApproval";
 import Checkout from "./Pages/CheckOut";
 import Login from "./Pages/Login";
+<<<<<<< HEAD
+import OrderStatus from "./Pages/OrderStatus";
+=======
 import { Provider } from "react-redux";
 import store from "./redux/store";
+>>>>>>> cf88f00de146e752ef899a2ae264efa412ad8798
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -41,6 +45,7 @@ function App() {
         { path: "contact", element: <Contact /> },
         { path: "restaurant/:id", element: <MenuPage /> },
         { path: "checkout", element: <Checkout /> },
+        { path: "order-status/:orderId", element: <OrderStatus /> },
       ],
     },
     // { path: "login", element: <Log />, errorElement: <ErrorPage /> },

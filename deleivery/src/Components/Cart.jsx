@@ -49,7 +49,7 @@ const Cart = () => {
                   <div className="quantity-controls">
                     <p onClick={() => handleDecrease(item.id)}>-</p>
                     <p onClick={() => handleIncrease(item.id)}>+</p>
-                    <button onClick={() => handleRemove(item.id)} >
+                    <button onClick={() => handleRemove(item.id)}>
                       Remove
                     </button>
                   </div>

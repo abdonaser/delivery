@@ -5,18 +5,26 @@ const initialState = {
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_TO_CART':
-      if (state.restaurantId && state.restaurantId !== action.payload.restaurantId) {
-        alert('You can only add items from one restaurant at a time. Please clear your cart to add items from a different restaurant.');
+    case "ADD_TO_CART":
+      if (
+        state.restaurantId &&
+        state.restaurantId !== action.payload.restaurantId
+      ) {
+        alert(
+          "You can only add items from one restaurant at a time. Please clear your cart to add items from a different restaurant."
+        );
         return state;
       }
 
-      const existingItemIndex = state.items.findIndex(item => item.id === action.payload.id);
+      const existingItemIndex = state.items.findIndex(
+        (item) => item.id === action.payload.id
+      );
       if (existingItemIndex !== -1) {
         const updatedItems = [...state.items];
         updatedItems[existingItemIndex] = {
           ...updatedItems[existingItemIndex],
-          quantity: updatedItems[existingItemIndex].quantity + action.payload.quantity
+          quantity:
+            updatedItems[existingItemIndex].quantity + action.payload.quantity,
         };
         return {
           ...state,
@@ -31,32 +39,34 @@ const cartReducer = (state = initialState, action) => {
         restaurantId: state.restaurantId || action.payload.restaurantId,
       };
 
-    case 'REMOVE_FROM_CART':
+    case "REMOVE_FROM_CART":
       return {
         ...state,
-        items: state.items.filter(item => item.id !== action.payload),
+        items: state.items.filter((item) => item.id !== action.payload),
         restaurantId: state.items.length > 1 ? state.restaurantId : null,
       };
 
-    case 'INCREASE_QUANTITY':
+    case "INCREASE_QUANTITY":
       return {
         ...state,
-        items: state.items.map(item =>
-          item.id === action.payload ? { ...item, quantity: item.quantity + 1 } : item
+        items: state.items.map((item) =>
+          item.id === action.payload
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
         ),
       };
 
-    case 'DECREASE_QUANTITY':
+    case "DECREASE_QUANTITY":
       return {
         ...state,
-        items: state.items.map(item =>
+        items: state.items.map((item) =>
           item.id === action.payload && item.quantity > 1
             ? { ...item, quantity: item.quantity - 1 }
             : item
         ),
       };
 
-    case 'CLEAR_CART':
+    case "CLEAR_CART":
       return initialState;
 
     default:
