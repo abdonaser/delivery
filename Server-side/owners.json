@@ -31,18 +31,6 @@
   ],
   "ownerProfiles": [
     {
-<<<<<<< HEAD
-      "id": 17377134740060748000,
-      "ownerName": "finalresowner",
-      "restaurantName": "finalres",
-      "address": "giza",
-      "phoneNumberOwner": "12345678",
-      "phoneNumberRestaurant": "1234543543",
-      "serverCuisine": "Pasta",
-      "taxNumber": "4e24235325345",
-      "email": "finalres@gmail.com",
-      "password": "$2a$10$/0le.Nlt4XtBwHeyyMmijOXGGWF7wzBMcUxVc.zk36BAYdBt045T2",
-=======
       "id": "7c471e16-617d-4c2d-bb72-57b7b21e2741",
       "ownerName": "man",
       "restaurantName": "man res",
@@ -67,7 +55,6 @@
       "taxNumber": "123",
       "email": "abdores@gmail.com",
       "password": "$2a$10$Jh6kEyZWMcWB5N921riz3ubgX33kZXuzq.gTYRd3ZP9z.OHTgGu8m",
->>>>>>> cf88f00de146e752ef899a2ae264efa412ad8798
       "status": "approved",
       "role": "owner"
     }
