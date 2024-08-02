@@ -1,7 +1,7 @@
 .owner-profile-container {
   display: flex;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(138, 231, 153, 0.2);
   height: calc(100vh - 120px);
   margin-top: 60px;
   margin-bottom: 30px;
@@ -9,7 +9,7 @@
 
 .owner-profile-container .sidebar {
   width: 20%;
-  background: #e4cbbd;
+  background: #e0dedc9f;
   padding: 20px;
   border-radius: 10px;
   backdrop-filter: blur(10px);
@@ -21,7 +21,7 @@
   width: 100%;
   padding: 10px;
   margin: 10px 0;
-  background: rgba(255, 255, 255, 0.7); /* Glass effect */
+  background: rgba(255, 255, 255, 0.7); 
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -40,7 +40,7 @@
 
 .owner-profile-container .profile-content {
   flex: 1;
-  background: #e4cbbd;
+  background: #e0dedc9f;
   padding: 20px;
   margin-left: 20px;
   border-radius: 10px;
@@ -63,15 +63,17 @@
   text-align: center;
   margin-left: 100px;
   gap: 80px;
+  font-size: 25px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 .profile-info .ownerDetails {
   text-align: left;
-  color: rgb(247, 80, 2);
+  color: rgb(21, 71, 1);
 }
 .profile-info .ownerResDetails {
   text-align: left;
-  color: rgb(247, 80, 2);
+  color: rgb(21, 71, 1);
 }
 
 .profile-info,
