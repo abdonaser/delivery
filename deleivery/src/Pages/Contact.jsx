@@ -16,21 +16,19 @@ export default function Contact() {
                 <div className="contact-info ">
                   <div className="phone social">
                     <i class="fa-solid fa-phone-volume"></i>
-                    <a href="">
+                    <a>
                       <h6>01550406840</h6>
                     </a>
                   </div>
                   <div className="email social">
                     <i class="fa-solid fa-envelope"></i>
-                    <a href="">
-                      {" "}
+                    <a>
                       <h6>contact@gmail.com</h6>
                     </a>
                   </div>
                   <div className="location social">
                     <i class="fa-solid fa-location-dot"></i>
-                    <a href="">
-                      {" "}
+                    <a>
                       <h6> 203, Envato Labs, Behind Alis Steet, Australia</h6>
                     </a>
                   </div>
@@ -73,7 +71,9 @@ export default function Contact() {
                         placeholder="Write your message here"
                         required></textarea>
                     </div>
-                    <button type="submit" className=" submit-contact">
+                    <button
+                      type="submit"
+                      className=" btn btn-danger submit-contact">
                       Send Message
                     </button>
                   </form>

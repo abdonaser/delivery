@@ -5,19 +5,23 @@ const About = () => {
   return (
     <>
       <div className="about-Us-page">
-        <div className="about-container">
+        <div className="container about-container">
           <div className="about-Details">
-            <h4>Delicious Food delivered at Your doorStep</h4>
+            <h4>
+              Delicious food <br></br> delivered at <br></br> your doorStep
+            </h4>
+
             <p>Yes, we have the best Food in town </p>
+
             <div>
               <Link to={"/"}>
-                <button className="btn btn-danger px-2 py-3">Order Now</button>
+                <button className="btn ">Order Now</button>
               </Link>
             </div>
           </div>
           <div className="about-imgContainer">
             <img
-              src="Images/LogPageImage/meal-3.jpg"
+              src="../../public/Images/aboutImages/aboutimg4.png"
               className="w-100 h-100"
               alt=""
             />

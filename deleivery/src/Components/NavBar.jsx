@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import "../Styles/NavBar.css";
 import useLogout from "../Hooks/useLogout";
+import { changeActive } from "../redux/ActiveWelcomName";
 
 function Navbar() {
   const [isProfileMenuOpen, setProfileMenuOpen] = useState(false);
@@ -13,8 +14,45 @@ function Navbar() {
   const navigate = useNavigate();
   const handleLogout = useLogout();
 
+  //'Receive activeName slice
+  const activeName = useSelector((state) => state.activeNameStore.activeName);
+  const dispatch = useDispatch();
+  //'-----------------------------------------
+
+  if (activeName == "true") {
+    // console.log("nav ", activeName);
+    
+    const fetchUser = async () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        try {
+          const response = await axios.get(
+            "http://localhost:3000/current-user",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          setUser(response.data);
+        } catch (error) {
+          console.error("Error fetching user:", error);
+          setUser(null);
+        }
+      } else {
+        setUser(null);
+      }
+    };
+    fetchUser();
+    dispatch(changeActive("false"));
+  }
+  //'-----------------------------
+
   const cartItems = useSelector((state) => state.cart.items);
-  const cartQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const cartQuantity = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   if (location.pathname === "/login") {
     return null;
@@ -64,7 +102,7 @@ function Navbar() {
   };
 
   const handleCartClick = () => {
-    navigate('/checkout');
+    navigate("/checkout");
   };
 
   return (

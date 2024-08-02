@@ -52,15 +52,22 @@
     justify-content: space-between;
     align-items: center;
     margin-block: 10px;
+
+    &:hover i {
+        color: #FF5B00 !important;
+    }
 }
 
 .social a {
     padding: 10px 0 0 0 !important;
     margin: 0 !important;
+
 }
 
 .social i {
     /* margin-block: 10px; */
+    color: #0008 !important;
+    transition: color 0.2s;
 }
 
 .form-contact {
@@ -87,9 +94,10 @@
 } */
 
 .submit-contact {
-    background-color: var(--s-color);
+    /* background-color: var(--s-color); */
+    background-color: #FF5B00 !important;
     border: none;
-    color: #f5f5f5;
+    color: #f5f5f5 !important;
     border-radius: 10px;
     padding: 8px 15px !important;
     margin-block: 10px;

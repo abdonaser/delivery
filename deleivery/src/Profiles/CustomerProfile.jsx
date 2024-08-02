@@ -6,17 +6,27 @@ import Footer from "../Components/Footer";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { changeActive } from "../redux/ActiveWelcomName";
 
 const CustomerProfile = () => {
+  //'Receive activeName slice
+  const activeName = useSelector((state) => state.activeNameStore.activeName);
+  const dispatch = useDispatch();
+
+  //'-----------------------------
   const [activeView, setActiveView] = useState("profile");
-  const [user, setUser] = useState(null); //'empty
+
+  const [user, setUser] = useState(null);
+
   const [isEditing, setIsEditing] = useState({
-    username: false,
-    email: false,
-    address: false,
-    phoneNumber: false,
-    gender: false,
+    username: "false",
+    email: "false",
+    address: "false",
+    phoneNumber: "false",
+    gender: "false",
   });
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -24,6 +34,7 @@ const CustomerProfile = () => {
     phoneNumber: "",
     gender: "",
   });
+
   const location = useLocation();
 
   useEffect(() => {
@@ -36,15 +47,17 @@ const CustomerProfile = () => {
               Authorization: `Bearer ${token}`,
             },
           });
+
           const userData = response.data;
-          console.log(userData);
+
           setUser(userData);
+
           setFormData({
-            username: userData.username || "",
-            email: userData.email || "",
-            address: userData.address || "",
-            phoneNumber: userData.phoneNumber || "",
-            gender: userData.gender || "",
+            username: userData.user.username,
+            email: userData.user.email,
+            address: userData.user.address,
+            phoneNumber: userData.user.phoneNumber,
+            gender: userData.user.gender,
           });
         } catch (error) {
           console.error("Error fetching user:", error);
@@ -54,8 +67,11 @@ const CustomerProfile = () => {
         setUser(null);
       }
     };
+
     fetchUser();
   }, [location]);
+  // console.log("FormData  ", formData);
+  // console.log("user  ", user);
 
   const handleEdit = (field) => {
     setIsEditing((prev) => ({ ...prev, [field]: true }));
@@ -63,6 +79,7 @@ const CustomerProfile = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    // console.log("handel");
   };
 
   const handleSave = async (field) => {
@@ -78,15 +95,18 @@ const CustomerProfile = () => {
             },
           }
         );
+
         setUser((prev) => ({
           ...prev,
           user: { ...prev.user, [field]: formData[field] },
         }));
+
         setIsEditing((prev) => ({ ...prev, [field]: false }));
       } catch (error) {
         console.error("Error updating user:", error);
       }
     }
+    dispatch(changeActive("true"));
   };
 
   // console.log(formData);
@@ -100,6 +120,8 @@ const CustomerProfile = () => {
   //   });
   //   console.log(user);
   // }, []);
+  // console.log(isEditing);
+
   return (
     <>
       <Navbar />
@@ -135,20 +157,66 @@ const CustomerProfile = () => {
               <div className="user-info">
                 {user &&
                   Object.keys(formData).map((key) => (
-                    <div key={key} className="info-item   d-flex">
+                    <div
+                      key={key}
+                      className="info-item   d-flex align-items-center  mb-3">
                       <div className={userInfo.lable + " "}>
-                        <b>{key.charAt(0).toUpperCase() + key.slice(1)} :</b>
+                        <b className="text-capitalize">{key} :</b>
                       </div>
-                      <div className={userInfo.Input + " "}>
-                        <input
-                          type="email"
-                          name="UserEmail"
-                          id="UserEmail"
-                          className="form-control"
-                          value={formData[key]}
-                        />
+                      <div
+                        className={
+                          userInfo.Input +
+                          " prfileInput d-flex align-items-center justify-content-start"
+                        }>
+                        <div className="">
+                          <input
+                            type={
+                              key == "username"
+                                ? "text "
+                                : key == "email"
+                                ? "email"
+                                : key == "address"
+                                ? "text"
+                                : key == "phoneNumber"
+                                ? "tel"
+                                : "text"
+                            }
+                            name={key}
+                            id={key}
+                            className="form-control "
+                            style={{
+                              outline: `${
+                                isEditing[key] == "true"
+                                  ? "2px solid #E04A00"
+                                  : "none"
+                              }`,
+                            }}
+                            value={formData[key]}
+                            onChange={
+                              isEditing[key] == "true" ? handleChange : ""
+                            }
+                          />
+                        </div>
+                        <div className="editIcons  text-start">
+                          {isEditing[key] == "true" ? (
+                            <button onClick={() => handleSave(key)}>
+                              Save
+                            </button>
+                          ) : (
+                            <FaEdit
+                              className="edit-icon activeEdit"
+                              onClick={() => {
+                                setIsEditing((prev) => {
+                                  return { ...prev, [key]: "true" };
+                                });
+                              }}
+                            />
+                          )}
+                        </div>
                       </div>
-                      {isEditing[key] ? (
+
+                      {/* <button onClick={() => handleSave(key)}>Save</button> */}
+                      {/* {isEditing[key] ? (
                         <>
                           <input
                             className="bg-dark"
@@ -161,7 +229,6 @@ const CustomerProfile = () => {
                         </>
                       ) : (
                         <>
-                     
                           {user.user[key] || "N/A"}
                           <FaEdit
                             className="edit-icon"
@@ -174,7 +241,7 @@ const CustomerProfile = () => {
                             }}
                           />
                         </>
-                      )}
+                      )} */}
                     </div>
                   ))}
               </div>

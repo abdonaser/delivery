@@ -12,7 +12,7 @@ const WaitingForApproval = () => {
           approves your account.
         </p>
         <Link to={"/"}>
-        <button className="btn btn-primary mt-4"
+        <button className="waiting-btn mt-4"
         >
           Back To Home
         </button>

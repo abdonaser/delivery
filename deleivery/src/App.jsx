@@ -18,7 +18,12 @@ import JoinUsForm from "./Pages/JoinUs";
 import WaitingForApproval from "./Pages/WaitingForApproval";
 import Checkout from "./Pages/CheckOut";
 import Login from "./Pages/Login";
+<<<<<<< HEAD
 import OrderStatus from "./Pages/OrderStatus";
+=======
+import { Provider } from "react-redux";
+import store from "./redux/store";
+>>>>>>> cf88f00de146e752ef899a2ae264efa412ad8798
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -78,7 +83,17 @@ function App() {
     },
   ]);
 
-  return <>{loading ? <Loader /> : <RouterProvider router={router} />}</>;
+  return (
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <Provider store={store}>
+          <RouterProvider router={router} />
+        </Provider>
+      )}
+    </>
+  );
 }
 
 export default App;
