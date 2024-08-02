@@ -1,34 +1,32 @@
-{
-  "users": [
-    {
-      "id": "a1deff5f-53d1-4ed0-a88a-8ad71036d31f",
-      "username": "ezz",
-      "email": "ezz@gmail.com",
-      "password": "$2a$10$Emm.KxWhsIB71FgZGbJ2EurS2XB2zU3abh6vi6LJSFB.tWNj6ohoa",
-      "address": "asdasd",
-      "phoneNumber": "12345678",
-      "gender": "male",
-      "role": "customer"
-    },
-    {
-      "id": "a54901f9-1d6c-4ba3-b4a1-b28000524c19",
-      "username": "boda",
-      "email": "abdo@gmail.comu",
-      "password": "$2a$10$hmun9VHIwc7qCRDF1I3A2eVreaZopPhVohPgKJEVnoxLbISRXZqJu",
-      "address": "123fdf",
-      "phoneNumber": "123",
-      "gender": "male",
-      "role": "customer"
-    },
-    {
-      "id": "b7313a56-40fd-4475-a5bf-fcf7ee9c2d02",
-      "username": "abdo naser",
-      "email": "abdo@gmail.com",
-      "password": "$2a$10$QMhFI5znYNtv.pzfjp8hV.h3mFUcJeWuK0b.NgYTZfm/FxJf4MAy2",
-      "address": "marg",
-      "phoneNumber": "01114189522",
-      "gender": "male",
-      "role": "customer"
-    }
-  ]
-}
+[
+  {
+    "id": "a1deff5f-53d1-4ed0-a88a-8ad71036d31f",
+    "username": "ezz",
+    "email": "ezz@gmail.com",
+    "password": "$2a$10$Emm.KxWhsIB71FgZGbJ2EurS2XB2zU3abh6vi6LJSFB.tWNj6ohoa",
+    "address": "asdasd",
+    "phoneNumber": "12345678",
+    "gender": "male",
+    "role": "customer"
+  },
+  {
+    "id": "a54901f9-1d6c-4ba3-b4a1-b28000524c19",
+    "username": "boda",
+    "email": "abdo@gmail.comu",
+    "password": "$2a$10$hmun9VHIwc7qCRDF1I3A2eVreaZopPhVohPgKJEVnoxLbISRXZqJu",
+    "address": "123fdf",
+    "phoneNumber": "123",
+    "gender": "male",
+    "role": "customer"
+  },
+  {
+    "id": "b7313a56-40fd-4475-a5bf-fcf7ee9c2d02",
+    "username": "abdo naser ss",
+    "email": "abdo@gmail.com",
+    "password": "$2a$10$QMhFI5znYNtv.pzfjp8hV.h3mFUcJeWuK0b.NgYTZfm/FxJf4MAy2",
+    "address": "marg",
+    "phoneNumber": "01114189522",
+    "gender": "male",
+    "role": "customer"
+  }
+]
