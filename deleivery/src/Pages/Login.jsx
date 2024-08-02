@@ -25,10 +25,7 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const handleSubmit = async (e) => {
-<<<<<<< HEAD
-=======
    
->>>>>>> cf88f00de146e752ef899a2ae264efa412ad8798
     e.preventDefault();
     setError("");
     setMessage("");
@@ -38,15 +35,12 @@ const Login = () => {
       // Save token and user info to local storage
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
-<<<<<<< HEAD
 
       // Dispatch action to save user info in Redux store
       dispatch(setCustomerInfo(user));
 
       // Navigate based on user role and status
-=======
       console.log(user);
->>>>>>> cf88f00de146e752ef899a2ae264efa412ad8798
       if (user.role === "customer") {
         navigate("/customer-profile");
       } else if (user.role === "owner") {

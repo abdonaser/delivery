@@ -57,6 +57,20 @@
       "password": "$2a$10$Jh6kEyZWMcWB5N921riz3ubgX33kZXuzq.gTYRd3ZP9z.OHTgGu8m",
       "status": "approved",
       "role": "owner"
+    },
+    {
+      "id": 14480977289028936000,
+      "ownerName": "abdonaser",
+      "restaurantName": "burger",
+      "address": "marg",
+      "phoneNumberOwner": "01114189522",
+      "phoneNumberRestaurant": "01114189522",
+      "serverCuisine": "Burger",
+      "taxNumber": "123",
+      "email": "ezz@gmail.com",
+      "password": "$2a$10$Y.wCLr/eOOHNirozgU9WaOUbZVxChQUUBKIRLEHx1qgBbkMjrAKJC",
+      "status": "approved",
+      "role": "owner"
     }
   ]
 }

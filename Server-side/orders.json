@@ -137,5 +137,35 @@
     "total": "41.00",
     "status": "preparing order",
     "orderTime": "2024-08-02T20:17:56.458Z"
+  },
+  {
+    "id": 7,
+    "items": [
+      {
+        "id": 101,
+        "name": "Double Cheeseburger",
+        "price": "$12.00",
+        "rating": 4.4,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrensd9resI6LG03WELppGaxKBSOhJuAJflw&s",
+        "restaurantId": 10,
+        "restaurantName": "Rays",
+        "customerName": "",
+        "quantity": 1
+      },
+      {
+        "id": 102,
+        "name": "BBQ Burger",
+        "price": "$11.50",
+        "rating": 4.2,
+        "image": "https://realfoodbydad.com/wp-content/uploads/2019/07/Southern-BBQ-Burger-Real-Food-by-Dad-683x1024.jpg",
+        "restaurantId": 10,
+        "restaurantName": "Rays",
+        "customerName": "",
+        "quantity": 1
+      }
+    ],
+    "total": "33.50",
+    "status": "delivered",
+    "orderTime": "2024-08-02T21:34:29.066Z"
   }
 ]
