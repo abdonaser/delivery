@@ -21,7 +21,7 @@
   width: 100%;
   padding: 10px;
   margin: 10px 0;
-  background: rgba(255, 255, 255, 0.7); 
+  background: rgba(255, 255, 255, 0.7);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -50,6 +50,8 @@
 .profile-info-container {
   padding: 15px;
   margin: 10px;
+  padding-top: 0px;
+  margin-top: 0px;
 }
 .profile-info-container h1 {
   text-align: center;
@@ -60,13 +62,16 @@
   display: flex;
   flex-direction: row;
   margin: 55px;
+  margin-top: 190px;
   text-align: center;
   margin-left: 100px;
   gap: 80px;
-  font-size: 25px;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+  font-size: 18px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-
+.profile-info-container h1 {
+  margin-top: 0px;
+}
 .profile-info .ownerDetails {
   text-align: left;
   color: rgb(21, 71, 1);
@@ -81,50 +86,11 @@
   text-align: center;
 }
 
-.profile-pic-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.profile-pic {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 5px solid rgba(255, 255, 255, 0.5);
-}
-
-.user-info {
-  text-align: center;
-  background: rgba(255, 255, 255, 0.5);
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.user-info h2 {
-  margin: 0;
-  font-size: 24px;
-}
-
-.user-info {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .info-item {
   width: 40%;
   font-size: 20px;
   margin: 15px;
   text-align: left;
-}
-
-.edit-icon {
-  margin-left: 10px;
-  cursor: pointer;
-}
-
-.edit-icon:hover {
-  color: orange;
 }
 
 .info-item input {
@@ -135,17 +101,76 @@
   border: none;
 }
 
-.info-item button {
-  margin-left: 0.5rem;
-  padding: 0.2rem 0.5rem;
-  background-color: hsl(21, 100%, 50%);
-  color: white;
-  font-size: 19px;
-  text-align: center;
-  border-radius: 12px;
-  cursor: pointer;
+.profile-info-container {
+  position: relative;
 }
 
-.info-item button:hover {
-  background-color: hsl(21, 100%, 40%);
+.logo-container {
+  /* position: relative; */
+  display: inline-block;
+  width: 100%;
+}
+
+.restaurant-logo {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  left: 40%;
+  top: 90px;
+}
+
+.edit-logo-button {
+  position: absolute;
+  top: 190px;
+  left: 500px;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+.edit-logo-button:hover {
+  background-color: #f1f1f1;
+}
+
+.edit-form {
+  position: absolute;
+  top: 190px;
+}
+.edit-form input {
+  padding: 7px;
+  margin: 5px;
+  border-radius: 6px;
+  font-size: 16px;
+  background: #fbfbfb;
+  border: 2px solid transparent;
+  height: 36px;
+  box-shadow: 0 0 0 1px #dddddd, 0 2px 4px 0 rgb(0 0 0 / 7%),
+    0 1px 1.5px 0 rgb(0 0 0 / 5%);
+  :focus {
+    border: 2px solid #000;
+    border-radius: 4px;
+  }
+}
+
+.edit-form button {
+  display: inline-block;
+  outline: 0;
+  border: none;
+  cursor: pointer;
+  line-height: 1.2rem;
+  font-weight: 900;
+  background: #007a5a;
+  padding: 8px 14px 9px;
+  font-size: 15px;
+  border-radius: 4px;
+  color: #fff;
+  height: 36px;
+  transition: all 75ms ease-in-out;
+  :hover {
+    box-shadow: 0 1px 4px rgb(0 0 0 / 30%);
+  }
 }

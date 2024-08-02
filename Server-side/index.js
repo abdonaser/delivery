@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
 const cors = require("cors");
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
@@ -185,6 +186,55 @@ app.get("/owner-profile", (req, res) => {
     );
 
     res.status(200).json({ ...owner, restaurants });
+  } catch (err) {
+    console.error("Token verification failed", err);
+    res.status(401).json({ message: "Invalid token" });
+  }
+});
+
+app.put("/owner-profile", (req, res) => {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader) {
+    return res.status(401).json({ message: "Authorization header missing" });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({ message: "Token missing" });
+  }
+
+  const { imageUrl } = req.body; // Expecting { imageUrl: "new-image-url" } in the request body
+
+  if (!imageUrl) {
+    return res.status(400).json({ message: "Image URL is required" });
+  }
+
+  try {
+    const decodedToken = jwt.verify(token, SECRET_KEY);
+    const ownerIndex = ownerProfiles.findIndex(
+      (profile) => profile.id === decodedToken.id
+    );
+
+    if (ownerIndex === -1) {
+      return res.status(404).json({ message: "Owner not found" });
+    }
+
+    // Update the owner profile with the new image URL
+    ownerProfiles[ownerIndex].imageUrl = imageUrl;
+
+    // Also, update restaurant profiles if needed
+    const updatedRestaurants = getRestaurants().map((restaurant) => {
+      if (restaurant.ownerId === ownerProfiles[ownerIndex].id) {
+        return { ...restaurant, imageUrl };
+      }
+      return restaurant;
+    });
+
+    restaurants = updatedRestaurants;
+
+    res.status(200).json({ ...ownerProfiles[ownerIndex] });
   } catch (err) {
     console.error("Token verification failed", err);
     res.status(401).json({ message: "Invalid token" });
@@ -596,6 +646,56 @@ app.delete("/restaurants/:restaurantId/menu/:itemId", (req, res) => {
       }
     );
   });
+});
+
+// // Set up multer for file uploads
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "public/logos"); // Directory for uploaded files
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
+//   },
+// });
+
+// const upload = multer({ storage });
+
+// Update the restaurant imageUrl (logo)
+app.put("/restaurants/:restaurantId/logo", (req, res) => {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader) {
+    return res.status(401).json({ message: "Authorization header missing" });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({ message: "Token missing" });
+  }
+
+  try {
+    const decodedToken = jwt.verify(token, SECRET_KEY);
+    const { restaurantId } = req.params;
+    const { logoUrl } = req.body;
+
+    let restaurants = getRestaurants();
+    const restaurant = restaurants.find((r) => r.id === restaurantId);
+
+    if (!restaurant) {
+      console.log(`Restaurant not found for ID: ${restaurantId}`);
+      return res.status(404).json({ message: "Restaurant not found" });
+    }
+
+    restaurant.imageUrl = logoUrl;
+    saveRestaurants(restaurants);
+
+    console.log(`Logo updated for restaurant ID: ${restaurantId}`);
+    res.status(200).json({ message: "Logo updated successfully" });
+  } catch (err) {
+    console.error("Token verification failed", err);
+    res.status(401).json({ message: "Invalid token" });
+  }
 });
 
 app.listen(port, () => {
