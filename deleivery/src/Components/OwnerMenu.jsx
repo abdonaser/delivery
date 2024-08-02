@@ -43,14 +43,18 @@ const OwnerMenu = ({ restaurants }) => {
         }
       );
 
-      const updatedRestaurant = response.data;
-      setSelectedRestaurant(updatedRestaurant);
+      // Directly update the menu without a full re-render
+      setSelectedRestaurant((prev) => ({
+        ...prev,
+        menu: [...prev.menu, response.data],
+      }));
       setNewMenuItem({
         name: "",
         price: "",
         rating: 0,
         image: "",
       });
+      setError(""); // Clear any previous errors
     } catch (err) {
       setError(
         `Failed to add menu item: ${err.response?.data?.message || err.message}`
@@ -65,7 +69,7 @@ const OwnerMenu = ({ restaurants }) => {
         setError("No authentication token found. Please log in.");
         return;
       }
-  
+
       await axios.delete(
         `http://localhost:3000/restaurants/${selectedRestaurant.id}/menu/${menuItemId}`,
         {
@@ -75,19 +79,21 @@ const OwnerMenu = ({ restaurants }) => {
           },
         }
       );
-  
-      const updatedRestaurant = {
-        ...selectedRestaurant,
-        menu: selectedRestaurant.menu.filter((item) => item.id !== menuItemId),
-      };
-      setSelectedRestaurant(updatedRestaurant);
+
+      // Update the state to remove the deleted item
+      setSelectedRestaurant((prev) => ({
+        ...prev,
+        menu: prev.menu.filter((item) => item.id !== menuItemId),
+      }));
     } catch (err) {
       setError(
-        `Failed to delete menu item: ${err.response?.data?.message || err.message}`
+        `Failed to delete menu item: ${
+          err.response?.data?.message || err.message
+        }`
       );
     }
   };
-  
+
   const updateMenuItem = async (menuItemId) => {
     try {
       const token = localStorage.getItem("token");
@@ -95,7 +101,7 @@ const OwnerMenu = ({ restaurants }) => {
         setError("No authentication token found. Please log in.");
         return;
       }
-  
+
       const response = await axios.put(
         `http://localhost:3000/restaurants/${selectedRestaurant.id}/menu/${menuItemId}`,
         editItem,
@@ -106,17 +112,24 @@ const OwnerMenu = ({ restaurants }) => {
           },
         }
       );
-  
-      const updatedRestaurant = response.data;
-      setSelectedRestaurant(updatedRestaurant);
+
+      // Update the state to reflect the edited item
+      setSelectedRestaurant((prev) => ({
+        ...prev,
+        menu: prev.menu.map((item) =>
+          item.id === menuItemId ? response.data : item
+        ),
+      }));
       setEditItem(null);
+      setError(""); // Clear any previous errors
     } catch (err) {
       setError(
-        `Failed to update menu item: ${err.response?.data?.message || err.message}`
+        `Failed to update menu item: ${
+          err.response?.data?.message || err.message
+        }`
       );
     }
   };
-  
 
   const handleEditChange = (e) => {
     const { name, value } = e.target;
@@ -131,13 +144,15 @@ const OwnerMenu = ({ restaurants }) => {
 
   return (
     <div className="owner-menu-container">
+      {error && <div className="error">{error}</div>}
       {selectedRestaurant.menu && (
         <div>
           <h2>Manage Menu for {selectedRestaurant.name}</h2>
           <form onSubmit={addMenuItem}>
             <label>
-              Dish Name: <br/>
-              <input className="add-owner-menu"
+              Dish Name: <br />
+              <input
+                className="add-owner-menu"
                 type="text"
                 name="name"
                 value={newMenuItem.name}
@@ -146,8 +161,9 @@ const OwnerMenu = ({ restaurants }) => {
               />
             </label>
             <label>
-              Price: <br/>
-              <input className="add-owner-menu"
+              Price: <br />
+              <input
+                className="add-owner-menu"
                 type="number"
                 name="price"
                 value={newMenuItem.price}
@@ -156,8 +172,9 @@ const OwnerMenu = ({ restaurants }) => {
               />
             </label>
             <label>
-              Rating: <br/>
-              <input className="add-owner-menu"
+              Rating: <br />
+              <input
+                className="add-owner-menu"
                 type="number"
                 name="rating"
                 value={newMenuItem.rating}
@@ -166,8 +183,9 @@ const OwnerMenu = ({ restaurants }) => {
               />
             </label>
             <label>
-              Image URL: <br/>
-              <input className="add-owner-menu"
+              Image URL: <br />
+              <input
+                className="add-owner-menu"
                 type="text"
                 name="image"
                 value={newMenuItem.image}
@@ -199,10 +217,18 @@ const OwnerMenu = ({ restaurants }) => {
                     <img src={item.image} alt={item.name} width={"50px"} />
                   </td>
                   <td>
-                    <button onClick={() => deleteMenuItem(item.id)} className="delete-btn-menu-item">
+                    <button
+                      onClick={() => deleteMenuItem(item.id)}
+                      className="delete-btn-menu-item"
+                    >
                       Delete
                     </button>
-                    <button onClick={() => setEditItem(item)} className="edit-btn-menu-item">Edit</button>
+                    <button
+                      onClick={() => setEditItem(item)}
+                      className="edit-btn-menu-item"
+                    >
+                      Edit
+                    </button>
                     {editItem && editItem.id === item.id && (
                       <form
                         onSubmit={(e) => {
@@ -212,7 +238,8 @@ const OwnerMenu = ({ restaurants }) => {
                       >
                         <label>
                           Dish Name:
-                          <input className="add-owner-menu"
+                          <input
+                            className="add-owner-menu"
                             type="text"
                             name="name"
                             value={editItem.name}
@@ -221,8 +248,9 @@ const OwnerMenu = ({ restaurants }) => {
                           />
                         </label>
                         <label>
-                          Price: 
-                          <input className="add-owner-menu"
+                          Price:
+                          <input
+                            className="add-owner-menu"
                             type="number"
                             name="price"
                             value={editItem.price}
@@ -232,7 +260,8 @@ const OwnerMenu = ({ restaurants }) => {
                         </label>
                         <label>
                           Rating:
-                          <input className="add-owner-menu"
+                          <input
+                            className="add-owner-menu"
                             type="number"
                             name="rating"
                             value={editItem.rating}
@@ -242,7 +271,8 @@ const OwnerMenu = ({ restaurants }) => {
                         </label>
                         <label>
                           Image URL:
-                          <input className="add-owner-menu"
+                          <input
+                            className="add-owner-menu"
                             type="text"
                             name="image"
                             value={editItem.image}
