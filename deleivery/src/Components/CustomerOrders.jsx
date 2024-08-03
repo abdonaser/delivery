@@ -19,7 +19,7 @@ const CustomerOrders = () => {
   useEffect(() => {
     const fetchOrder = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/orders/`);
+        const response = await axios.get(`http://localhost:3000/api/orders/1`);
  
         
         setOrder(response.data);
@@ -41,6 +41,7 @@ const CustomerOrders = () => {
         expanded={expanded === "1"}
         onChange={handleChange("1")}
         sx={{ marginTop: "20px", borderRadius: "30px" }}>
+        
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
@@ -177,6 +178,7 @@ const CustomerOrders = () => {
             </div>
           </Typography>
         </AccordionDetails>
+        
       </Accordion>
 
       {/* //!2--------------------------------------------- */}

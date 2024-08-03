@@ -704,7 +704,7 @@ app.get("/api/orders/:orderId", async (req, res) => {
   try {
     const orders = await readJSONFile(ordersFilePath);
 
-    console.log("Orders:", orders); // Debugging output
+    // console.log("Orders:", orders); // Debugging output
 
     if (!Array.isArray(orders)) {
       console.error("Orders is not an array:", orders); // Debugging output
@@ -732,7 +732,7 @@ app.post("/api/orders", async (req, res) => {
   try {
     const orders = await readJSONFile(ordersFilePath);
 
-    console.log("Orders before adding new order:", orders); // Debugging output
+    // console.log("Orders before adding new order:", orders); // Debugging output
 
     if (!Array.isArray(orders)) {
       return res.status(500).json({ message: "Orders data is not an array" });
@@ -748,7 +748,7 @@ app.post("/api/orders", async (req, res) => {
     orders.push(newOrder);
     await writeJSONFile(ordersFilePath, orders);
 
-    console.log("Orders after adding new order:", orders); // Debugging output
+    // console.log("Orders after adding new order:", orders); // Debugging output
 
     res.status(201).json(newOrder);
   } catch (error) {
