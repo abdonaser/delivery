@@ -694,7 +694,7 @@ app.get("/api/orders/:orderId", async (req, res) => {
   try {
     const orders = await readJSONFile(ordersFilePath);
     if (!Array.isArray(orders)) {
-      console.error("Orders is not an array:", orders); // Debugging output
+      console.error("Orders is not an array:", orders);
       return res.status(500).json({ message: "Orders data is not an array" });
     }
 
@@ -719,8 +719,6 @@ app.post("/api/orders", async (req, res) => {
   try {
     const orders = await readJSONFile(ordersFilePath);
 
-    console.log("Orders before adding new order:", orders); // Debugging output
-
     if (!Array.isArray(orders)) {
       return res.status(500).json({ message: "Orders data is not an array" });
     }
@@ -734,8 +732,6 @@ app.post("/api/orders", async (req, res) => {
 
     orders.push(newOrder);
     await writeJSONFile(ordersFilePath, orders);
-
-    // console.log("Orders after adding new order:", orders); // Debugging output
 
     res.status(201).json(newOrder);
   } catch (error) {
@@ -790,6 +786,33 @@ app.put("/api/orders/:orderId/status", async (req, res) => {
   } catch (error) {
     console.error("Error updating order status:", error);
     res.status(500).json({ message: "Failed to update order status" });
+  }
+});
+// Route to get orders by user ID and status
+app.get("/api/orders/user/:userId/status/:status", async (req, res) => {
+  try {
+    const orders = await readJSONFile(ordersFilePath);
+
+    if (!Array.isArray(orders)) {
+      return res.status(500).json({ message: "Orders data is not an array" });
+    }
+
+    const userId = parseInt(req.params.userId, 10);
+    const status = req.params.status;
+
+    if (isNaN(userId)) {
+      return res.status(400).json({ message: "Invalid user ID" });
+    }
+
+    const filteredOrders = orders.filter(
+      (order) =>
+        parseInt(order.userId, 10) === userId && order.status === status
+    );
+
+    res.json(filteredOrders);
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    res.status(500).json({ message: "Failed to fetch orders" });
   }
 });
 

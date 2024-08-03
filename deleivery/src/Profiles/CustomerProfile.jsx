@@ -10,9 +10,9 @@ import { FaEdit } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { changeActive } from "../redux/ActiveWelcomName";
 
-import $ from "jquery";
 
 import CustomerOrders from "../Components/CustomerOrders";
+import CustomerPage from "../Components/CustomerOrders";
 
 const CustomerProfile = () => {
   //'Receive activeName slice
@@ -125,7 +125,6 @@ const CustomerProfile = () => {
   // }, []);
   // console.log(isEditing);
 
-<<<<<<< HEAD
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -136,7 +135,6 @@ const CustomerProfile = () => {
   if (!user) {
     return <div>Loading...</div>;
   }
-=======
   //' Handel Order Section---------------------------------------
 
   // const [isShow, setIsShow] = useState("true");
@@ -148,7 +146,6 @@ const CustomerProfile = () => {
   //   setIsShow("false");
   //   console.log(" hadelHide ", isShow);
   // };
->>>>>>> cab3781184d053ffbd4b0e1d9b775cbdea5e27f1
 
   return (
     <>
@@ -197,16 +194,9 @@ const CustomerProfile = () => {
                       <div
                         className={
                           userInfo.Input +
-<<<<<<< HEAD
-                          " prfileInput d-flex align-items-center justify-content-start"
-                        }
-                      >
-                        <div className="">
-=======
                           " prfileInput d-flex align-items-center justify-content-start gap-2"
                         }>
                         <div className=" ">
->>>>>>> cab3781184d053ffbd4b0e1d9b775cbdea5e27f1
                           <input
                             type={
                               key == "username"
@@ -290,6 +280,7 @@ const CustomerProfile = () => {
               <h2>Orders</h2>
               <div>
                 <CustomerOrders></CustomerOrders>
+              
               </div>
             </div>
           )}

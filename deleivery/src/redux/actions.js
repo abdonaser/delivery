@@ -17,12 +17,12 @@ export const setRestaurantName = (name) => ({
 //   payload: restaurant,
 // });
 
-export const addToCart = (item, quantity) => ({
+export const addToCart = (item, quantity,userId) => ({
   type: "ADD_TO_CART",
   payload: {
     ...item,
     quantity,
-    customerName: item.customerName || "",
+    userId,
   },
 });
 

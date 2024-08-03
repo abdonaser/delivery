@@ -1,6 +1,7 @@
 const initialState = {
   items: [],
   restaurantId: null,
+  userId: null,
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -30,6 +31,7 @@ const cartReducer = (state = initialState, action) => {
           ...state,
           items: updatedItems,
           restaurantId: state.restaurantId || action.payload.restaurantId,
+          userId: state.userId || action.payload.userId,
         };
       }
 
@@ -37,6 +39,7 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         items: [...state.items, action.payload],
         restaurantId: state.restaurantId || action.payload.restaurantId,
+        userId: state.userId || action.payload.userId,
       };
 
     case "REMOVE_FROM_CART":

@@ -6,6 +6,7 @@ import "../Styles/Checkout.css";
 
 const Checkout = () => {
   const cartItems = useSelector((state) => state.cart.items);
+  const userId = useSelector((state) => state.auth.userId); // Ensure correct selector for userId
   const dispatch = useDispatch();
   const [orderId, setOrderId] = React.useState(null);
 
@@ -22,7 +23,10 @@ const Checkout = () => {
     const order = {
       items: cartItems,
       total: calculateTotal(),
+      userId, // Include the user ID in the order
     };
+
+    console.log("User ID before sending order:", userId); // Debug log
 
     try {
       console.log("Sending order:", order);
@@ -131,8 +135,8 @@ const Checkout = () => {
           </div>
         </div>
       ) : (
-        <div className="emptyContainer  ">
-          <h2 className=" ">Shopping Cart</h2>
+        <div className="emptyContainer">
+          <h2>Shopping Cart</h2>
           <div className="emptyImgContainer">
             <img
               src="public/Images/Cartpage/empty-cart.png"
