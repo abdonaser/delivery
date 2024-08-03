@@ -53,33 +53,38 @@ const CustomerReview = () => {
 
   return (
     <>
-      {" "}
-      <h1 className="customer-review-heading">See What our customers Say</h1>
-      <div className="customer-review">
-        <div className="review-image">
-          <img
-            src="../Images/HomePage/customerReview.png"
-            alt="CustomerReview"
-          />
-        </div>
-        <div className="review-content">
-          <h2>Our Lovely Customer Loves Our Services</h2>
-          <p>
-            {reviews[currentReview].text.split("\n").map((line, index) => (
-              <React.Fragment key={index}>
-                {line}
-                <br />
-              </React.Fragment>
-            ))}
-          </p>
-          <div className="review-rating">
-            {"★".repeat(reviews[currentReview].rating)}
-            {"☆".repeat(5 - reviews[currentReview].rating)}
-          </div>
-          <p className="review-name">{reviews[currentReview].name}</p>
-          <div className="review-navigation">
-            <button onClick={handlePrev}>&larr;</button>
-            <button onClick={handleNext}>&rarr;</button>
+      <div className="reviewSection">
+        <div className="mainSection-bg">
+          <h1 className="customer-review-heading">
+            See What our customers Say
+          </h1>
+          <div className="customer-review">
+            <div className="review-image">
+              <img
+                src="../Images/HomePage/customerReview.png"
+                alt="CustomerReview"
+              />
+            </div>
+            <div className="review-content ">
+              <h2>Our Lovely Customer Loves Our Services</h2>
+              <p>
+                {reviews[currentReview].text.split("\n").map((line, index) => (
+                  <React.Fragment key={index}>
+                    {line}
+                    <br />
+                  </React.Fragment>
+                ))}
+              </p>
+              <div className="review-rating">
+                {"★".repeat(reviews[currentReview].rating)}
+                {"☆".repeat(5 - reviews[currentReview].rating)}
+              </div>
+              <p className="review-name">{reviews[currentReview].name}</p>
+              <div className="review-navigation">
+                <button onClick={handlePrev}>&larr;</button>
+                <button onClick={handleNext}>&rarr;</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

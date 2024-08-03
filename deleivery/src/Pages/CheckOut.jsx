@@ -6,7 +6,7 @@ import "../Styles/Checkout.css";
 
 const Checkout = () => {
   const cartItems = useSelector((state) => state.cart.items);
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
   const [orderId, setOrderId] = React.useState(null);
 
   const calculateTotal = () => {
@@ -23,11 +23,14 @@ const Checkout = () => {
       items: cartItems,
       total: calculateTotal(),
     };
-  
+
     try {
       console.log("Sending order:", order);
-      const response = await axios.post("http://localhost:3000/api/orders", order);
-      const orderId = response.data.id; 
+      const response = await axios.post(
+        "http://localhost:3000/api/orders",
+        order
+      );
+      const orderId = response.data.id;
       window.location.href = `/order-status/${orderId}`;
     } catch (error) {
       console.error("Error creating order:", error);
@@ -128,7 +131,16 @@ const Checkout = () => {
           </div>
         </div>
       ) : (
-        <p className="empty-checkout-message">Your cart is empty</p>
+        <div className="emptyContainer  ">
+          <h2 className=" ">Shopping Cart</h2>
+          <div className="emptyImgContainer">
+            <img
+              src="public/Images/Cartpage/empty-cart.png"
+              alt=""
+              className="w-100"
+            />
+          </div>
+        </div>
       )}
     </div>
   );

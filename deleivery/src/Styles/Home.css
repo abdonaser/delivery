@@ -5,10 +5,12 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
 ::selection {
   color: #F8EDED;
   background: #FF8225;
 }
+
 /*? VerticalImageSlider */
 .slider-container {
   width: 100%;
@@ -98,10 +100,11 @@ body {
 }
 
 /*? Categories  */
+
+
 .menu-container {
   text-align: center;
-  margin: 60px 0;
-  padding: 20px;
+  padding-top: 10px;
 }
 
 .menu-title {
@@ -109,14 +112,16 @@ body {
   color: #ff5b00;
   margin-bottom: 60px;
   position: relative;
+  padding-top: 30px;
 }
+
 .menu-title::before {
   content: "";
   position: absolute;
-  left: 30px;
-  top: 50%;
-  width: 5px;
-  height: 80%;
+  left: 100px;
+  top: 69%;
+  width: 4px;
+  height: 74%;
   background-color: orange;
   transform: translateY(-50%);
 }
@@ -179,7 +184,7 @@ body {
 /*?TrustedBrandsAndWhy */
 
 .trusted-brands-why {
-  padding: 20px;
+  /* padding: 20px; */
   max-width: 1200px;
   margin: 0 auto;
   font-family: Arial, sans-serif;
@@ -187,7 +192,7 @@ body {
 
 .trusted-brands,
 .why-we-are-best {
-  margin-bottom: 190px;
+  /* margin-bottom: 190px; */
 }
 
 .trusted-brands h2,
@@ -281,21 +286,24 @@ body {
   font-size: 3rem;
   color: #ff5b00;
   margin-bottom: 20px;
-
+  padding: 20px 0;
   text-align: center;
   text-transform: capitalize;
   position: relative;
+
 }
+
 .customer-review-heading::before {
   content: "";
   position: absolute;
-  left: 30px;
-  top: 50%;
-  width: 5px;
-  height: 80%;
+  left: 100px;
+  top: 55%;
+  width: 4px;
+  height: 65%;
   background-color: orange;
   transform: translateY(-50%);
 }
+
 .customer-review {
   display: flex;
   align-items: center;
@@ -351,3 +359,86 @@ body {
   cursor: pointer;
   margin: 0 10px;
 }
+
+/* //'-----------------------------------------Update BG  */
+.mainSection-bg {
+  background-color: #f5f5f5;
+  /* padding: 30px 20px; */
+  border-radius: 20px;
+}
+
+.categorySection {
+  padding: 20px 20px 0px;
+  margin: 0;
+}
+
+.categoryUpdateReduis {
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+.resListSection {
+  padding: 0px 20px 10px;
+  margin: 0;
+}
+
+.listUpdateReduis {
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+}
+
+/* //'Our Trusted Brand */
+.trustedSection1 {
+  padding: 10px 20px;
+  margin: 0px auto 10px;
+  width: 100%;
+}
+
+.trustedSection1 .mainSection-bg {
+  padding: 10px 0px 40px;
+  margin: 0 !important;
+}
+
+/* //' Why We Are The Best? */
+.trustedSection2 {
+  padding: 0px 20px 10px;
+  margin: 0px auto 10px;
+  width: 100%;
+}
+
+.trustedSection2 .mainSection-bg {
+  padding: 5px 0px 40px;
+  margin: 0 !important;
+}
+
+
+/* 'reviewSection */
+.reviewSection {
+  padding: 0px 20px 20px;
+  margin: 0;
+}
+
+.reviewSection .mainSection-bg {
+  /* background-color: unset !important; */
+  background-color: #f5f5f54f;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+
+.review-content {
+  background-color: #f5f5f5e5 !important;
+  border-radius: 20px;
+  padding: 30px;
+}
+
+
+/* .sectionContainer {
+  padding: 0;
+  margin: 0;
+
+}
+
+.containerSpace {
+  margin: 20px 20px;
+} */

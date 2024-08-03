@@ -33,10 +33,12 @@ const RestaurantList = ({ selectedCuisine }) => {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className="restaurant-list">
-      {filteredRestaurants.map((restaurant) => (
-        <RestaurantCard key={restaurant.id} restaurant={restaurant} />
-      ))}
+    <div className="resListSection">
+      <div className="mainSection-bg  restaurant-list listUpdateReduis">
+        {filteredRestaurants.map((restaurant) => (
+          <RestaurantCard key={restaurant.id} restaurant={restaurant} />
+        ))}
+      </div>
     </div>
   );
 };

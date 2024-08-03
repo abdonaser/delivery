@@ -34,7 +34,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="cart-container">
+    <div className="cart-container ">
       <h2>Your Cart</h2>
       {cartItems.length > 0 ? (
         <div>
@@ -63,7 +63,17 @@ const Cart = () => {
           <ClearCartButton className="clear-cart-button" />
         </div>
       ) : (
-        <p className="empty-cart-message">Your cart is empty</p>
+        <>
+          <div>
+            <img
+              src="../../public/Images/Cartpage/empty-cart.png"
+              alt=""
+              srcset=""
+              className="w-100"
+            />
+          </div>
+          {/* <p className="">Your cart is empty</p> */}
+        </>
       )}
     </div>
   );

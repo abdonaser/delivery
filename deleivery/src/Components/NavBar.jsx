@@ -21,7 +21,7 @@ function Navbar() {
 
   if (activeName == "true") {
     // console.log("nav ", activeName);
-    
+
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
       if (token) {
@@ -132,7 +132,10 @@ function Navbar() {
           </div>
           <div className="auth-buttons">
             {user ? (
-              <span className="welcome-message">Welcome, {user.username}!</span>
+              <span className="welcome-message">
+                Welcome,
+                <span className="welcome-user">{user.username}!</span>
+              </span>
             ) : (
               <>
                 <Link to="/signup" className="auth-button login-button">

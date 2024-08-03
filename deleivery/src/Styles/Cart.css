@@ -82,13 +82,7 @@
   font-size: 1.2em;
   color: #666;
 }
-
-.empty-cart-message {
-  text-align: center;
-  font-size: 1.2em;
-  color: #666;
-}
-
+ 
 .quantity-controls {
   color: black;
   cursor: pointer;

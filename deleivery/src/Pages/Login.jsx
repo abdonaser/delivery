@@ -125,8 +125,7 @@ const Login = () => {
               <div className={log.mainContainer + ``}>
                 <div
                   className={log.theCard}
-                  style={!hasAccount ? { transform: "rotateY(180deg)" } : null}
-                >
+                  style={!hasAccount ? { transform: "rotateY(180deg)" } : null}>
                   {/*  //!  ================Login Card================================================================  */}
                   <div className={log.theFront}>
                     <h1 className="text-danger">Delivery App</h1>
@@ -154,8 +153,7 @@ const Login = () => {
                         <i
                           className={
                             log.inputIcon + " fa-solid fa-unlock-keyhole"
-                          }
-                        ></i>
+                          }></i>
                         <input
                           className={
                             log.inputPadding + " form-control text-start  mb-3"
@@ -179,27 +177,24 @@ const Login = () => {
                         type="submit"
                         className={
                           log.LogBtnColor + " btn btn-danger w-100 my-2"
-                        }
-                      >
+                        }>
                         Login
                       </button>
 
                       {/* //'create One */}
                       <div
-                        className={log.handelcreate + " text-center mb-2 p-2"}
-                      >
+                        className={log.handelcreate + " text-center mb-2 p-2"}>
                         Don&apos;t have an Account?
                         <a
                           className={log.cursorPointer + "  ms-2"}
-                          onClick={handelCreateAcc}
-                        >
+                          onClick={handelCreateAcc}>
                           create one
                         </a>
                       </div>
                     </form>
                   </div>
 
-                  {/* //! ================  Register Card================ ================================================ */}
+                  {/* //! ================Register Card================================================================ */}
 
                   <div className={log.theBack}>
                     <h1 className="text-danger">Delivery App</h1>
@@ -208,8 +203,9 @@ const Login = () => {
                       {/* //'USer Name */}
                       <div className={log.inputContainer + " "}>
                         <i
-                          className={log.inputIcon + " fa-solid fa-signature "}
-                        ></i>
+                          className={
+                            log.inputIcon + " fa-solid fa-signature "
+                          }></i>
                         <input
                           className={
                             log.inputPadding +
@@ -246,8 +242,7 @@ const Login = () => {
                         className={
                           log.inputContainer +
                           " d-flex align-items-center justify-content-between pe-2"
-                        }
-                      >
+                        }>
                         <label htmlFor="gender" className=" fw-medium ">
                           Gender :
                         </label>
@@ -269,8 +264,7 @@ const Login = () => {
                             />
                             <label
                               htmlFor="Female"
-                              className={log.pointer + " "}
-                            >
+                              className={log.pointer + " "}>
                               Female
                             </label>
                           </div>
@@ -297,11 +291,12 @@ const Login = () => {
                         </div>
                       </div>
 
-                      {/* //'USer Name */}
+                      {/* //'USer Address */}
                       <div className={log.inputContainer + " "}>
                         <i
-                          className={log.inputIcon + " fa-solid fa-signature "}
-                        ></i>
+                          className={
+                            log.inputIcon + " fa-solid fa-signature "
+                          }></i>
                         <input
                           className={
                             log.inputPadding +
@@ -338,8 +333,7 @@ const Login = () => {
                         <i
                           className={
                             log.inputIcon + " fa-solid fa-unlock-keyhole"
-                          }
-                        ></i>
+                          }></i>
                         <input
                           className={
                             log.inputPadding + " form-control text-start  mb-1"
@@ -357,18 +351,15 @@ const Login = () => {
                         type="submit"
                         className={
                           log.LogBtnColor + " btn btn-danger w-100 my-2"
-                        }
-                      >
+                        }>
                         SignUp
                       </button>
                       <div
-                        className={log.handelcreate + " text-center mb-2 p-2"}
-                      >
+                        className={log.handelcreate + " text-center mb-2 p-2"}>
                         Alreaady has Account?
                         <a
                           className={log.cursorPointer + " ms-2"}
-                          onClick={handelSignIn}
-                        >
+                          onClick={handelSignIn}>
                           SignIn
                         </a>
                       </div>

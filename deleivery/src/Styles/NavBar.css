@@ -82,14 +82,15 @@ body {
 
 .page-header .nav-links a {
   color: #173B45;
-  font-size: 16px;
+  font-size: 19px;
+  font-weight: bold;
   transition: color 0.3s, padding-bottom 0.3s;
   padding-bottom: 5px;
   border-bottom: 2px solid transparent;
 }
 
 .page-header .nav-links a:hover {
-  color: #fff;
+  color: #000000 !important;
   border-bottom: 2px solid #ff5b00;
 }
 
@@ -183,7 +184,7 @@ body {
   border-radius: 20px;
   font-size: 16px;
   font-weight: bold;
-  color: #F8EDED;
+  color: #F8EDED !important;
   background: #ff5b00;
   transition: background 0.3s, transform 0.3s;
   margin: 0 10px;
@@ -192,6 +193,15 @@ body {
 .page-header .auth-button:hover {
   background: #e64a19;
   transform: scale(1.05);
+}
+
+.welcome-message {
+  font-weight: bold
+}
+
+.welcome-user {
+  color: #e64a19;
+  padding-left: 5px;
 }
 
 /* STICKY STYLES */
@@ -215,6 +225,7 @@ body {
   from {
     transform: translateY(-100%);
   }
+
   to {
     transform: translateY(0);
   }

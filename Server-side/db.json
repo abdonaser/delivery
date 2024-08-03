@@ -1,12 +1,22 @@
 [
   {
     "id": 17749779151877999000,
-    "username": "ahmedgbfgbgfb",
+    "username": "Abdelrahman ",
     "email": "abdo@gmail.com",
     "password": "$2a$10$1T8kn1LHkApoDkraOU854egk29aDH6/IaC2FRpOHdO5.lZnJogwNq",
     "address": "marg",
     "phoneNumber": "01114189522",
     "gender": "male",
+    "role": "customer"
+  },
+  {
+    "id": 10628885305667224000,
+    "username": "abdo",
+    "email": "",
+    "password": "$2a$10$/TbVG9bJzWbQcYFF.LmPXulmDD/c.T62OZk/R76Tu5eNBO6U/2ud.",
+    "address": "",
+    "phoneNumber": "",
+    "gender": "",
     "role": "customer"
   }
 ]

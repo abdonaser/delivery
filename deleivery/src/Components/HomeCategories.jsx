@@ -19,19 +19,20 @@ const HomeCategories = ({ setSelectedCuisine }) => {
   };
 
   return (
-    <div className="menu-container">
-      <h2 className="menu-title">Most Popular Restaurants</h2>
-      <div className="menu">
-        {menuItems.map((item, index) => (
-          <div
-            key={index}
-            className={`menu-item ${index === activeIndex ? "active" : ""}`}
-            onClick={() => handleCategoryClick(index, item.label)}
-          >
-            <div className="menu-icon">{item.icon}</div>
-            <div className="menu-label">{item.label}</div>
-          </div>
-        ))}
+    <div className="menu-container categorySection ">
+      <div className="mainSection-bg categoryUpdateReduis">
+        <h2 className="menu-title">Most Popular Restaurants</h2>
+        <div className="menu ">
+          {menuItems.map((item, index) => (
+            <div
+              key={index}
+              className={`menu-item ${index === activeIndex ? "active" : ""}`}
+              onClick={() => handleCategoryClick(index, item.label)}>
+              <div className="menu-icon">{item.icon}</div>
+              <div className="menu-label">{item.label}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
