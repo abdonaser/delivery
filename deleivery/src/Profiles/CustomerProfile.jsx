@@ -10,9 +10,9 @@ import { FaEdit } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { changeActive } from "../redux/ActiveWelcomName";
 
-import $ from "jquery";
 
 import CustomerOrders from "../Components/CustomerOrders";
+import CustomerPage from "../Components/CustomerOrders";
 
 const CustomerProfile = () => {
   //'Receive activeName slice
@@ -23,7 +23,6 @@ const CustomerProfile = () => {
   const [activeView, setActiveView] = useState("profile");
 
   const [user, setUser] = useState(null);
-
   const [isEditing, setIsEditing] = useState({
     username: "false",
     email: "false",
@@ -126,6 +125,16 @@ const CustomerProfile = () => {
   // }, []);
   // console.log(isEditing);
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  if (!user) {
+    return <div>Loading...</div>;
+  }
   //' Handel Order Section---------------------------------------
 
   // const [isShow, setIsShow] = useState("true");
@@ -147,7 +156,8 @@ const CustomerProfile = () => {
             className={`sidebar-button ${
               activeView === "profile" ? "active" : ""
             }`}
-            onClick={() => setActiveView("profile")}>
+            onClick={() => setActiveView("profile")}
+          >
             Profile
           </button>
 
@@ -155,7 +165,8 @@ const CustomerProfile = () => {
             className={`sidebar-button ${
               activeView === "orders" ? "active" : ""
             }`}
-            onClick={() => setActiveView("orders")}>
+            onClick={() => setActiveView("orders")}
+          >
             Orders
           </button>
         </div>
@@ -175,7 +186,8 @@ const CustomerProfile = () => {
                   Object.keys(formData).map((key) => (
                     <div
                       key={key}
-                      className="info-item   d-flex align-items-center  mb-3">
+                      className="info-item   d-flex align-items-center  mb-3"
+                    >
                       <div className={userInfo.lable + " "}>
                         <b className="text-capitalize">{key} :</b>
                       </div>
@@ -268,6 +280,7 @@ const CustomerProfile = () => {
               <h2>Orders</h2>
               <div>
                 <CustomerOrders></CustomerOrders>
+              
               </div>
             </div>
           )}

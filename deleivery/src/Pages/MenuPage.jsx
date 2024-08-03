@@ -1,3 +1,5 @@
+// src/Pages/MenuPage.jsx
+
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -6,30 +8,23 @@ import { addToCart } from "../redux/actions"; // Ensure addToCart is imported
 import "../Styles/MenuPage.css";
 
 const MenuPage = () => {
-  const { id } = useParams(); // Get restaurant ID from URL parameters
+  const { id } = useParams(); // Use ID from URL parameters
   const dispatch = useDispatch();
-
-  // Access the selected restaurant and customer info from Redux store
   const restaurant = useSelector(
     (state) => state.restaurant.selectedRestaurant
   );
-  const customer = useSelector((state) => state.customer.info);
-
-  // State variables for menu and loading/error states
   const [menu, setMenu] = useState([]);
   const [restaurantDetails, setRestaurantDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch restaurant details and menu when component mounts or ID changes
   useEffect(() => {
     if (id) {
-      fetchRestaurantDetails(id);
-      fetchMenu(id);
+      fetchRestaurantDetails(id); // Fetch restaurant details
+      fetchMenu(id); // Fetch the menu using restaurant ID
     }
   }, [id, dispatch]);
 
-  // Fetch restaurant details
   const fetchRestaurantDetails = async (restaurantId) => {
     try {
       const response = await fetch(
@@ -41,13 +36,12 @@ const MenuPage = () => {
         );
       }
       const data = await response.json();
-      setRestaurantDetails(data);
+      setRestaurantDetails(data); // Set restaurant details
     } catch (error) {
-      setError(error.message);
+      setError(error.message); // Set error message
     }
   };
 
-  // Fetch menu items
   const fetchMenu = async (restaurantId) => {
     try {
       const response = await fetch(
@@ -59,42 +53,26 @@ const MenuPage = () => {
         );
       }
       const data = await response.json();
-      setMenu(data.menu);
+      setMenu(data.menu); // Set the menu data
     } catch (error) {
-      setError(error.message);
+      setError(error.message); // Set error message
     } finally {
-      setLoading(false);
+      setLoading(false); // Set loading to false
     }
   };
 
-  // Display loading or error messages
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>; // Show loading indicator
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div>Error: {error}</div>; // Show error message
   }
 
-  // Handle adding item to cart
   const handleAddToCart = (item) => {
-    if (!customer) {
-      alert("Please log in to add items to the cart.");
-      return;
-    }
-    dispatch(
-      addToCart(
-        {
-          ...item,
-          restaurantId: restaurantDetails.id,
-          restaurantName: restaurantDetails.name,
-          customerName: customer.name, // Ensure customer name is included
-        },
-        1
-      )
-    );
+    // Ensure restaurantId is passed with the item
+    dispatch(addToCart({ ...item, restaurantId: restaurantDetails.id }, 1));
   };
-
   return (
     <div className="menu-page-container">
       {restaurantDetails && (
@@ -114,7 +92,6 @@ const MenuPage = () => {
         <div className="menu-page-categories">
           <h2>Categories</h2>
           <ul>
-            {/* Replace with actual categories */}
             <li>Category 1</li>
             <li>Category 2</li>
             <li>Category 3</li>
@@ -126,6 +103,7 @@ const MenuPage = () => {
             <ul>
               {menu.map((item) => (
                 <li key={item.id} className="menu-page-item">
+                  {" "}
                   <img
                     src={item.image}
                     alt={item.name}

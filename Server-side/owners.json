@@ -71,6 +71,34 @@
       "password": "$2a$10$Y.wCLr/eOOHNirozgU9WaOUbZVxChQUUBKIRLEHx1qgBbkMjrAKJC",
       "status": "approved",
       "role": "owner"
+    },
+    {
+      "id": 4918551680322017000,
+      "ownerName": "chief",
+      "restaurantName": "chief",
+      "address": "cairo",
+      "phoneNumberOwner": "12345667",
+      "phoneNumberRestaurant": "12345677",
+      "serverCuisine": "Pizza",
+      "taxNumber": "12432543534",
+      "email": "chief@gmail.com",
+      "password": "$2a$10$.AOZGDv.bEimTVPX4yCQjeXqAN5fMaQptwz/jnxiT4aNDMUyRK2bu",
+      "status": "approved",
+      "role": "owner"
+    },
+    {
+      "id": 814082100012187400,
+      "ownerName": "vidii",
+      "restaurantName": "vidiires",
+      "address": "cairo",
+      "phoneNumberOwner": "1234567",
+      "phoneNumberRestaurant": "12345677",
+      "serverCuisine": "Drinks",
+      "taxNumber": "12345678",
+      "email": "vidii@gmail.com",
+      "password": "$2a$10$3ht.6DnavRGqzIOCaD4nvuafY5l6qo68sJh5r.2xwUdzJdChodm46",
+      "status": "approved",
+      "role": "owner"
     }
   ]
 }

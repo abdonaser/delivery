@@ -1,57 +1,79 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import "../Styles/OrderStatus.css";
 
 const OrderStatus = () => {
   const { orderId } = useParams();
   const [order, setOrder] = useState(null);
-  const [newStatus, setNewStatus] = useState("");
 
-  useEffect(() => {
-    const fetchOrder = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3000/api/orders/${orderId}`
-        );
-        setOrder(response.data);
-      } catch (error) {
-        console.error("Error fetching order:", error);
-      }
-    };
-
-    fetchOrder();
-  }, [orderId]);
-
-  const updateStatus = async () => {
+  // Function to fetch the order
+  const fetchOrder = async () => {
     try {
-      const response = await axios.put(
-        `http://localhost:3000/api/orders/${orderId}/status`,
-        { status: newStatus }
+      const response = await axios.get(
+        `http://localhost:3000/api/orders/${orderId}`
       );
       setOrder(response.data);
+      console.log(response.data); 
     } catch (error) {
-      console.error("Error updating order status:", error);
+      console.error("Error fetching order:", error);
     }
   };
 
-  // Convert total to a number and format it
+  // Use useEffect to fetch order initially and set up polling
+  useEffect(() => {
+    // Fetch the order when component mounts
+    fetchOrder();
+
+    // Set up polling to fetch order every 5 seconds
+    const intervalId = setInterval(fetchOrder, 5000); 
+
+    // Clean up interval on component unmount
+    return () => clearInterval(intervalId);
+  }, [orderId]);
+
   const formattedTotal =
     order && !isNaN(Number(order.total))
       ? Number(order.total).toFixed(2)
       : "Not available";
 
-  // Extract restaurant name from items
   const restaurantName =
     order?.items?.length > 0 ? order.items[0].restaurantName : "Not available";
-  // Placeholder for customer name if not available
-  const customerName = "Not available";
+  const customerName = order?.customerName || "Not available";
+
+  const statusImages = {
+    "preparing order": "/Images/preparing.gif",
+    "ready for pickup": "/Images/ready.png",
+    "out for delivery": "/Images/delivery.gif",
+    "delivered": "/Images/delivered.gif",
+  };
 
   return (
     <div className="order-status-container">
       {order ? (
         <div>
-          <h2>Order ID: {orderId}</h2>
-          <h3>Customer Name: {customerName}</h3>
+          {/* Display the image based on the current status */}
+          {order.status && (
+            <img
+              src={statusImages[order.status] || "/Images/default.png"}
+              alt={order.status}
+              className="status-image"
+            />
+          )}
+
+          {/* Status steps */}
+          <div className="status-steps">
+            {Object.keys(statusImages).map((status) => (
+              <div
+                key={status}
+                className={`step ${order.status === status ? "active" : ""}`}
+              >
+                <p>{status} </p>
+              </div>
+            ))}
+          </div>
+
+          {/* <h3>Customer Name: {customerName}</h3>
           <h3>Restaurant Name: {restaurantName}</h3>
           <h3>
             Order Time:{" "}
@@ -59,21 +81,7 @@ const OrderStatus = () => {
               ? new Date(order.orderTime).toLocaleString()
               : "Not available"}
           </h3>
-          <h3>Status: {order.status || "Not available"}</h3>
-          <p>Total: ${formattedTotal}</p>
-          <div>
-            <select
-              value={newStatus}
-              onChange={(e) => setNewStatus(e.target.value)}
-            >
-              <option value="">Select new status</option>
-              <option value="preparing order">Preparing Order</option>
-              <option value="ready for pickup">Ready for Pickup</option>
-              <option value="out for delivery">Out for Delivery</option>
-              <option value="delivered">Delivered</option>
-            </select>
-            <button onClick={updateStatus}>Update Status</button>
-          </div>
+          <p>Total: ${formattedTotal}</p> */}
         </div>
       ) : (
         <p>Loading...</p>

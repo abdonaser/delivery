@@ -1,19 +1,36 @@
-const initialState = {
-  info: null,
-};
+// // redux/reducers/customerReducer.js
+// const initialState = {
+//   info: null,
+// };
 
-const customerReducer = (state = initialState, action) => {
+// const customerReducer = (state = initialState, action) => {
+//   switch (action.type) {
+//     case 'SET_CUSTOMER_INFO':
+//       return {
+//         ...state,
+//         info: action.payload,
+//       };
+//     default:
+//       return state;
+//   }
+// };
+
+// export default customerReducer;
+
+const userReducer = (state = {}, action) => {
   switch (action.type) {
-    case "SET_CUSTOMER_INFO":
-      return { ...state, info: action.payload };
-    case "CLEAR_CUSTOMER_INFO":
+    case "SET_USER":
       return {
         ...state,
-        info: null,
+        user: action.payload,
       };
+
+    case "LOGOUT":
+      return {};
+
     default:
       return state;
   }
 };
 
-export default customerReducer;
+export default userReducer;

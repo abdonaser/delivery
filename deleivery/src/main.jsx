@@ -8,8 +8,6 @@ import { AuthProvider } from "./AuthContext";
 //' Link Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.js";
-//' Link Jequery
-import "jquery/dist/jquery.min.js";
 //' Link fontawesome
 import "@fortawesome/fontawesome-free/css/all.min.css";
 //' Link Css

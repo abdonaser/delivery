@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setCustomerInfo } from "../redux/actions";
+import { setAuth } from "../redux/authSlice";
 
 const Login = () => {
   //'==================================handel Flip Cards
@@ -28,21 +29,27 @@ const Login = () => {
     e.preventDefault();
     setError("");
     setMessage("");
+
     try {
       const response = await axios.post(
         "http://localhost:3000/login",
         formData
       );
+
       const { token, user } = response.data;
+      const userId = user.id; // Ensure userId is obtained correctly
+
       // Save token and user info to local storage
       localStorage.setItem("token", token);
+      localStorage.setItem("userId", userId);
       localStorage.setItem("user", JSON.stringify(user));
 
-      // Dispatch action to save user info in Redux store
+
+      // Dispatch action to save auth and user info in Redux store
+      dispatch(setAuth({ token, userId }));
       dispatch(setCustomerInfo(user));
 
       // Navigate based on user role and status
-      console.log(user);
       if (user.role === "customer") {
         navigate("/customer-profile");
       } else if (user.role === "admin") {
@@ -59,6 +66,7 @@ const Login = () => {
       console.log(err);
     }
   };
+
   //'===========================signup stats============================
 
   const [username, setUsername] = useState("");
@@ -96,7 +104,7 @@ const Login = () => {
         gender,
       });
 
-      sethasAccount(true); //! Delete this after fixing the problem
+      // sethasAccount(true); //! Delete this after fixing the problem
     }
   };
 
@@ -125,7 +133,8 @@ const Login = () => {
               <div className={log.mainContainer + ``}>
                 <div
                   className={log.theCard}
-                  style={!hasAccount ? { transform: "rotateY(180deg)" } : null}>
+                  style={!hasAccount ? { transform: "rotateY(180deg)" } : null}
+                >
                   {/*  //!  ================Login Card================================================================  */}
                   <div className={log.theFront}>
                     <h1 className="text-danger">Delivery App</h1>
@@ -153,7 +162,8 @@ const Login = () => {
                         <i
                           className={
                             log.inputIcon + " fa-solid fa-unlock-keyhole"
-                          }></i>
+                          }
+                        ></i>
                         <input
                           className={
                             log.inputPadding + " form-control text-start  mb-3"
@@ -177,17 +187,20 @@ const Login = () => {
                         type="submit"
                         className={
                           log.LogBtnColor + " btn btn-danger w-100 my-2"
-                        }>
+                        }
+                      >
                         Login
                       </button>
 
                       {/* //'create One */}
                       <div
-                        className={log.handelcreate + " text-center mb-2 p-2"}>
+                        className={log.handelcreate + " text-center mb-2 p-2"}
+                      >
                         Don&apos;t have an Account?
                         <a
                           className={log.cursorPointer + "  ms-2"}
-                          onClick={handelCreateAcc}>
+                          onClick={handelCreateAcc}
+                        >
                           create one
                         </a>
                       </div>
@@ -203,9 +216,8 @@ const Login = () => {
                       {/* //'USer Name */}
                       <div className={log.inputContainer + " "}>
                         <i
-                          className={
-                            log.inputIcon + " fa-solid fa-signature "
-                          }></i>
+                          className={log.inputIcon + " fa-solid fa-signature "}
+                        ></i>
                         <input
                           className={
                             log.inputPadding +
@@ -242,7 +254,8 @@ const Login = () => {
                         className={
                           log.inputContainer +
                           " d-flex align-items-center justify-content-between pe-2"
-                        }>
+                        }
+                      >
                         <label htmlFor="gender" className=" fw-medium ">
                           Gender :
                         </label>
@@ -264,7 +277,8 @@ const Login = () => {
                             />
                             <label
                               htmlFor="Female"
-                              className={log.pointer + " "}>
+                              className={log.pointer + " "}
+                            >
                               Female
                             </label>
                           </div>
@@ -294,9 +308,8 @@ const Login = () => {
                       {/* //'USer Address */}
                       <div className={log.inputContainer + " "}>
                         <i
-                          className={
-                            log.inputIcon + " fa-solid fa-signature "
-                          }></i>
+                          className={log.inputIcon + " fa-solid fa-signature "}
+                        ></i>
                         <input
                           className={
                             log.inputPadding +
@@ -333,7 +346,8 @@ const Login = () => {
                         <i
                           className={
                             log.inputIcon + " fa-solid fa-unlock-keyhole"
-                          }></i>
+                          }
+                        ></i>
                         <input
                           className={
                             log.inputPadding + " form-control text-start  mb-1"
@@ -351,15 +365,18 @@ const Login = () => {
                         type="submit"
                         className={
                           log.LogBtnColor + " btn btn-danger w-100 my-2"
-                        }>
+                        }
+                      >
                         SignUp
                       </button>
                       <div
-                        className={log.handelcreate + " text-center mb-2 p-2"}>
+                        className={log.handelcreate + " text-center mb-2 p-2"}
+                      >
                         Alreaady has Account?
                         <a
                           className={log.cursorPointer + " ms-2"}
-                          onClick={handelSignIn}>
+                          onClick={handelSignIn}
+                        >
                           SignIn
                         </a>
                       </div>
