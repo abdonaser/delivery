@@ -507,27 +507,32 @@ const loadDataFromFile = () => {
 };
 
 loadDataFromFile();
+const loadRestaurants = async () => {
+  try {
+    const data = await fs.promises.readFile(restaurantsFilePath, "utf8");
+    restaurants = JSON.parse(data);
+  } catch (err) {
+    console.error("Error loading restaurants data:", err);
+  }
+};
+
+loadRestaurants();
 // Endpoint to add a menu item
 app.post("/restaurants/:id/menu", authenticateToken, async (req, res) => {
   const restaurantId = parseInt(req.params.id);
   const { name, price, rating, image } = req.body;
 
-  // Check if required fields are present
   if (!name || price === undefined || rating === undefined) {
     return res
       .status(400)
       .json({ message: "Name, price, and rating are required" });
   }
 
-  // Ensure rating is a number and price is a string
   if (isNaN(rating)) {
     return res.status(400).json({ message: "Rating must be a number" });
   }
 
   try {
-    const data = await fs.promises.readFile(restaurantsFilePath, "utf8");
-    let restaurants = JSON.parse(data);
-
     const restaurant = restaurants.find((r) => r.id === restaurantId);
 
     if (!restaurant) {
@@ -556,98 +561,76 @@ app.post("/restaurants/:id/menu", authenticateToken, async (req, res) => {
   }
 });
 
-// PUT Endpoint to update a menu item
 app.put("/restaurants/:restaurantId/menu/:itemId", (req, res) => {
   const restaurantId = parseInt(req.params.restaurantId);
   const menuItemId = parseInt(req.params.itemId);
   const { name, price, rating, image } = req.body;
 
-  fs.readFile(restaurantsFilePath, "utf8", (err, data) => {
-    if (err) {
-      console.error("Error reading restaurants file:", err);
-      return res
-        .status(500)
-        .json({ message: "Error reading restaurants file" });
-    }
+  const restaurant = restaurants.find((r) => r.id === restaurantId);
 
-    const restaurants = JSON.parse(data);
-    const restaurant = restaurants.find((r) => r.id === parseInt(restaurantId));
+  if (!restaurant) {
+    return res.status(404).json({ message: "Restaurant not found" });
+  }
 
-    if (!restaurant) {
-      return res.status(404).json({ message: "Restaurant not found" });
-    }
+  const menuItem = restaurant.menu.find((m) => m.id === menuItemId);
 
-    const menuItem = restaurant.menu.find((m) => m.id === parseInt(menuItemId));
+  if (!menuItem) {
+    return res.status(404).json({ message: "Menu item not found" });
+  }
 
-    if (!menuItem) {
-      return res.status(404).json({ message: "Menu item not found" });
-    }
+  menuItem.name = name || menuItem.name;
+  menuItem.price = price || menuItem.price;
+  menuItem.rating = rating || menuItem.rating;
+  menuItem.image = image || menuItem.image;
 
-    menuItem.name = name || menuItem.name;
-    menuItem.price = price || menuItem.price;
-    menuItem.rating = rating || menuItem.rating;
-    menuItem.image = image || menuItem.image;
-
-    fs.writeFile(
-      restaurantsFilePath,
-      JSON.stringify(restaurants, null, 2),
-      (err) => {
-        if (err) {
-          console.error("Error writing restaurants file:", err);
-          return res
-            .status(500)
-            .json({ message: "Error writing restaurants file" });
-        }
-
-        res.json(menuItem);
+  fs.writeFile(
+    restaurantsFilePath,
+    JSON.stringify(restaurants, null, 2),
+    (err) => {
+      if (err) {
+        console.error("Error writing restaurants file:", err);
+        return res
+          .status(500)
+          .json({ message: "Error writing restaurants file" });
       }
-    );
-  });
+
+      res.json(menuItem);
+    }
+  );
 });
 
-// DELETE Endpoint to delete a menu item
 app.delete("/restaurants/:restaurantId/menu/:itemId", (req, res) => {
   const restaurantId = parseInt(req.params.restaurantId);
   const menuItemId = parseInt(req.params.itemId);
 
-  fs.readFile(restaurantsFilePath, "utf8", (err, data) => {
-    if (err) {
-      console.error("Error reading restaurants file:", err);
-      return res
-        .status(500)
-        .json({ message: "Error reading restaurants file" });
-    }
+  const restaurant = restaurants.find((r) => r.id === restaurantId);
 
-    const restaurants = JSON.parse(data);
-    const restaurant = restaurants.find((r) => r.id === restaurantId);
+  if (!restaurant) {
+    return res.status(404).json({ message: "Restaurant not found" });
+  }
 
-    if (!restaurant) {
-      return res.status(404).json({ message: "Restaurant not found" });
-    }
+  const menuItemIndex = restaurant.menu.findIndex((m) => m.id === menuItemId);
 
-    const menuItemIndex = restaurant.menu.findIndex((m) => m.id === menuItemId);
+  if (menuItemIndex === -1) {
+    return res.status(404).json({ message: "Menu item not found" });
+  }
 
-    if (menuItemIndex === -1) {
-      return res.status(404).json({ message: "Menu item not found" });
-    }
+  restaurant.menu.splice(menuItemIndex, 1);
 
-    restaurant.menu.splice(menuItemIndex, 1);
-
-    fs.writeFile(
-      restaurantsFilePath,
-      JSON.stringify(restaurants, null, 2),
-      (err) => {
-        if (err) {
-          console.error("Error writing restaurants file:", err);
-          return res
-            .status(500)
-            .json({ message: "Error writing restaurants file" });
-        }
-
-        res.status(204).end();
+  fs.writeFile(
+    restaurantsFilePath,
+    JSON.stringify(restaurants, null, 2),
+    (err) => {
+      if (err) {
+        console.error("Error writing restaurants file:", err);
+        return res
+          .status(500)
+          .json({ message: "Error writing restaurants file" });
       }
-    );
-  });
+
+      res.status(204).end();
+    }
+  );
 });
 
 // Update the restaurant imageUrl (logo)

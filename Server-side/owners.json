@@ -99,6 +99,20 @@
       "password": "$2a$10$3ht.6DnavRGqzIOCaD4nvuafY5l6qo68sJh5r.2xwUdzJdChodm46",
       "status": "approved",
       "role": "owner"
+    },
+    {
+      "id": 3150810710436287000,
+      "ownerName": "flower Owner",
+      "restaurantName": "Flower Restaurant",
+      "address": "cairo",
+      "phoneNumberOwner": "1234567",
+      "phoneNumberRestaurant": "123456789",
+      "serverCuisine": "Pasta",
+      "taxNumber": "123214235423",
+      "email": "flower@gmail.com",
+      "password": "$2a$10$LPTTXNq/hNk/WgkshvX74eqO.K/6nEc/VES/rINp7D1WALV.G2t4.",
+      "status": "approved",
+      "role": "owner"
     }
   ]
 }

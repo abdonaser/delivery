@@ -26,7 +26,9 @@ const OrderManagement = ({ restaurantId }) => {
       }
     };
 
-    fetchOrders();
+    fetchOrders(); 
+    const intervalId = setInterval(fetchOrders, 30000); 
+    return () => clearInterval(intervalId);
   }, [restaurantId]);
 
   const handleOrderClick = (order) => {
@@ -67,10 +69,7 @@ const OrderManagement = ({ restaurantId }) => {
         ) : (
           <ul>
             {orders.map((order) => (
-              <li
-                key={order.id}
-                onClick={() => handleOrderClick(order)}
-              >
+              <li key={order.id} onClick={() => handleOrderClick(order)}>
                 Order ID: {order.id} - Status: {order.status}
               </li>
             ))}

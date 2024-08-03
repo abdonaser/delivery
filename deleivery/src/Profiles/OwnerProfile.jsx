@@ -61,7 +61,6 @@ const OwnerProfile = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       console.log("Logo updated successfully:", response.data);
-      // Update the profile state with the new logo URL
       setProfile((prevProfile) => ({
         ...prevProfile,
         restaurants: prevProfile.restaurants.map((restaurant) =>
@@ -70,7 +69,7 @@ const OwnerProfile = () => {
             : restaurant
         ),
       }));
-      setEditMode(false); // Exit edit mode after successful update
+      setEditMode(false);
     } catch (err) {
       console.error(
         "Failed to upload logo:",

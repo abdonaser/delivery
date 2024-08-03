@@ -106,7 +106,7 @@ const AdminProfile = () => {
                   <Typography>
                     Phone Number: {registration.phoneNumber}
                   </Typography>
-                  <Typography>Category: {registration.category}</Typography>
+                  <Typography>Category: {registration.serverCuisine}</Typography>
                   <Typography>Tax Number: {registration.taxNumber}</Typography>
                 </div>
               </Collapse>
