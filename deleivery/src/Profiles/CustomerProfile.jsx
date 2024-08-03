@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../Styles/CustomerProfile.css";
 import userInfo from "../Styles/customerPrifile.module.css";
+// import "../Styles/customerOrders.css";
 import Navbar from "../Components/NavBar";
 import Footer from "../Components/Footer";
 import axios from "axios";
@@ -8,6 +9,10 @@ import { useLocation } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { changeActive } from "../redux/ActiveWelcomName";
+
+import $ from "jquery";
+
+import CustomerOrders from "../Components/CustomerOrders";
 
 const CustomerProfile = () => {
   //'Receive activeName slice
@@ -69,14 +74,13 @@ const CustomerProfile = () => {
 
     fetchUser();
   }, [location]);
-  // console.log("FormData  ", formData);
-  // console.log("user  ", user);
+  console.log("user ", user);
 
   const handleEdit = (field) => {
     setIsEditing((prev) => ({ ...prev, [field]: true }));
   };
 
-  const handleChange = (e) => {
+  const handleChangeForm = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     // console.log("handel");
   };
@@ -121,6 +125,7 @@ const CustomerProfile = () => {
   // }, []);
   // console.log(isEditing);
 
+<<<<<<< HEAD
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -131,11 +136,24 @@ const CustomerProfile = () => {
   if (!user) {
     return <div>Loading...</div>;
   }
+=======
+  //' Handel Order Section---------------------------------------
+
+  // const [isShow, setIsShow] = useState("true");
+  // const hadelShow = () => {
+  //   setIsShow("true");
+  //   console.log(" hadelShow ", isShow);
+  // };
+  // const hadelHide = () => {
+  //   setIsShow("false");
+  //   console.log(" hadelHide ", isShow);
+  // };
+>>>>>>> cab3781184d053ffbd4b0e1d9b775cbdea5e27f1
 
   return (
     <>
       <Navbar />
-      <div className="customer-profile-container">
+      <div className="customer-profile-container ">
         <div className="sidebar">
           <button
             className={`sidebar-button ${
@@ -179,10 +197,16 @@ const CustomerProfile = () => {
                       <div
                         className={
                           userInfo.Input +
+<<<<<<< HEAD
                           " prfileInput d-flex align-items-center justify-content-start"
                         }
                       >
                         <div className="">
+=======
+                          " prfileInput d-flex align-items-center justify-content-start gap-2"
+                        }>
+                        <div className=" ">
+>>>>>>> cab3781184d053ffbd4b0e1d9b775cbdea5e27f1
                           <input
                             type={
                               key == "username"
@@ -197,7 +221,7 @@ const CustomerProfile = () => {
                             }
                             name={key}
                             id={key}
-                            className="form-control "
+                            className="form-control w-100"
                             style={{
                               outline: `${
                                 isEditing[key] == "true"
@@ -207,11 +231,11 @@ const CustomerProfile = () => {
                             }}
                             value={formData[key]}
                             onChange={
-                              isEditing[key] == "true" ? handleChange : ""
+                              isEditing[key] == "true" ? handleChangeForm : ""
                             }
                           />
                         </div>
-                        <div className="editIcons  text-start">
+                        <div className="editIcons  text-start ">
                           {isEditing[key] == "true" ? (
                             <button onClick={() => handleSave(key)}>
                               Save
@@ -264,7 +288,9 @@ const CustomerProfile = () => {
           {activeView === "orders" && (
             <div className="orders-info">
               <h2>Orders</h2>
-              {/* Add orders details here */}
+              <div>
+                <CustomerOrders></CustomerOrders>
+              </div>
             </div>
           )}
         </div>
@@ -275,3 +301,212 @@ const CustomerProfile = () => {
 };
 
 export default CustomerProfile;
+
+//  {
+//    /* //' Order-1 */
+//  }
+//  <div className={userInfo.orderCart + " cart   rounded-5  p-3 mb-4"}>
+//    <div className="orderDetails ">
+//      <div className="orderDetails-Right">
+//        <p>orderNum : 1</p>
+//        <h4 className="resName fw-bold text-capitalize">Hala Restaurant</h4>
+//      </div>
+//      <div className="orderDetails-left  ">
+//        <div className="cartInfo ">
+//          <p>
+//            TotalCost : <span className="totalCartCost">150$</span>
+//          </p>
+//          <p>At : 20/4/2024 - 0:15 pm</p>
+//        </div>
+//        <div className="arrowCartIcon">
+//          {isShow == "true" ? (
+//            <i className="fa-solid fa-angles-down " onClick={hadelHide}></i>
+//          ) : (
+//            <i className="fa-solid fa-angles-up" onClick={hadelShow}></i>
+//          )}
+//        </div>
+//      </div>
+//    </div>
+// <div
+//      className={
+//        isShow == "true" ? " d-none cartitems p-2 " : " d-block cartitems p-2"
+//      }>
+//      <div className={userInfo.cardItem + " cartItem mb-2 d-flex ms-auto"}>
+//        <div className={userInfo.itemImageContainer + "  itemImage"}>
+//          <img
+//            src="../../../public/Images/LogPageImage/meal-1.jpg"
+//            className=" "
+//            alt=""
+//          />
+//        </div>
+//        <div
+//          className={
+//            userInfo.itemDetails +
+//            " itemDetails d-flex  justify-content-between w-100 align-items-center"
+//          }>
+//          <div className="itemDescription">
+//            <h5 className="fw-medium fs-4">Pizza</h5>
+//            <p className="text-muted">
+//              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate.
+//            </p>
+//          </div>
+//          <div className="itemPrice">
+//            <h5 className={userInfo.itemPrice + " "}>$180</h5>
+//          </div>
+//        </div>
+//      </div>
+//      <div className={userInfo.cardItem + " cartItem mb-2 d-flex ms-auto"}>
+//        <div className={userInfo.itemImageContainer + "  itemImage"}>
+//          <img
+//            src="../../../public/Images/LogPageImage/meal-2.jpg"
+//            className=" "
+//            alt=""
+//          />
+//        </div>
+//        <div
+//          className={
+//            userInfo.itemDetails +
+//            " itemDetails d-flex  justify-content-between w-100 align-items-center"
+//          }>
+//          <div className="itemDescription">
+//            <h5 className="fw-medium fs-4">Pizza</h5>
+//            <p className="text-muted">
+//              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate.
+//            </p>
+//          </div>
+//          <div className="itemPrice">
+//            <h5 className={userInfo.itemPrice + " "}>$180</h5>
+//          </div>
+//        </div>
+//      </div>
+//      <div className={userInfo.cardItem + " cartItem mb-2 d-flex ms-auto"}>
+//        <div className={userInfo.itemImageContainer + "  itemImage"}>
+//          <img
+//            src="../../../public/Images/LogPageImage/meal-3.jpg"
+//            className=" "
+//            alt=""
+//          />
+//        </div>
+//        <div
+//          className={
+//            userInfo.itemDetails +
+//            " itemDetails d-flex  justify-content-between w-100 align-items-center"
+//          }>
+//          <div className="itemDescription">
+//            <h5 className="fw-medium fs-4">Pizza</h5>
+//            <p className="text-muted">
+//              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate.
+//            </p>
+//          </div>
+//          <div className="itemPrice">
+//            <h5 className={userInfo.itemPrice + " "}>$180</h5>
+//          </div>
+//        </div>
+//      </div>
+//    </div>
+//
+//  </div>;
+//  {
+//    /* //' Order-2 */
+//  }
+//  <div className={userInfo.orderCart + " cart   rounded-5  p-3 mb-4"}>
+//    <div className="orderDetails ">
+//      <div className="orderDetails-Right">
+//        <p>orderNum : 1</p>
+//        <h4 className="resName fw-bold text-capitalize">Hala Restaurant</h4>
+//      </div>
+//      <div className="orderDetails-left  ">
+//        <div className="cartInfo ">
+//          <p>
+//            TotalCost : <span className="totalCartCost">150$</span>
+//          </p>
+//          <p>At : 20/4/2024 - 0:15 pm</p>
+//        </div>
+//        <div className="arrowCartIcon">
+//          {isShow == "true" ? (
+//            <i className="fa-solid fa-angles-down " onClick={hadelHide}></i>
+//          ) : (
+//            <i className="fa-solid fa-angles-up" onClick={hadelShow}></i>
+//          )}
+//        </div>
+//      </div>
+//    </div>
+
+//    <div
+//      className={
+//        isShow == "true" ? " d-none cartitems p-2 " : " d-block cartitems p-2"
+//      }>
+//      <div className={userInfo.cardItem + " cartItem mb-2 d-flex ms-auto"}>
+//        <div className={userInfo.itemImageContainer + "  itemImage"}>
+//          <img
+//            src="../../../public/Images/LogPageImage/meal-1.jpg"
+//            className=" "
+//            alt=""
+//          />
+//        </div>
+//        <div
+//          className={
+//            userInfo.itemDetails +
+//            " itemDetails d-flex  justify-content-between w-100 align-items-center"
+//          }>
+//          <div className="itemDescription">
+//            <h5 className="fw-medium fs-4">Pizza</h5>
+//            <p className="text-muted">
+//              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate.
+//            </p>
+//          </div>
+//          <div className="itemPrice">
+//            <h5 className={userInfo.itemPrice + " "}>$180</h5>
+//          </div>
+//        </div>
+//      </div>
+//      <div className={userInfo.cardItem + " cartItem mb-2 d-flex ms-auto"}>
+//        <div className={userInfo.itemImageContainer + "  itemImage"}>
+//          <img
+//            src="../../../public/Images/LogPageImage/meal-2.jpg"
+//            className=" "
+//            alt=""
+//          />
+//        </div>
+//        <div
+//          className={
+//            userInfo.itemDetails +
+//            " itemDetails d-flex  justify-content-between w-100 align-items-center"
+//          }>
+//          <div className="itemDescription">
+//            <h5 className="fw-medium fs-4">Pizza</h5>
+//            <p className="text-muted">
+//              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate.
+//            </p>
+//          </div>
+//          <div className="itemPrice">
+//            <h5 className={userInfo.itemPrice + " "}>$180</h5>
+//          </div>
+//        </div>
+//      </div>
+//      <div className={userInfo.cardItem + " cartItem mb-2 d-flex ms-auto"}>
+//        <div className={userInfo.itemImageContainer + "  itemImage"}>
+//          <img
+//            src="../../../public/Images/LogPageImage/meal-3.jpg"
+//            className=" "
+//            alt=""
+//          />
+//        </div>
+//        <div
+//          className={
+//            userInfo.itemDetails +
+//            " itemDetails d-flex  justify-content-between w-100 align-items-center"
+//          }>
+//          <div className="itemDescription">
+//            <h5 className="fw-medium fs-4">Pizza</h5>
+//            <p className="text-muted">
+//              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate.
+//            </p>
+//          </div>
+//          <div className="itemPrice">
+//            <h5 className={userInfo.itemPrice + " "}>$180</h5>
+//          </div>
+//        </div>
+//      </div>
+//    </div>
+//  </div>;

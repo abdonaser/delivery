@@ -210,17 +210,38 @@
         "restaurantId": 15,
         "restaurantName": "Adenine",
         "customerName": "",
+<<<<<<< HEAD
         "quantity": null
       }
     ],
     "total": "NaN",
     "status": "preparing order",
     "orderTime": "2024-08-02T23:19:05.294Z"
+=======
+        "quantity": 1
+      },
+      {
+        "id": 152,
+        "name": "Onion Ring Burger",
+        "price": "$10.50",
+        "rating": 3.7,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEM4NTPWlku8wxkyfpM6eFM60-1Lb3OgOBQg&s",
+        "restaurantId": 15,
+        "restaurantName": "Adenine",
+        "customerName": "",
+        "quantity": 1
+      }
+    ],
+    "total": "30.00",
+    "status": "preparing order",
+    "orderTime": "2024-08-03T12:56:54.229Z"
+>>>>>>> cab3781184d053ffbd4b0e1d9b775cbdea5e27f1
   },
   {
     "id": 10,
     "items": [
       {
+<<<<<<< HEAD
         "id": 101,
         "name": "Double Cheeseburger",
         "price": "$12.00",
@@ -552,5 +573,21 @@
     "total": "64.00",
     "status": "preparing order",
     "orderTime": "2024-08-03T18:01:09.665Z"
+=======
+        "id": 11,
+        "name": "Cappuccino",
+        "price": "$3.50",
+        "rating": 4.2,
+        "image": "https://choicemarket.co/cdn/shop/files/Cappuccino.jpg?v=1698521269",
+        "restaurantId": 1,
+        "restaurantName": "Lucky Cat",
+        "customerName": "",
+        "quantity": 1
+      }
+    ],
+    "total": "8.50",
+    "status": "preparing order",
+    "orderTime": "2024-08-03T13:13:28.714Z"
+>>>>>>> cab3781184d053ffbd4b0e1d9b775cbdea5e27f1
   }
 ]
