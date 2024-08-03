@@ -1,0 +1,58 @@
+.order-status-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 80%;
+  margin: auto;
+  margin-top: 80px;
+  margin-bottom: 50px;
+  background: #fdd34b56;
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.order-status-container h2,
+.order-status-container h3 {
+  margin: 10px 0;
+}
+
+.order-status-container .status-image {
+  width: min-content;
+  height: auto;
+  display: block;
+  margin: 10px auto;
+  border-radius: 10px;
+}
+
+.order-status-container .status-steps {
+  display: flex;
+  align-items: center;  
+  margin-top: 20px;
+  position: relative; 
+}
+
+.order-status-container .step {
+  text-align: center;
+  flex: 1;
+  text-transform: capitalize;
+  font-weight: bold;
+  position: relative; 
+}
+
+.step:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  right: 5px; 
+  top: 10%;
+  width: 20px;
+  height: 10px;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  font-weight: bolder;
+}
+
+.order-status-container .step.active {
+  font-weight: bold;
+  color: #ff0000;
+}

@@ -3,6 +3,7 @@ import axios from "axios";
 import OwnerMenu from "../Components/OwnerMenu";
 import "../Styles/OwnerProfile.css";
 import { FaEdit } from "react-icons/fa";
+import OrderManagement from "../Components/OrderManage";
 
 const OwnerProfile = () => {
   const [activeView, setActiveView] = useState("profile");
@@ -46,7 +47,7 @@ const OwnerProfile = () => {
   }, []);
 
   const handleLogoUpdate = async (restaurantId, logoUrl) => {
-    console.log("Updating logo for restaurant ID:", restaurantId);
+    // console.log("Updating logo for restaurant ID:", restaurantId);
     try {
       const token = localStorage.getItem("token");
       if (!token) {
@@ -90,7 +91,7 @@ const OwnerProfile = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
   if (!profile) return <div>No profile found</div>;
-
+  console.log(profile.restaurants[0].id);
   return (
     <div className="owner-profile-container">
       <div className="sidebar">
@@ -107,6 +108,12 @@ const OwnerProfile = () => {
           onClick={() => setActiveView("menu")}
         >
           Owner Menu
+        </button>
+        <button
+          className={`sidebar-button ${activeView === "order" ? "active" : ""}`}
+          onClick={() => setActiveView("order")}
+        >
+          Orders
         </button>
       </div>
       <div className="profile-content">
@@ -175,6 +182,12 @@ const OwnerProfile = () => {
         {activeView === "menu" && (
           <div className="owner-menu">
             <OwnerMenu restaurants={profile.restaurants} />
+          </div>
+        )}
+
+        {activeView === "order" && (
+          <div className="owner-menu">
+            <OrderManagement restaurantId={profile.restaurants[0].id} />
           </div>
         )}
       </div>

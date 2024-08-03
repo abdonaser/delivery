@@ -1,3 +1,4 @@
+import React from "react";
 import "../Styles/Loader.css";
 
 const Loader = () => {
@@ -9,6 +10,8 @@ const Loader = () => {
           <div className="truck-wheel"></div>
         </div>
       </div>
+      <div className="smoke"></div>
+      <div className="smoke"></div>
     </div>
   );
 };

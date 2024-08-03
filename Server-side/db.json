@@ -9,6 +9,46 @@
       "phoneNumber": "01114189522",
       "gender": "male",
       "role": "customer"
+    },
+    {
+      "id": 5167712494199677000,
+      "username": "admin",
+      "email": "admin@gmail.com",
+      "password": "$2a$10$iL0EklJf5LcYlHkqlo59peUrR5C73/4szibgKRhIppqL6d1qZgveK",
+      "address": "cairo",
+      "phoneNumber": "1234567",
+      "gender": "male",
+      "role": "admin"
+    },
+    {
+      "id": 8807983178275476000,
+      "username": "admin2",
+      "email": "admin2@gmail.com",
+      "password": "$2a$10$rDRIgUNFPEYpbiKRzSDpFun4Zi1YM/RTGVRx1xC9.4Yo51uMixQMC",
+      "address": "cairo",
+      "phoneNumber": "1234567",
+      "gender": "",
+      "role": "admin"
+    },
+    {
+      "id": 15341203029482547000,
+      "username": "customer one",
+      "email": "customer1@gmail.com",
+      "password": "$2a$10$0LFhtyOVgzrd3S.lDkrF0.g/QEq81ALzaGUN/9FObFW.3DRkcH6sO",
+      "address": "cairo",
+      "phoneNumber": "1234567",
+      "gender": "female",
+      "role": "customer"
+    },
+    {
+      "id": 10098150728460417000,
+      "username": "customer1",
+      "email": "customerone@gmail.com",
+      "password": "$2a$10$XZ09u6S3MiZ0g9x7tRRYeOnXAF0PmxbN0c4UMaLUbkSR.do8BAGKG",
+      "address": "cairo",
+      "phoneNumber": "1234567",
+      "gender": "female",
+      "role": "customer"
     }
   ]
 }

@@ -5,6 +5,7 @@
   height: 100vh;
   background-color: rgba(255, 255, 255, 0.8);
   overflow: hidden;
+  position: relative;
 }
 
 .truck-loader {
@@ -20,6 +21,7 @@
   background: #ff5b00;
   border-radius: 15px;
   position: relative;
+  z-index: 999;
 }
 
 .truck-wheel {
@@ -39,11 +41,53 @@
   right: 20px;
 }
 
+/* Smoke Styles */
+.smoke {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: smoke 3s ease-in-out infinite;
+  z-index: 0;
+}
+
+.smoke:nth-child(1) {
+  width: 80px;
+  height: 80px;
+  animation-delay: 0s;
+}
+
+.smoke:nth-child(2) {
+  width: 70px;
+  height: 70px;
+  animation-delay: 1s;
+}
+
 @keyframes move {
   0% {
     transform: translateX(100%);
   }
   100% {
     transform: translateX(-100%);
+  }
+}
+
+@keyframes smoke {
+  0% {
+    opacity: 0.8;
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(-20px) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) scale(1.4);
   }
 }

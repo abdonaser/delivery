@@ -1,0 +1,95 @@
+.order-management-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  background: inherit;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: auto;
+}
+
+.order-management-container h1 {
+  text-align: center;
+  color: #333;
+}
+
+.order-management-container .error-message {
+  color: #ff4d4d;
+  font-weight: bold;
+  text-align: center;
+}
+
+.order-management-container .order-list {
+  margin-top: 20px;
+}
+
+.order-management-container .order-list h2 {
+  font-size: 1.5em;
+  color: #333;
+}
+
+.order-management-container .order-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.order-management-container .order-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.order-management-container .order-list li:hover {
+  background-color: #f0f0f0;
+}
+
+.order-management-container .order-details {
+  margin-top: 20px;
+  padding: 20px;
+  background: #ffffff80;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-management-container .order-details h2,
+.order-management-container .order-details h3 {
+  color: #333;
+}
+
+.order-management-container .order-details h4 {
+  color: #666;
+}
+
+.order-management-container .order-details ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.order-management-container .order-details li {
+  margin-bottom: 10px;
+}
+
+.order-management-container .order-details select,
+.order-management-container .order-details button {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.order-management-container .order-details select {
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.order-management-container .order-details button {
+  background-color: #ff5b00;
+  color: #fff;
+  cursor: pointer;
+}
+
+.order-management-container .order-details button:hover {
+  background-color: #e54e00;
+}

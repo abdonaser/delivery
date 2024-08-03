@@ -12,7 +12,6 @@ const crypto = require("crypto");
 // const restaurants = require("./restaurants");
 
 const app = express();
-app.use(bodyParser.json());
 const port = 3000;
 const SECRET_KEY =
   "b93347f8048892e99c56ae0ba245736dcd65eb78b61b50b40d2638f51b57239e";
@@ -26,12 +25,24 @@ function generateNumericId() {
   const uuid = uuidv4();
   return uuidToNumericId(uuid);
 }
+// Load data from files
+const loadData = () => {
+  try {
+    const data = fs.readFileSync("owners.json", "utf8");
+    pendingRegistrations = JSON.parse(data).pendingRegistrations || [];
+    ownerProfiles = JSON.parse(data).ownerProfiles || [];
+    users = JSON.parse(fs.readFileSync("db.json", "utf8")).users || [];
+  } catch (err) {
+    console.error("Error reading files:", err.message);
+    pendingRegistrations = [];
+    ownerProfiles = [];
+    users = [];
+  }
+};
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json());
 app.use(express.json());
-const router = express.Router();
 const ownersFilePath = path.join(__dirname, "owners.json");
 const restaurantsFilePath = path.join(__dirname, "restaurants.json");
 const ordersFilePath = path.join(__dirname, "orders.json");
@@ -203,20 +214,8 @@ app.get("/owner-profile", (req, res) => {
   }
 });
 
-app.put("/owner-profile", (req, res) => {
-  const authHeader = req.headers.authorization;
-
-  if (!authHeader) {
-    return res.status(401).json({ message: "Authorization header missing" });
-  }
-
-  const token = authHeader.split(" ")[1];
-
-  if (!token) {
-    return res.status(401).json({ message: "Token missing" });
-  }
-
-  const { imageUrl } = req.body; // Expecting { imageUrl: "new-image-url" } in the request body
+app.put("/owner-profile", authenticateToken, (req, res) => {
+  const { imageUrl } = req.body;
 
   if (!imageUrl) {
     return res.status(400).json({ message: "Image URL is required" });
@@ -232,10 +231,9 @@ app.put("/owner-profile", (req, res) => {
       return res.status(404).json({ message: "Owner not found" });
     }
 
-    // Update the owner profile with the new image URL
     ownerProfiles[ownerIndex].imageUrl = imageUrl;
 
-    // Also, update restaurant profiles if needed
+    // Update restaurants if needed
     const updatedRestaurants = getRestaurants().map((restaurant) => {
       if (restaurant.ownerId === ownerProfiles[ownerIndex].id) {
         return { ...restaurant, imageUrl };
@@ -243,26 +241,15 @@ app.put("/owner-profile", (req, res) => {
       return restaurant;
     });
 
-    restaurants = updatedRestaurants;
+    saveRestaurants(updatedRestaurants);
+    saveDataToFile();
 
-    res.status(200).json({ ...ownerProfiles[ownerIndex] });
+    res.status(200).json(ownerProfiles[ownerIndex]);
   } catch (err) {
     console.error("Token verification failed", err);
     res.status(401).json({ message: "Invalid token" });
   }
 });
-
-// Load data from files
-const loadData = () => {
-  try {
-    const data = JSON.parse(fs.readFileSync("owners.json", "utf8"));
-    pendingRegistrations = data.pendingRegistrations || [];
-    ownerProfiles = data.ownerProfiles || [];
-    users = JSON.parse(fs.readFileSync("db.json", "utf8")).users || [];
-  } catch (err) {
-    console.error("Error reading files:", err);
-  }
-};
 
 // Save data to files
 const saveDataToFile = () => {
@@ -476,7 +463,9 @@ app.get("/restaurants", (req, res) => {
 
 // Get restaurant details by ID (including menu)
 app.get("/restaurants/:id", (req, res) => {
-  const restaurant = restaurants.find((r) => r.id === parseInt(req.params.id));
+  const restaurant = restaurants.find(
+    (r) => r.id === parseInt(req.params.id, 10)
+  );
   if (!restaurant) {
     return res.status(404).send("Restaurant not found");
   }
@@ -484,9 +473,10 @@ app.get("/restaurants/:id", (req, res) => {
   res.json(restaurant);
 });
 
-// Get only the menu of a specific restaurant by ID
 app.get("/restaurants/:id/menu", (req, res) => {
-  const restaurant = restaurants.find((r) => r.id === parseInt(req.params.id));
+  const restaurant = restaurants.find(
+    (r) => r.id === parseInt(req.params.id, 10)
+  );
   if (!restaurant) {
     return res.status(404).send("Restaurant not found");
   }
@@ -703,9 +693,6 @@ app.put("/restaurants/:restaurantId/logo", (req, res) => {
 app.get("/api/orders/:orderId", async (req, res) => {
   try {
     const orders = await readJSONFile(ordersFilePath);
-
-    console.log("Orders:", orders); // Debugging output
-
     if (!Array.isArray(orders)) {
       console.error("Orders is not an array:", orders); // Debugging output
       return res.status(500).json({ message: "Orders data is not an array" });
@@ -748,7 +735,7 @@ app.post("/api/orders", async (req, res) => {
     orders.push(newOrder);
     await writeJSONFile(ordersFilePath, orders);
 
-    console.log("Orders after adding new order:", orders); // Debugging output
+    // console.log("Orders after adding new order:", orders); // Debugging output
 
     res.status(201).json(newOrder);
   } catch (error) {
@@ -756,7 +743,21 @@ app.post("/api/orders", async (req, res) => {
     res.status(500).json({ message: "Failed to create order" });
   }
 });
+// Route to get all orders
+app.get("/api/order", async (req, res) => {
+  try {
+    const orders = await readJSONFile(ordersFilePath);
 
+    if (!Array.isArray(orders)) {
+      return res.status(500).json({ message: "Orders data is not an array" });
+    }
+
+    res.json(orders);
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    res.status(500).json({ message: "Failed to fetch orders" });
+  }
+});
 app.put("/api/orders/:orderId/status", async (req, res) => {
   try {
     const { status } = req.body;

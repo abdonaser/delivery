@@ -41,8 +41,10 @@ const Login = () => {
       // Dispatch action to save user info in Redux store
       dispatch(setCustomerInfo(user));
 
+      // Debugging logs
+      console.log("User:", user); // Check user object
+
       // Navigate based on user role and status
-      console.log(user);
       if (user.role === "customer") {
         navigate("/customer-profile");
       } else if (user.role === "admin") {
@@ -59,6 +61,7 @@ const Login = () => {
       console.log(err);
     }
   };
+
   //'===========================signup stats============================
 
   const [username, setUsername] = useState("");
@@ -96,7 +99,7 @@ const Login = () => {
         gender,
       });
 
-      sethasAccount(true); //! Delete this after fixing the problem
+      // sethasAccount(true); //! Delete this after fixing the problem
     }
   };
 
