@@ -109,11 +109,9 @@
     box-shadow: var(--box-shadow);
 }
 
-.resName {
-    border-bottom: 2px solid var(--main-color);
-    padding: 10px 15px !important;
-    border-bottom-left-radius: 20px;
-}
+
+
+
 
 .cardItem {
     width: 90%;
@@ -123,7 +121,7 @@
 }
 
 .itemImageContainer {
-    width: 23%;
+    width: 15%;
     height: 100px;
     background-color: aqua;
 }

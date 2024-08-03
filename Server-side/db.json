@@ -1,14 +1,12 @@
-{
-  "users": [
-    {
-      "id": 17749779151877999000,
-      "username": "ascsacasc",
-      "email": "abdo@gmail.com",
-      "password": "$2a$10$1T8kn1LHkApoDkraOU854egk29aDH6/IaC2FRpOHdO5.lZnJogwNq",
-      "address": "marg",
-      "phoneNumber": "01114189522",
-      "gender": "male",
-      "role": "customer"
-    }
-  ]
-}
+[
+  {
+    "id": 17749779151877999000,
+    "username": "ahmedgbfgbgfb",
+    "email": "abdo@gmail.com",
+    "password": "$2a$10$1T8kn1LHkApoDkraOU854egk29aDH6/IaC2FRpOHdO5.lZnJogwNq",
+    "address": "marg",
+    "phoneNumber": "01114189522",
+    "gender": "male",
+    "role": "customer"
+  }
+]
