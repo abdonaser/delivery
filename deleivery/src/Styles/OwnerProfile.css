@@ -46,14 +46,16 @@
   border-radius: 10px;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  height: auto;
+  height: fit-content;
 }
+
 .profile-info-container {
   padding: 15px;
   margin: 10px;
   padding-top: 0px;
   margin-top: 0px;
 }
+
 .profile-info-container h1 {
   text-align: center;
   color: rgb(20, 20, 20);
@@ -70,13 +72,16 @@
   font-size: 18px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
 .profile-info-container h1 {
   margin-top: 0px;
 }
+
 .profile-info .ownerDetails {
   text-align: left;
   color: rgb(21, 71, 1);
 }
+
 .profile-info .ownerResDetails {
   text-align: left;
   color: rgb(21, 71, 1);
@@ -141,6 +146,7 @@
   position: absolute;
   top: 190px;
 }
+
 .edit-form input {
   padding: 7px;
   margin: 5px;
@@ -151,6 +157,7 @@
   height: 36px;
   box-shadow: 0 0 0 1px #dddddd, 0 2px 4px 0 rgb(0 0 0 / 7%),
     0 1px 1.5px 0 rgb(0 0 0 / 5%);
+
   :focus {
     border: 2px solid #000;
     border-radius: 4px;
@@ -171,7 +178,64 @@
   color: #fff;
   height: 36px;
   transition: all 75ms ease-in-out;
+
   :hover {
     box-shadow: 0 1px 4px rgb(0 0 0 / 30%);
   }
+}
+
+
+
+.restName {
+  color: #FF0000;
+}
+
+
+.menuItemForm {
+  padding: 10px;
+  text-align: center;
+}
+
+.menuItemForm label {
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.menuItemForm input {
+  margin: 10px 0 0 0 !important;
+  margin: auto;
+}
+
+.addMenueItem {
+  width: 100%;
+  padding: 5px 0;
+}
+
+.fromInputUpdate {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 5px;
+  border-radius: 20px;
+  margin: 5px;
+  width: 75%;
+  margin: 10px auto;
+}
+
+.owner-menu {}
+
+
+.detailsContainer {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 15px;
+}
+.headerDetails {
+  font-size: 20px;
+  font-weight: bolder;
+}
+.detailsDetails {
+  font-size: 22px;
+  font-weight: 500;
+  color: #554444;
 }

@@ -13,7 +13,7 @@ function RestaurantCard({ restaurant }) {
     navigate(`/restaurant/${restaurant.id}`); // Navigate using ID
   };
   return (
-    <div className="restaurant-card">
+    <div className="restaurant-card pb-4">
       <img
         src={restaurant.imageUrl}
         alt={restaurant.name}
@@ -22,7 +22,7 @@ function RestaurantCard({ restaurant }) {
       <h3 className="restaurant-name">{restaurant.name}</h3>
       <p className="restaurant-rating">⭐ {restaurant.rating}</p>
       <p className="restaurant-cuisine">{restaurant.serverCuisine}</p>
-      <button className="show-menu-button" onClick={handleShowMenu}>
+      <button className="show-menu-button mb-3" onClick={handleShowMenu}>
         Show Menu
       </button>
     </div>

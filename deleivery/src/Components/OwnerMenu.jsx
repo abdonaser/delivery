@@ -143,12 +143,15 @@ const OwnerMenu = ({ restaurants }) => {
     return <div>Select a restaurant to manage the menu.</div>;
 
   return (
-    <div className="owner-menu-container">
+    <div className="owner-menu-container ">
       {error && <div className="error">{error}</div>}
       {selectedRestaurant.menu && (
-        <div>
-          <h2>Manage Menu for {selectedRestaurant.name}</h2>
-          <form onSubmit={addMenuItem}>
+        <div className=" ">
+          <h2>
+            Manage Menu for{" "}
+            <span className="restName">{selectedRestaurant.name}</span>
+          </h2>
+          <form onSubmit={addMenuItem} className="menuItemForm">
             <label>
               Dish Name: <br />
               <input
@@ -193,13 +196,14 @@ const OwnerMenu = ({ restaurants }) => {
                 required
               />
             </label>
-            <button type="submit">Add Menu Item</button>
+            <div className="addMenueItem">
+              <button type="submit">Add Menu Item</button>
+            </div>
           </form>
-
           <h3>Menu Items</h3>
-          <table>
+          <table className="table table-striped table-bordered  ">
             <thead>
-              <tr>
+              <tr className="text-center align-center">
                 <th>Name</th>
                 <th>Price</th>
                 <th>Rating</th>
@@ -219,68 +223,91 @@ const OwnerMenu = ({ restaurants }) => {
                   <td>
                     <button
                       onClick={() => deleteMenuItem(item.id)}
-                      className="delete-btn-menu-item"
-                    >
+                      className="delete-btn-menu-item">
                       Delete
                     </button>
                     <button
                       onClick={() => setEditItem(item)}
-                      className="edit-btn-menu-item"
-                    >
+                      className="edit-btn-menu-item">
                       Edit
                     </button>
                     {editItem && editItem.id === item.id && (
                       <form
+                        className="fromInputUpdate"
                         onSubmit={(e) => {
                           e.preventDefault();
                           updateMenuItem(item.id);
-                        }}
-                      >
-                        <label>
-                          Dish Name:
+                        }}>
+                        <div className="w-100 handelFieldUpdate d-flex jusify-content-start align-items-center p-2">
+                          <label htmlFor="name" for className="w-25 form-label">
+                            Dish Name :
+                          </label>
                           <input
-                            className="add-owner-menu"
+                            id="name"
+                            className="form-control add-owner-menu w-75"
                             type="text"
                             name="name"
                             value={editItem.name}
                             onChange={handleEditChange}
                             required
                           />
-                        </label>
-                        <label>
-                          Price:
+                        </div>
+                        <div className="w-100 handelFieldUpdate d-flex jusify-content-start align-items-center p-2">
+                          <label
+                            htmlFor="price"
+                            for
+                            className="w-25 form-label">
+                            Price:
+                          </label>
                           <input
-                            className="add-owner-menu"
+                            id="price"
+                            className="form-control add-owner-menu w-75"
                             type="number"
                             name="price"
                             value={editItem.price}
                             onChange={handleEditChange}
                             required
                           />
-                        </label>
-                        <label>
-                          Rating:
+                        </div>
+
+                        <div className="w-100 handelFieldUpdate d-flex jusify-content-start align-items-center p-2">
+                          <label
+                            htmlFor="rating"
+                            for
+                            className="w-25 form-label">
+                            Rating:
+                          </label>
                           <input
-                            className="add-owner-menu"
+                            id="rating"
+                            className="form-control add-owner-menu w-75"
                             type="number"
                             name="rating"
                             value={editItem.rating}
                             onChange={handleEditChange}
                             required
                           />
-                        </label>
-                        <label>
-                          Image URL:
+                        </div>
+
+                        <div className="w-100 handelFieldUpdate d-flex jusify-content-start align-items-center p-2">
+                          <label
+                            htmlFor="image"
+                            for
+                            className="w-25 form-label">
+                            Image URL:
+                          </label>
                           <input
-                            className="add-owner-menu"
+                            id="image"
+                            className="form-control add-owner-menu w-75"
                             type="text"
                             name="image"
                             value={editItem.image}
                             onChange={handleEditChange}
                             required
                           />
-                        </label>
-                        <button type="submit">Update Menu Item</button>
+                        </div>
+                        <div className="text-center w-100 p-2">
+                          <button type="submit">Update Menu Item</button>
+                        </div>
                       </form>
                     )}
                   </td>

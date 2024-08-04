@@ -26,8 +26,8 @@ const OrderManagement = ({ restaurantId }) => {
       }
     };
 
-    fetchOrders(); 
-    const intervalId = setInterval(fetchOrders, 30000); 
+    fetchOrders();
+    const intervalId = setInterval(fetchOrders, 30000);
     return () => clearInterval(intervalId);
   }, [restaurantId]);
 
@@ -91,7 +91,32 @@ const OrderManagement = ({ restaurantId }) => {
               );
             })}
           </ul>
-          <select
+          <div className="d-flex justify-content-center align-items-center">
+            <select
+              value={newStatus}
+              onChange={(e) => setNewStatus(e.target.value)}
+              class="form-select form-select-lg rounded-2 rounded  w-50"
+              aria-label="Default select example">
+              <option className="p-2 m-2" value="" selected>
+                Select new status
+              </option>
+              <option className="p-2 m-2" value="preparing order">
+                Preparing Order
+              </option>
+              <option className="p-2 m-2" value="ready for pickup">
+                Ready for Pickup
+              </option>
+              <option className="p-2 m-2" value="out for delivery">
+                Out for Delivery
+              </option>
+              <option className="p-2 m-2" value="delivered">
+                Delivered
+              </option>
+            </select>
+            <button onClick={updateStatus}>Update Status</button>
+          </div>
+
+          {/* <select
             value={newStatus}
             onChange={(e) => setNewStatus(e.target.value)}
           >
@@ -101,7 +126,7 @@ const OrderManagement = ({ restaurantId }) => {
             <option value="out for delivery">Out for Delivery</option>
             <option value="delivered">Delivered</option>
           </select>
-          <button onClick={updateStatus}>Update Status</button>
+          <button onClick={updateStatus}>Update Status</button> */}
         </div>
       )}
     </div>

@@ -8,10 +8,19 @@
   position: relative;
 }
 
+.truck-loader img {
+  transform: rotateY(180deg);
+  background-color: transparent;
+  /* background-color: rgba(7, 7, 7, 0.8) !important; */
+}
+
 .truck-loader {
-  width: 120px;
-  height: 60px;
+  /* background-color: red; */
+  width: 18%;
+  height: 180px;
   position: relative;
+  display: flex;
+  justify-content: end;
   animation: move 2s linear infinite;
 }
 
@@ -72,6 +81,7 @@
   0% {
     transform: translateX(100%);
   }
+
   100% {
     transform: translateX(-100%);
   }
@@ -82,10 +92,12 @@
     opacity: 0.8;
     transform: translateY(0) scale(1);
   }
+
   50% {
     opacity: 0.5;
     transform: translateY(-20px) scale(1.2);
   }
+
   100% {
     opacity: 0;
     transform: translateY(-40px) scale(1.4);
