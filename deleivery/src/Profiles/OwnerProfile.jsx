@@ -98,20 +98,17 @@ const OwnerProfile = () => {
           className={`sidebar-button ${
             activeView === "profile" ? "active" : ""
           }`}
-          onClick={() => setActiveView("profile")}
-        >
+          onClick={() => setActiveView("profile")}>
           Profile
         </button>
         <button
           className={`sidebar-button ${activeView === "menu" ? "active" : ""}`}
-          onClick={() => setActiveView("menu")}
-        >
+          onClick={() => setActiveView("menu")}>
           Owner Menu
         </button>
         <button
           className={`sidebar-button ${activeView === "order" ? "active" : ""}`}
-          onClick={() => setActiveView("order")}
-        >
+          onClick={() => setActiveView("order")}>
           Orders
         </button>
       </div>
@@ -129,13 +126,12 @@ const OwnerProfile = () => {
               />
               <button
                 className="edit-logo-button"
-                onClick={() => setEditMode(!editMode)}
-              >
+                onClick={() => setEditMode(!editMode)}>
                 <FaEdit />
               </button>
             </div>
             {editMode && (
-              <form onSubmit={handleSubmit} className="edit-form">
+              <form onSubmit={handleSubmit} className="edit-form  ">
                 <label>
                   Update Logo URL:
                   <br />
@@ -149,31 +145,42 @@ const OwnerProfile = () => {
               </form>
             )}
             <h1>Your Profile Details</h1>
-            <div className="profile-info">
+            <div className="profile-info ">
               <div className="ownerResDetails">
-                <p>
-                  <b>Your Restaurant Name:</b> {profile.restaurantName}
-                </p>
-                <p>
-                  <b>Your Restaurant Cuisine:</b> {profile.serverCuisine}
-                </p>
-                <p>
-                  <b>Your Restaurant Email:</b> {profile.email}
-                </p>
-                <p>
-                  <b>Your Restaurant Address:</b> {profile.address}
-                </p>
-                <p>
-                  <b>Your Restaurant Number:</b> {profile.phoneNumberRestaurant}
-                </p>
+                <div className="detailsContainer">
+                  <p className="headerDetails"> Your Restaurant Name : </p>
+                  <p className="detailsDetails">{profile.restaurantName}</p>
+                </div>
+                <div className="detailsContainer">
+                  <p className="headerDetails"> Your Restaurant Cuisine : </p>
+                  <p className="detailsDetails">{profile.serverCuisine}</p>
+                </div>
+
+                <div className="detailsContainer">
+                  <p className="headerDetails"> Your Restaurant Email : </p>
+                  <p className="detailsDetails">{profile.email}</p>
+                </div>
+
+                <div className="detailsContainer">
+                  <p className="headerDetails"> Your Restaurant Address : </p>
+                  <p className="detailsDetails">{profile.address}</p>
+                </div>
+                <div className="detailsContainer">
+                  <p className="headerDetails"> Your Restaurant Number : </p>
+                  <p className="detailsDetails">
+                    {profile.phoneNumberRestaurant}
+                  </p>
+                </div>
               </div>
               <div className="ownerDetails">
-                <p>
-                  <b>Your Name:</b> {profile.ownerName}
-                </p>
-                <p>
-                  <b>Your Phone Number:</b> {profile.phoneNumberOwner}
-                </p>
+                <div className="detailsContainer">
+                  <p className="headerDetails"> Your Name : </p>
+                  <p className="detailsDetails">{profile.ownerName}</p>
+                </div>
+                <div className="detailsContainer">
+                  <p className="headerDetails"> Your Phone Number : </p>
+                  <p className="detailsDetails">{profile.phoneNumberOwner}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -185,7 +192,7 @@ const OwnerProfile = () => {
         )}
 
         {activeView === "order" && (
-          <div className="owner-menu">
+          <div className="owner-menu ">
             <OrderManagement restaurantId={profile.restaurants[0].id} />
           </div>
         )}

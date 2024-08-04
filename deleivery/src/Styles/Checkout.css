@@ -221,3 +221,175 @@ h5 {
   width: 60%;
   margin: auto !important;
 }
+
+
+
+/* //' handel Check Out Style------------------ */
+
+.checkContainer {
+  width: 100%;
+
+}
+
+.check {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  gap: 10px;
+  background-color: #f5f5f5;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.rightcheck {
+  width: 50%;
+  height: 100%;
+}
+
+.rightcheck h2 {
+  padding: 10px 5px;
+  margin: 10px 10px;
+  font-size: 20px;
+  font-weight: 700;
+  border-bottom: 1px solid black;
+}
+
+
+
+.cartItem {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left !important;
+  padding: 0 12px;
+  margin: 0 20px 10px;
+  gap: 10px;
+  border-radius: 20px;
+}
+
+.cartItemImage {
+  width: 20%;
+  height: 80px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.cartItemDetails {
+  width: 60%;
+  padding: 10px 0;
+  text-align: left !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+.cartItemDetails h3 {
+  font-size: 20px;
+  padding: 0;
+}
+
+.cartItemDetails p {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.cartItemPrice {
+  width: 20%;
+}
+
+.cartItemPrice h3 {
+  font-size: 22px;
+}
+
+/* '--------- */
+.finalBalance {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: center;
+}
+
+.subtotal,
+.shpping,
+.totalDue {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 75%;
+  padding: 10px;
+  /* background-color: red; */
+  border-bottom: 1px solid rgba(90, 77, 77, 0.541);
+}
+
+.subtotal h4,
+.shpping h4,
+.totalDue h4 {
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.shpping h4,
+.shpping p {
+  color: #8a7a7ac4;
+}
+
+.subtotal p,
+.shpping p,
+.totalDue p {
+  font-size: 20px;
+}
+
+/* //'  */
+.leftCheck {
+  width: 50%;
+  height: 100% !important;
+  /* background-color: #fff; */
+  padding: 10px 20px;
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+}
+
+.leftCheck h3 {
+  padding: 0;
+  margin: 10px 0;
+
+}
+
+.emailInfo,
+.shippingAddress,
+.paymentDetails {
+  font-size: 20px;
+  padding: 15px 0;
+  margin: 15px 0;
+}
+
+.emailInfo {}
+
+/* .firstInput {
+  border-bottom-left-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+} */
+
+.shippingAddress select {
+  border-radius: 0 !important;
+
+}
+
+.firstInput {
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.lastInput {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-left-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+}
+
+.paymentDetails {}

@@ -35,8 +35,8 @@
 }
 
 .order-management-container .order-list li {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+  padding: 15px;
+  border-bottom: 1px solid #9b7878;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -50,7 +50,7 @@
   padding: 20px;
   background: #ffffff80;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(250, 0, 0, 0.1);
 }
 
 .order-management-container .order-details h2,
