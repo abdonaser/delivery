@@ -14,7 +14,7 @@ const Checkout = () => {
     return cartItems
       .reduce((total, item) => {
         const price = parseFloat(item.price.replace("$", ""));
-        return 5 + total + price * item.quantity;
+        return total + price * item.quantity;
       }, 0)
       .toFixed(2);
   };
@@ -59,11 +59,7 @@ const Checkout = () => {
                   {cartItems.map((item) => (
                     <div className="cartItem">
                       <div className="cartItemImage">
-                        <img
-                          src="../../public/Images/LogPageImage/meal-4.jpg"
-                          className="w-100 h-100"
-                          alt=""
-                        />
+                        <img src={item.image} className="w-100 h-100" alt="" />
                       </div>
                       <div className="cartItemDetails">
                         <h3>{item.name}</h3>
@@ -78,7 +74,7 @@ const Checkout = () => {
                 <div className="finalBalance">
                   <div className="subtotal">
                     <h4 className="">Subtotal</h4>
-                    <p>${calculateTotal() - 5}</p>
+                    <p>${calculateTotal()}</p>
                   </div>
                   <div className="shpping ">
                     <h4 className="">Shipping</h4>
@@ -86,7 +82,7 @@ const Checkout = () => {
                   </div>
                   <div className="totalDue">
                     <h4 className="">total Due</h4>
-                    <p>${calculateTotal()}</p>
+                    <p>${5 + parseInt(calculateTotal())}</p>
                   </div>
                 </div>
               </div>
@@ -115,7 +111,8 @@ const Checkout = () => {
                   />
                   <select
                     class="form-select"
-                    aria-label="Default select example">
+                    aria-label="Default select example"
+                  >
                     <option selected>Elmarg</option>
                     <option value="Giza">Giza</option>
                     <option value="Sheikh zayed">Sheikh zayed</option>
@@ -161,7 +158,8 @@ const Checkout = () => {
                 <div className="d-flex - justify-content-center">
                   <button
                     className="btn btn-dark w-75"
-                    onClick={handleCheckout}>
+                    onClick={handleCheckout}
+                  >
                     pay${calculateTotal()}{" "}
                   </button>
                 </div>

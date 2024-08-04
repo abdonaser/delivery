@@ -61,7 +61,8 @@ const CustomerOrders = () => {
             key={order.id}
             expanded={expanded === `panel${order.id}`}
             onChange={handleChange(`panel${order.id}`)}
-            sx={{ marginTop: "20px", borderRadius: "30px" }}>
+            sx={{ marginTop: "20px", borderRadius: "30px" }}
+          >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls={`panel${order.id}-content`}
@@ -71,14 +72,16 @@ const CustomerOrders = () => {
                 justifyContent: "space-between",
                 alignItems: "center",
                 borderBottom: "2px solid red",
-              }}>
+              }}
+            >
               <Typography
                 sx={{
                   width: "100%",
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
-                }}>
+                }}
+              >
                 <Typography sx={{ width: "33%", flexShrink: 0 }}>
                   <div className="orderDetails-Right">
                     <p>Order Number: {order.id}</p>
@@ -93,7 +96,8 @@ const CustomerOrders = () => {
                     color: "text.secondary",
                     width: "33%",
                     marginLeft: "auto",
-                  }}>
+                  }}
+                >
                   <div className="orderDetails-left">
                     <div className="cartInfo">
                       <p>

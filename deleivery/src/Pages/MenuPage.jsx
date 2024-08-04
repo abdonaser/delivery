@@ -90,12 +90,12 @@ const MenuPage = () => {
       )}
       <div className="menu-page-content">
         <div className="menu-page-categories">
-          <h2>Categories</h2>
+          {/* <h2>Categories</h2>
           <ul>
             <li>Category 1</li>
             <li>Category 2</li>
             <li>Category 3</li>
-          </ul>
+          </ul> */}
         </div>
         <div className="menu-page-items">
           <h2>Menu Items</h2>

@@ -101,16 +101,16 @@
       "role": "owner"
     },
     {
-      "id": 236779875406939500,
-      "ownerName": "abdoNaser ",
-      "restaurantName": "AbdoPizza",
-      "address": "pizza Street",
-      "phoneNumberOwner": "01067995483",
-      "phoneNumberRestaurant": "01114189522",
-      "serverCuisine": "Pizza",
-      "taxNumber": "123",
-      "email": "abdopizza@gmail.com",
-      "password": "$2a$10$GU/hC7T8gIk2u3ah.kozruglQ.67QrZ2Qwz5sVnxsW3vlET2WeDtq",
+      "id": 3150810710436287000,
+      "ownerName": "flower Owner",
+      "restaurantName": "Flower Restaurant",
+      "address": "cairo",
+      "phoneNumberOwner": "1234567",
+      "phoneNumberRestaurant": "123456789",
+      "serverCuisine": "Pasta",
+      "taxNumber": "123214235423",
+      "email": "flower@gmail.com",
+      "password": "$2a$10$LPTTXNq/hNk/WgkshvX74eqO.K/6nEc/VES/rINp7D1WALV.G2t4.",
       "status": "approved",
       "role": "owner"
     }
