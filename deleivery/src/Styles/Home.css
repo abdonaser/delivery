@@ -1,5 +1,8 @@
 body {
-  background-image: linear-gradient(rgba(255, 199, 142, 0.11), rgba(163, 163, 157, 0.5)),
+  background-image: linear-gradient(
+      rgba(255, 199, 142, 0.11),
+      rgba(163, 163, 157, 0.5)
+    ),
     url(../../Images/HomePage/wallpaper.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -7,8 +10,8 @@ body {
 }
 
 ::selection {
-  color: #F8EDED;
-  background: #FF8225;
+  color: #f8eded;
+  background: #ff8225;
 }
 
 /*? VerticalImageSlider */
@@ -100,7 +103,6 @@ body {
 }
 
 /*? Categories  */
-
 
 .menu-container {
   text-align: center;
@@ -290,7 +292,6 @@ body {
   text-align: center;
   text-transform: capitalize;
   position: relative;
-
 }
 
 .customer-review-heading::before {
@@ -411,7 +412,6 @@ body {
   margin: 0 !important;
 }
 
-
 /* 'reviewSection */
 .reviewSection {
   padding: 0px 20px 20px;
@@ -425,13 +425,11 @@ body {
   border-top-right-radius: 20px;
 }
 
-
 .review-content {
   background-color: #f5f5f5e5 !important;
   border-radius: 20px;
   padding: 30px;
 }
-
 
 /* .sectionContainer {
   padding: 0;
