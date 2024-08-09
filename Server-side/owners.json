@@ -113,6 +113,20 @@
       "password": "$2a$10$LPTTXNq/hNk/WgkshvX74eqO.K/6nEc/VES/rINp7D1WALV.G2t4.",
       "status": "approved",
       "role": "owner"
+    },
+    {
+      "id": 7881058158949620000,
+      "ownerName": "Mohammed",
+      "restaurantName": "Nice Place",
+      "address": "789 the Road, Cairo, IL, 62706",
+      "phoneNumberOwner": "012-555-8765",
+      "phoneNumberRestaurant": "232432",
+      "serverCuisine": "Chicken",
+      "taxNumber": "123456789",
+      "email": "niceplace@gmail.com",
+      "password": "$2a$10$d3OhKOhXPz5i9.KUUlyQZe.O2NHEJMBxbFs8AZnqIKIPR4OTLphPW",
+      "status": "approved",
+      "role": "owner"
     }
   ]
 }

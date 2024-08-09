@@ -1,24 +1,24 @@
 {
   "users": [
     {
-      "id": 2364394786722952700,
-      "username": "customer two",
-      "email": "customer2@gmail.com",
-      "password": "$2a$10$kLw.qOTPfZlrIUShQhFbLO.6aOH4cLhMinrqYZfCHChTMXjpYHv0C",
-      "address": "cairo",
-      "phoneNumber": "1234567",
-      "gender": "female",
-      "role": "customer"
+      "id": 14454892951070366000,
+      "username": "admin2",
+      "email": "admin2@gmail.com",
+      "password": "$2a$10$2EfMLlPz73iUTfHJXKPLlOYp.w46N5NMjkEmKYA.C1gIrRDYZXGEi",
+      "address": "",
+      "phoneNumber": "122321",
+      "gender": "",
+      "role": "admin"
     },
     {
-      "id": 7411517809975567000,
-      "username": "admin",
-      "email": "admin@gmail.com",
-      "password": "$2a$10$aZDnogb8AERGqFUTbE69uOh31qBO8r9Z2o2Kroo9MnbHAktPBwS4G",
-      "address": "cairo",
-      "phoneNumber": "1234554",
+      "id": 2692455036930030000,
+      "username": "Samir Ahmed",
+      "email": "samir@gmail.com",
+      "password": "$2a$10$.Z8nJfO04sXOz6VmkfrQYeg9ubSbLJk7Ie.P9OQST5HYvdo7KeFau",
+      "address": "123 Elm Street, Giza, IL, 62704",
+      "phoneNumber": "011-555-1234",
       "gender": "male",
-      "role": "admin"
+      "role": "customer"
     }
   ]
 }
